@@ -40,5 +40,6 @@
 ## Desenvolvedores
 * Alexandre
 * Autor
+* Bruno Geovane Barros Alves
 * Autor
 * Autor

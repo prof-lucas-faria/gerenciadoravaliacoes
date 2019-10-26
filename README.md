@@ -38,7 +38,7 @@
 * Problema: 1 autor com mais de um projeto em um evento com mais de um dia
 
 ## Desenvolvedores
-* Autor
+* Alexandre
 * Autor
 * Autor
 * Autor

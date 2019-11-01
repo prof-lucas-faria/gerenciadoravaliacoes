@@ -1,5 +1,9 @@
 # Sistema Gerenciador de Avaliações - Projeto
 
+## Banco de Dados
+
+![diagrama](documentacao/diagramaBanco.png)
+
 ## Atividades/Tarefas Iniciais
 
 * Levantar os requisitos

@@ -1,5 +1,9 @@
 # Sistema Gerenciador de Avaliações - Projeto
 
+## Banco de Dados
+
+![diagrama](documentacao/diagramaBanco.png)
+
 ## Atividades/Tarefas Iniciais
 
 * Levantar os requisitos
@@ -43,3 +47,6 @@
 * Marcos Winicios
 * Hiago Foppa
 * Giovane Álvares
+* Edson Rodrigues
+* Marcos Dourado
+* Marcos Lima

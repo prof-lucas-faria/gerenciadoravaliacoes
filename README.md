@@ -43,3 +43,4 @@
 * Marcos Winicios
 * Hiago Foppa
 * Edson Rodrigues
+* Marcos Dourado

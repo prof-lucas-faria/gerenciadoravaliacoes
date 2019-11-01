@@ -42,3 +42,4 @@
 * Bruno Geovane Barros Alves
 * Marcos Winicios
 * Hiago Foppa
+* Giovane Álvares

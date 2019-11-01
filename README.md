@@ -46,6 +46,7 @@
 * Bruno Geovane Barros Alves
 * Marcos Winicios
 * Hiago Foppa
+* Giovane Álvares
 * Edson Rodrigues
 * Marcos Dourado
 * Marcos Lima

@@ -48,3 +48,4 @@
 * Hiago Foppa
 * Edson Rodrigues
 * Marcos Dourado
+* Marcos Lima

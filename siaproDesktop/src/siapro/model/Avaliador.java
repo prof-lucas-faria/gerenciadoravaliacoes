@@ -2,7 +2,7 @@ package siapro.model;
 
 import java.util.ArrayList;
 
-public class Avaliador {
+public class Avaliador implements Entidade {
 	private long id;
 	private String nome;
 	private String login;

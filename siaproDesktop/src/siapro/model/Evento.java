@@ -47,6 +47,94 @@ public class Evento {
 		this.areas = areas;
 		this.categorias = categorias;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getInformacoes() {
+		return informacoes;
+	}
+
+	public void setInformacoes(String informacoes) {
+		this.informacoes = informacoes;
+	}
+
+	public int getQuantMinAvalProjeto() {
+		return quantMinAvalProjeto;
+	}
+
+	public void setQuantMinAvalProjeto(int quantMinAvalProjeto) {
+		this.quantMinAvalProjeto = quantMinAvalProjeto;
+	}
+
+	public int getQuantMaxAvalProjeto() {
+		return quantMaxAvalProjeto;
+	}
+
+	public void setQuantMaxAvalProjeto(int quantMaxAvalProjeto) {
+		this.quantMaxAvalProjeto = quantMaxAvalProjeto;
+	}
+
+	public boolean isLiberado() {
+		return liberado;
+	}
+
+	public void setLiberado(boolean liberado) {
+		this.liberado = liberado;
+	}
+
+	public List<Projeto> getArea() {
+		return area;
+	}
+
+	public void setArea(List<Projeto> area) {
+		this.area = area;
+	}
+
+	public List<Avaliador> getAvaliadores() {
+		return avaliadores;
+	}
+
+	public void setAvaliadores(List<Avaliador> avaliadores) {
+		this.avaliadores = avaliadores;
+	}
+
+	public List<Organizador> getOrganizadores() {
+		return organizadores;
+	}
+
+	public void setOrganizadores(List<Organizador> organizadores) {
+		this.organizadores = organizadores;
+	}
+
+	public List<Area> getAreas() {
+		return areas;
+	}
+
+	public void setAreas(List<Area> areas) {
+		this.areas = areas;
+	}
+
+	public List<Categoria> getCategorias() {
+		return categorias;
+	}
+
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
+	}
 	
 	
 	

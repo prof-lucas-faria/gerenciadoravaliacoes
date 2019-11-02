@@ -39,8 +39,20 @@ public class OrganizadorDAO implements InterfaceDAO {
 
 	@Override
 	public Entidade editar(Entidade entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		Organizador o = (Organizador)entidade;
+		
+        String sql = "UPDATE organizador SET nome = ?,  email = ?, senha = ?)";
+        try {
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, o.getNome());
+            stmt.setString(2,o.getEmail());
+            stmt.setString(3, o.getSenha());
+            stmt.execute();
+            stmt.close();
+            return o;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 	}
 
 	@Override

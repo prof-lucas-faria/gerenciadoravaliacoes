@@ -22,7 +22,7 @@ public class Categoria {
 		this.nome = nome;
 	}
 	
-	public Categoria(String nome, ArrayList<Criterio> criterios) {
+	public Categoria() {
 	}
 
 	public long getId() {

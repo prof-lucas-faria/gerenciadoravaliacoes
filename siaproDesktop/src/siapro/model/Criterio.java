@@ -1,6 +1,6 @@
 package siapro.model;
 
-public class Criterio {
+public class Criterio implements Entidade{
 	int id;
 	String descricao;
 	int notaMinima;

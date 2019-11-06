@@ -6,7 +6,7 @@ import siapro.model.Entidade;
 
 public interface InterfaceDAO {
 	
-public Entidade salvar(Entidade entidade);
+	public Entidade salvar(Entidade entidade);
 	
 	public Entidade editar(Entidade entidade);
 	

@@ -1,5 +1,6 @@
 package siapro.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import siapro.model.Entidade;
@@ -57,14 +58,44 @@ public class OrganizadorDAO implements InterfaceDAO {
 
 	@Override
 	public List<Entidade> listarTudo() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM organizador";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			List<Entidade> lista = new ArrayList<Entidade>();
+			while (rs.next()) {
+				Organizador o = new Organizador(rs.getString("email"));
+				o.setId(rs.getInt("id"));
+				o.setNome(rs.getString("nome"));
+				o.setSenha(rs.getString("senha"));
+				lista.add(o);
+			}
+			stmt.close();
+			return lista;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
 	public Entidade pesquisarId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "SELECT * FROM organizador WHERE id = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				Organizador o = new Organizador(rs.getString("email"));
+				o.setId(rs.getInt("id"));
+				o.setNome(rs.getString("nome"));
+				o.setSenha(rs.getString("senha"));
+				return o;
+			}
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

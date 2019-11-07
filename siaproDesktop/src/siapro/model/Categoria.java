@@ -2,7 +2,7 @@ package siapro.model;
 
 import java.util.ArrayList;
 
-public class Categoria {
+public class Categoria implements Entidade {
 	private long id;
 	private String nome;
 	private ArrayList<Criterio> criterios;

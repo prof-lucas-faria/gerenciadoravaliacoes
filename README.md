@@ -4,12 +4,19 @@
 
 ![diagrama](documentacao/diagramaBanco.png)
 
+
+## Protótipos
+https://www.figma.com/proto/yCBlnKtHWTW1Gj8LLyQpeI/Sistema-de-Avalia%C3%A7%C3%B5es---Telas?node-id=16%3A0&scaling=scale-down
+
 ## Atividades/Tarefas Iniciais
 
 * Levantar os requisitos
 * Criar o fluxograma (navegação entre as telas)
 * Criar o Diagrama de Classe (simplificado)
 * Criar a base de dados (diagrama e SQL)
+
+
+
 
 ## Requisitos
 
@@ -51,3 +58,4 @@
 * Marcos Dourado
 * Marcos Lima
 * Márcia Linhares
+* Gustavo Faquim

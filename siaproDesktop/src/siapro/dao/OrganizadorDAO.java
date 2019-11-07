@@ -42,7 +42,7 @@ public class OrganizadorDAO implements InterfaceDAO {
 	public Entidade editar(Entidade entidade) {
 		Organizador o = (Organizador)entidade;
 		
-        String sql = "UPDATE organizador SET nome = ?,  email = ?, senha = ?)";
+        String sql = "UPDATE organizador SET nome = ?,  email = ?, senha = ?";
         try {
             stmt = conexao.prepareStatement(sql);
             stmt.setString(1, o.getNome());

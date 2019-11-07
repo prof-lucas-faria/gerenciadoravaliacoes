@@ -2,12 +2,10 @@ package siapro.model;
 
 import java.util.List;
 
-public class Evento {
+public class Evento implements Entidade {
 	private long id;
 	private String nome;
 	private String informacoes;
-	private int quantMinAvalProjeto;
-	private int quantMaxAvalProjeto;
 	private boolean liberado;
 	private List<Projeto> area;
 	private List<Avaliador> avaliadores;
@@ -15,15 +13,13 @@ public class Evento {
 	private List<Area> areas;
 	private List<Categoria> categorias;
 	
-	public Evento(long id, String nome, String informacoes, int quantMinAvalProjeto, int quantMaxAvalProjeto,
+	public Evento(long id, String nome, String informacoes,
 			boolean liberado, List<Projeto> projetos, List<Avaliador> avaliadores, List<Organizador> organizadores,
 			List<Area> areas, List<Categoria> categorias) {
 	
 		this.id = id;
 		this.nome = nome;
 		this.informacoes = informacoes;
-		this.quantMinAvalProjeto = quantMinAvalProjeto;
-		this.quantMaxAvalProjeto = quantMaxAvalProjeto;
 		this.liberado = liberado;
 		this.area = projetos;
 		this.avaliadores = avaliadores;
@@ -32,14 +28,12 @@ public class Evento {
 		this.categorias = categorias;
 	}
 
-	public Evento(String nome, String informacoes, int quantMinAvalProjeto, int quantMaxAvalProjeto, boolean liberado,
+	public Evento(String nome, String informacoes, boolean liberado,
 			List<Projeto> area, List<Avaliador> avaliadores, List<Organizador> organizadores, List<Area> areas,
 			List<Categoria> categorias) {
 		super();
 		this.nome = nome;
 		this.informacoes = informacoes;
-		this.quantMinAvalProjeto = quantMinAvalProjeto;
-		this.quantMaxAvalProjeto = quantMaxAvalProjeto;
 		this.liberado = liberado;
 		this.area = area;
 		this.avaliadores = avaliadores;
@@ -70,22 +64,6 @@ public class Evento {
 
 	public void setInformacoes(String informacoes) {
 		this.informacoes = informacoes;
-	}
-
-	public int getQuantMinAvalProjeto() {
-		return quantMinAvalProjeto;
-	}
-
-	public void setQuantMinAvalProjeto(int quantMinAvalProjeto) {
-		this.quantMinAvalProjeto = quantMinAvalProjeto;
-	}
-
-	public int getQuantMaxAvalProjeto() {
-		return quantMaxAvalProjeto;
-	}
-
-	public void setQuantMaxAvalProjeto(int quantMaxAvalProjeto) {
-		this.quantMaxAvalProjeto = quantMaxAvalProjeto;
 	}
 
 	public boolean isLiberado() {
@@ -135,7 +113,5 @@ public class Evento {
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
 	}
-	
-	
 	
 }

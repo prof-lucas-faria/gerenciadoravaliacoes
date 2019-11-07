@@ -1,1 +1,8 @@
+<<<<<<< HEAD
+*/build/
 /bin/
+/.metadata/
+*.class
+=======
+/bin/
+>>>>>>> 0eeba9d3f8f4e1499fe40c41a7893e5af3c67894

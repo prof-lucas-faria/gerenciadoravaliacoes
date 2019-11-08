@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import siapro.conexao.Conexao;
+import siapro.model.Avaliacao;
 import siapro.model.Categoria;
 import siapro.model.Criterio;
 import siapro.model.Entidade;
@@ -26,11 +27,11 @@ public class CriterioDAO implements InterfaceDAO {
 		try {
 			Criterio c = (Criterio) entidade;
 			this.stmt = this.conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			this.stmt.setString(1, c.descricao());
+			this.stmt.setString(1, c.getDescricao());
 			this.stmt.setDouble(2, c.getNotaMinima());
 			this.stmt.setDouble(3, c.getNotaMaxima());
-			this.stmt.setLong(4, criterio.getProjeto.getId());
-			this.stmt.setString(5, c,getNome());
+			this.stmt.setLong(4, c.getCategoria().getId());
+			this.stmt.setString(5, c.getNome());
 			this.stmt.execute();
 			
 			ResultSet rs = this.stmt.getGeneratedKeys();
@@ -57,7 +58,7 @@ public class CriterioDAO implements InterfaceDAO {
 			this.stmt.setString(2, criterio.getDescricao());
 			this.stmt.setDouble(3, criterio.getNotaMaxima());
 			this.stmt.setDouble(4, criterio.getNotaMinima());
-			this.stmt.setLong(5, criterio.getCategoria.getId());
+			this.stmt.setLong(5, criterio.getCategoria().getId());
 			this.stmt.setLong(6, criterio.getId());
 			this.stmt.execute();
 			this.stmt.close();
@@ -80,8 +81,11 @@ public class CriterioDAO implements InterfaceDAO {
 			List<Entidade> criterios =  new ArrayList<Entidade>();
 			
 			while(rs.next()) {
-				Criterio c = new Criterio(rs.getString("descricao"), rs.getDouble("notaMinima"), rs.getDouble("notaMaxima"), rs.getString("nome"));
-				criterios.add(c);
+				Criterio criterio = new Criterio(rs.getLong("id"), rs.getString("descricao"), rs.getString("nome"),  rs.getDouble("notaMinima"), rs.getDouble("notaMaxima"));
+				CategoriaDAO ctDAO =  new CategoriaDAO();
+				Categoria ct =(Categoria) ctDAO.pesquisarId(rs.getLong("idCategoria"));
+				criterio.setCategoria(ct);
+				criterios.add(criterio);
 			}
 			this.stmt.close();
 			return criterios;
@@ -96,14 +100,38 @@ public class CriterioDAO implements InterfaceDAO {
 		String sql = "SELECT * FROM criterio WHERE id = ?";
 		try {
 			this.stmt = this.conexao.prepareStatement(sql);
-			this.stmt.setInt(1, id);
+			this.stmt.setLong(1, id);
 			ResultSet rs = this.stmt.executeQuery();
 			Criterio criterio =  new Criterio();
 			if(rs.next()) {
-				criterio =  new Criterio(rs.getString("descricao"), rs.getDouble("notaMinima"), rs.getDouble("notaMaxima"), rs.getString("nome"));
+				criterio = new Criterio(rs.getLong("id"), rs.getString("descricao"), rs.getString("nome"),  rs.getDouble("notaMinima"), rs.getDouble("notaMaxima"));
+				CategoriaDAO ctDAO =  new CategoriaDAO();
+				Categoria ct =(Categoria) ctDAO.pesquisarId(rs.getLong("idCategoria"));
+				criterio.setCategoria(ct);
 			}
 			this.stmt.close();
 			return criterio;
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Criterio> pesquisarPorAvalicao(Avaliacao avaliacao) {
+		String sql = "SELECT * FROM criterio c INNER JOIN avaliacaocriterio ON c.id = ac.idCriterio INNER JOIN avaliacao a ON a.id = ac.idAvaliacao WHERE a.id = ?";
+		try {
+			this.stmt = conexao.prepareStatement(sql);
+			ResultSet rs = this.stmt.executeQuery();
+			this.stmt.setLong(1, avaliacao.getId());
+			List<Criterio> criterios =  new ArrayList<Criterio>();
+			while(rs.next()) {
+				Criterio criterio = new Criterio(rs.getLong("id"), rs.getString("descricao"), rs.getString("nome"),  rs.getDouble("notaMinima"), rs.getDouble("notaMaxima"));
+				CategoriaDAO ctDAO =  new CategoriaDAO();
+				Categoria ct =(Categoria) ctDAO.pesquisarId(rs.getLong("idCategoria"));
+				criterio.setCategoria(ct);
+				criterios.add(criterio);
+			}
+			this.stmt.close();
+			return criterios;
 		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}

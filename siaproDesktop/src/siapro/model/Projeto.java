@@ -9,7 +9,21 @@ public class Projeto {
 	private List<Avaliacao> avaliacoes;
 	private Area area;
 	private Categoria categoria;
+	private Projeto projeto;
 	
+	
+	
+	public Projeto(long id, String titulo, String autores, List<Avaliacao> avaliacoes, Area area, Categoria categoria,
+			Projeto projeto) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.autores = autores;
+		this.avaliacoes = avaliacoes;
+		this.area = area;
+		this.categoria = categoria;
+		this.projeto = projeto;
+	}
 	public Projeto(long id, String titulo, String autores, List<Avaliacao> avaliacoes, Area area, Categoria categoria) {
 		super();
 		this.id = id;

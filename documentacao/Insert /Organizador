@@ -1,0 +1,16 @@
+INSERT INTO organizador (nome, email, senha) 
+    values ("Jorge Fernando", "jorgefernando@gmail.com", "jf123@"),
+           ("Cleiton Mateus", "cleitonmateus@gmail.com", "cleitondeusefiel"),
+           ("Luis Fernando", "luisfernando@hotmail.com", "jesuscr1st0"),
+           ("Lucas Farias", "lucfarias@gmail.com", "lucas987"),
+           ("Amanda Costa", "acosta@gmail.com", "123456789"),
+           ("Geovana Souza", "ggsouza@gmail.com", "ggsouza"),
+           ("Mariana Dias", "maridiasmari@gmail.com", "987654321"),
+           ("João Lucas Neto", "jlneto@gmail.com", "jlneto"),
+           ("Giovane Barbosa", "giovanebarbosa@ifgoiano.edu.br", "giovanebarbosa"),
+           ("Plinio de Souza", "pliniods@gmail.com", "pliniosouza"),
+           ("Amanda Gabriele dos Santos", "amandasantosgg@ifg.edu.br", "agsantos"),
+           ("Lara Macedo", "lm@gmail.com", "lara15111965"),
+           ("Maria Luiza Souza", "Marisousa@gmail.com", "marialuiza123"),
+           ("Fernanda Macedo Costa", "fmc@gmail.com", "fmc123456"),
+           ("Gabriel Augusto", "gabrielaugusto@gmail.com", "gabriel123456");

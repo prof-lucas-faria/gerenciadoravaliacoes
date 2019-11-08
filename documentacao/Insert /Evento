@@ -1,0 +1,17 @@
+
+INSERT INTO evento (nome, informacoes, liberado, logotipo) 
+values ("IntegraIF", "Maior evento que pesquisa do estado de Goiás", true, null),
+       ("Feira de Ciências Ceres", "Feira de ciências do Ensino Médio do IF Goiano Campus Ceres", true, null) ,
+       ("Congresso de Iniciação Científica e Tecnologica ", "Maior evento de pesquisa cientifica do Brasil", true, null) ,
+       ("20º SALÃO DE INICIAÇÃO CIENTÍFICA", "Evento de iniciação cientifica", true, null),
+       ("XXX Congresso de Iniciação Científica e Tecnológica", "Evento de exposição de pesquisas cientificas de todo o Brasil", false, null),
+       ("Feira de Ciências 2015", "Feira de ciências do Ensino Médio do IF Goiano Campus Ceres", true, null),
+       ("14 ExpoUniversitario", "Evento de exposição tecnologica em Santa Maria-DF", true, null),
+       ("Feira de Ciencias 2019", "Feira de ciência do ensino fundamental e medio", true, null),
+       ("IntegraCeres", "Evento de iniciação cientifica de Ceres e região", true, null),
+       ("1 Simposio de sistemas de informação", "Primeiro simposio de tecnologia do vale do São Patricio", true, null),
+       ("Congresso de Iniciação Cienfica de Goias", "Evento que reune os estudantes de ensino superior de Goias", false, null),
+       ("2 Simposio de sistema de informação IFG", "Evento somente para estudantes de sistema de informação do IFG", true, null),
+       ("2 Feira de Ciencias Ceres", "Feira de ciências do Ensino Médio do IF Goiano Campus Ceres", true, null),
+       ("XXXI Congresso de Iniciação Científica e Tecnológica", "Evento de exposição de pesquisas cientificas de todo o Brasil", true, null),
+       ("2 IntegraIF", "Maior evento que pesquisa do estado de Goiás", true, null);

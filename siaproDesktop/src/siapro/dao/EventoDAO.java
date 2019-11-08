@@ -35,6 +35,7 @@ public class EventoDAO implements InterfaceDAO {
 			stmt.setString(4, e.getLogotipo());
 			stmt.execute();
 			stmt.close();
+			return entidade;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -52,6 +53,7 @@ public class EventoDAO implements InterfaceDAO {
 			stmt.setString(4, e.getLogotipo());
 			stmt.execute();
 			stmt.close();
+			return entidade;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -59,44 +61,28 @@ public class EventoDAO implements InterfaceDAO {
 
 	public List<Entidade> listarTudo(Entidade entidade) {
 		Evento e = (Evento)entidade;
-		String sql = "SELECT * FROM evento WHERE id = ?";
-		try {
-			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1,e.getId());
-			ResultSet rs = stmt.executeQuery();
-			List<Entidade> lista = new ArrayList<Entidade>();
-			while (rs.next()) {
-				e.setId(rs.getLong("id"));
-				e.setNome(rs.getString("nome"));
-				e.setInformacoes(rs.getString("informacoes"));
-				e.setLiberado(rs.getBoolean("liberado"));
-				e.setLogotipo(rs.getString("logotipo"));
-				lista.add(e);
-			}
-			stmt.close();
-			return lista;
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
-		}
-	}
-	
-	public Entidade pesquisarId(long id) {
-		String sql = "SELECT * FROM evento WHERE id = ?";
+		String sql = "select * from evento e INNER JOIN organizadorEvento oe ON oe.idEvento = e.id INNER JOIN organizador o ON oe.idOrganizador = o.id;";
 		ArrayList<Evento> resultadoConsulta = new ArrayList<Evento>();
 		try {
-		
 			stmt = conexao.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 	
 	while (rs.next()) {
-		Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
-		resultadoConsulta.add(evento);
+			Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+			resultadoConsulta.add(evento);
 	}
-	stmt.close();
-	} catch (Exception ex) {
-		throw new RuntimeException(ex);
+		stmt.close();
+	} 
+		catch (Exception ex) {
+			throw new RuntimeException(ex);
 	}
 		
-	}}
+	}
+	
+	public Entidade pesquisarId(long id) {
+		return null;
+	
+	
+	}
 
-
+}

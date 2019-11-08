@@ -96,6 +96,7 @@ public class AvaliadorDAO implements InterfaceDAO {
 			stmt.setLong(1,evento.getId());
 			ResultSet rs = stmt.executeQuery();
 			
+			
 			List<Entidade> avaliadores = new ArrayList<Entidade>();
 		
 			while(rs.next()) {
@@ -146,7 +147,7 @@ public class AvaliadorDAO implements InterfaceDAO {
 				
 				Area area = new Area();
 				AreaDAO areaDAO = new AreaDAO();
-				avaliador.setArea(areaDAO.listarTudo(avaliador)); // O metodo areaDAO.listarTudo() pesquisa por avalaidor ou por evento?
+				avaliador.setArea(areaDAO.listarTudo(entidade));  // O metodo areaDAO.listarTudo() pesquisa por avalaidor ou por evento?
 				
 				
 				// Depois de pesquisar as área de um avaliador eu tenho que dar set no list o avalaidor
@@ -164,12 +165,13 @@ public class AvaliadorDAO implements InterfaceDAO {
 	
 	
 	public Entidade pesquisar(Entidade entidade) {
-		String sql = "select * from avaliador a inner join eventoAvaliador ea a.id = ae.idAvaliador where ae.idEvento = ?";
-		String sql = "select * from avalaidor a inner join eventoAvaliador ae where like '?' and  "; // Preciso do BD para testar esse sql
-		// Pesquisar avaliador por nome, levando em conta o evento que ele esta.
+		String sql = "select * from avaliador a inner join eventoAvaliador ae where nome like '%?%' and ae.idEvento = ?; ";
+		Avaliador avaliador = (Avaliador) entidade;
 		try {
+			
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1);
+			stmt.setString(1, avaliador.getNome());
+			stmt.setLong(2, evento.getId()); // Pegar o evento.
 			ResultSet rs = stmt.executeQuery();
 			
 			Avaliador avaliador = new Avaliador();
@@ -178,6 +180,12 @@ public class AvaliadorDAO implements InterfaceDAO {
 				avaliador.setNome(rs.getString("nome"));
 				avaliador.setLogin(rs.getString("login"));
 				avaliador.setSenha(rs.getString("senha"));
+				
+				Area area = new Area();
+				AreaDAO areaDAO = new AreaDAO();
+				areaDAO.pesquisaArea(nome);
+				avaliador.setArea(areaDAO.pesquisaArea()); // Metodo que retorna a area de acordo com o avaliador
+				
 				
 				// Usar metodo pesquisa Area por nome para pesquisar a area e setar junto;
 				

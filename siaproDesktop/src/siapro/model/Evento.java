@@ -28,6 +28,14 @@ public class Evento implements Entidade {
 		this.areas = areas;
 		this.categorias = categorias;
 	}
+	
+	public Evento(String nome, String informacoes, Boolean liberado, String logotipo ) {
+		// criado para listar
+		this.nome = nome;
+		this.informacoes = informacoes;
+		this.liberado = liberado;
+		this.logotipo = logotipo;
+	}
 
 	public Evento(String nome, String informacoes, boolean liberado,
 			List<Projeto> area, List<Avaliador> avaliadores, List<Organizador> organizadores, List<Area> areas,

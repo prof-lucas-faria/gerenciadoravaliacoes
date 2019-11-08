@@ -2,13 +2,10 @@ package siapro.dao;
 
 import java.util.List;
 
-import siapro.model.Avaliacao;
-import siapro.model.Categoria;
+
 import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
-import siapro.model.Organizador;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,7 +32,12 @@ public class EventoDAO implements InterfaceDAO {
 			stmt.setString(4, e.getLogotipo());
 			stmt.execute();
 			stmt.close();
-			return entidade;
+			ResultSet rs = stmt.getGeneratedKeys();
+			if(rs.next()) {
+				e.setId(rs.getLong("id"));
+			}
+			this.stmt.close();
+			return e;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -60,23 +62,18 @@ public class EventoDAO implements InterfaceDAO {
 	}
 
 	public List<Entidade> listarTudo(Entidade entidade) {
-		Evento e = (Evento)entidade;
 		String sql = "select * from evento e INNER JOIN organizadorEvento oe ON oe.idEvento = e.id INNER JOIN organizador o ON oe.idOrganizador = o.id;";
 		ArrayList<Evento> resultadoConsulta = new ArrayList<Evento>();
-		try {
-			stmt = conexao.prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-	
-	while (rs.next()) {
-			Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
-			resultadoConsulta.add(evento);
-	}
+			try {
+				stmt = conexao.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();
+				 while (rs.next()) {
+					 Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+					 resultadoConsulta.add(evento); }
 		stmt.close();
-	} 
-		catch (Exception ex) {
-			throw new RuntimeException(ex);
-	}
-		
+	  } catch (Exception ex) {
+			throw new RuntimeException(ex); };
+			return null;
 	}
 	
 	public Entidade pesquisarId(long id) {

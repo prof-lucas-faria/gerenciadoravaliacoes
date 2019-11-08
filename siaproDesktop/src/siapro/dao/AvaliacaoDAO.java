@@ -10,6 +10,7 @@ import siapro.conexao.Conexao;
 import siapro.model.Entidade;
 import siapro.model.Projeto;
 import siapro.model.Avaliacao;
+import siapro.model.Criterio;
 
 public class AvaliacaoDAO implements InterfaceDAO {
 	 private Connection conexao;
@@ -33,6 +34,17 @@ public class AvaliacaoDAO implements InterfaceDAO {
             stmt.setBoolean(4, avaliacao.isAvaliacao());
             stmt.execute();
             stmt.close();
+            
+            String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?)";
+            
+            stmt = conexao.prepareStatement(sql2);
+            stmt.setLong(1, avaliacao.getId());
+            for(Criterio criterio: avaliacao.getCriterios()) {
+            	  stmt.setLong(2, criterio.getId());
+            }
+            stmt.execute();
+            stmt.close();
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

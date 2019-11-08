@@ -117,13 +117,13 @@ DROP TABLE IF EXISTS `avaliadorArea`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `avaliadorArea` (
-  `avaliador_id` bigint(20) NOT NULL,
-  `area_id` bigint(20) NOT NULL,
-  PRIMARY KEY (`avaliador_id`,`area_id`),
-  KEY `fk_avaliador_has_area_area1_idx` (`area_id`),
-  KEY `fk_avaliador_has_area_avaliador1_idx` (`avaliador_id`),
-  CONSTRAINT `fk_avaliador_has_area_area1` FOREIGN KEY (`area_id`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_avaliador_has_area_avaliador1` FOREIGN KEY (`avaliador_id`) REFERENCES `avaliador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `idAvaliador` bigint(20) NOT NULL,
+  `idArea` bigint(20) NOT NULL,
+  PRIMARY KEY (`idAvaliador`,`idArea`),
+  KEY `fk_avaliador_has_area_area1_idx` (`idArea`),
+  KEY `fk_avaliador_has_area_avaliador1_idx` (`idAvaliador`),
+  CONSTRAINT `fk_avaliador_has_area_area1` FOREIGN KEY (`idArea`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_avaliador_has_area_avaliador1` FOREIGN KEY (`idAvaliador`) REFERENCES `avaliador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

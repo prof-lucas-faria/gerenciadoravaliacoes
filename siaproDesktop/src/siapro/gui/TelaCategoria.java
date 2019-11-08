@@ -11,6 +11,9 @@ import javax.swing.JSeparator;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaCategoria extends JFrame {
 
@@ -19,6 +22,7 @@ public class TelaCategoria extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -41,7 +45,7 @@ public class TelaCategoria extends JFrame {
 	 */
 	public TelaCategoria() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 394);
+		setBounds(100, 100, 450, 453);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,5 +100,29 @@ public class TelaCategoria extends JFrame {
 		textField_3.setColumns(10);
 		textField_3.setBounds(96, 311, 17, 20);
 		contentPane.add(textField_3);
+		
+		JLabel lblNotamxima = new JLabel("NotaMáxima");
+		lblNotamxima.setFont(new Font("Tahoma", Font.PLAIN, 6));
+		lblNotamxima.setBounds(138, 300, 46, 14);
+		contentPane.add(lblNotamxima);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(140, 311, 17, 20);
+		contentPane.add(textField_4);
+		
+		JButton btnNewButton = new JButton("Adcionar Item");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnNewButton.setBounds(86, 352, 83, 14);
+		contentPane.add(btnNewButton);
+		
+		JButton btnSalvarCategoria = new JButton("Salvar Categoria");
+		btnSalvarCategoria.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		btnSalvarCategoria.setBounds(335, 371, 89, 14);
+		contentPane.add(btnSalvarCategoria);
 	}
 }

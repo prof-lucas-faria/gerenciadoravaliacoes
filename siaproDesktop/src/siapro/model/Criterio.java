@@ -1,14 +1,15 @@
 package siapro.model;
 
 public class Criterio implements Entidade{
-	int id;
-	String descricao;
-	int notaMinima;
-	int notaMaxima;
-	public int getId() {
+	private long id;
+	private String descricao;
+	private int notaMinima;
+	private int notaMaxima;
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getDescricao() {

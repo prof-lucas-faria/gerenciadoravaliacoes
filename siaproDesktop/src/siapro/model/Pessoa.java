@@ -1,11 +1,11 @@
 package siapro.model;
 
 public abstract class Pessoa {
-	int id;
-	String nome;
-	String senha;
+	private long id;
+	private String nome;
+	private String senha;
 	
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 	public String getNome() {
@@ -14,7 +14,7 @@ public abstract class Pessoa {
 	public String getSenha() {
 		return senha;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public void setNome(String nome) {

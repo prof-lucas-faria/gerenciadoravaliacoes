@@ -57,7 +57,7 @@ public class OrganizadorDAO implements InterfaceDAO {
 	}
 
 	@Override
-	public List<Entidade> listarTudo() {
+	public List<Entidade> listarTudo(Entidade e) {
 		String sql = "SELECT * FROM organizador";
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -72,17 +72,17 @@ public class OrganizadorDAO implements InterfaceDAO {
 			}
 			stmt.close();
 			return lista;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
 		}
 	}
 
 	@Override
-	public Entidade pesquisarId(int id) {
+	public Entidade pesquisarId(long id) {
 		String sql = "SELECT * FROM organizador WHERE id = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
-			stmt.setInt(1, id);
+			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
 			
 			if (rs.next()) {

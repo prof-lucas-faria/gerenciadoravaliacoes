@@ -3,7 +3,6 @@ package siapro.model;
 public class Area implements Entidade{
 	private long id;
 	private String nome;
-	private int idEvento;
 	private String descricao;
 	
 	public long getId() {
@@ -18,12 +17,7 @@ public class Area implements Entidade{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getIdEvento() {
-		return idEvento;
-	}
-	public void setIdEvento(int idEvento) {
-		this.idEvento = idEvento;
-	}
+
 	public String getDescricao() {
 		return descricao;
 	}

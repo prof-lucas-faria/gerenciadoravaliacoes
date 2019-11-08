@@ -6,7 +6,11 @@
 
 
 ## Protótipos
-https://www.figma.com/proto/yCBlnKtHWTW1Gj8LLyQpeI/Sistema-de-Avalia%C3%A7%C3%B5es---Telas?node-id=16%3A0&scaling=scale-down
+[Telas Desktop](https://www.figma.com/proto/yCBlnKtHWTW1Gj8LLyQpeI/Sistema-de-Avalia%C3%A7%C3%B5es---Telas?node-id=16%3A0&scaling=scale-down)
+
+
+## Exemplos de Telas
+[Projeto Desktop](https://www.dropbox.com/s/5x8usvgy0ioh612/telasDesktop.zip?dl=0)
 
 ## Atividades/Tarefas Iniciais
 
@@ -14,9 +18,6 @@ https://www.figma.com/proto/yCBlnKtHWTW1Gj8LLyQpeI/Sistema-de-Avalia%C3%A7%C3%B5
 * Criar o fluxograma (navegação entre as telas)
 * Criar o Diagrama de Classe (simplificado)
 * Criar a base de dados (diagrama e SQL)
-
-
-
 
 ## Requisitos
 

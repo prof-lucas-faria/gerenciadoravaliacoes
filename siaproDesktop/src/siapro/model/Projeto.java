@@ -2,6 +2,8 @@ package siapro.model;
 
 import java.util.List;
 
+import siapro.dao.AvaliacaoDAO;
+
 public class Projeto {
 	private long id;
 	private String titulo;
@@ -9,12 +11,13 @@ public class Projeto {
 	private List<Avaliacao> avaliacoes;
 	private Area area;
 	private Categoria categoria;
-	private Projeto projeto;
+	private Evento evento;
 	
+	public Projeto(){
+		
+	}
 	
-	
-	public Projeto(long id, String titulo, String autores, List<Avaliacao> avaliacoes, Area area, Categoria categoria,
-			Projeto projeto) {
+	public Projeto(long id, String titulo, String autores, List<Avaliacao> avaliacoes, Evento evento, Area area, Categoria categoria) {
 		super();
 		this.id = id;
 		this.titulo = titulo;
@@ -22,25 +25,18 @@ public class Projeto {
 		this.avaliacoes = avaliacoes;
 		this.area = area;
 		this.categoria = categoria;
-		this.projeto = projeto;
+		this.evento = evento;
 	}
-	public Projeto(long id, String titulo, String autores, List<Avaliacao> avaliacoes, Area area, Categoria categoria) {
-		super();
-		this.id = id;
-		this.titulo = titulo;
-		this.autores = autores;
-		this.avaliacoes = avaliacoes;
-		this.area = area;
-		this.categoria = categoria;
-	}
-	public Projeto(String titulo, String autores, List<Avaliacao> avaliacoes, Area area, Categoria categoria) {
+	public Projeto(String titulo, String autores, List<Avaliacao> avaliacoes, Evento evento, Area area, Categoria categoria) {
 		super();
 		this.titulo = titulo;
 		this.autores = autores;
 		this.avaliacoes = avaliacoes;
 		this.area = area;
 		this.categoria = categoria;
+		this.evento = evento;
 	}
+	
 	public long getId() {
 		return id;
 	}
@@ -77,7 +73,17 @@ public class Projeto {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+	public Evento getEvento() {
+		return evento;
+	}
+	public void setEvento(Evento evento) {
+		this.evento = evento;
+	}
 	
+	public void carregarAvaliacoes(Projeto projeto) {
+		List<Avaliacao> avaliacoes = new AvaliacaoDAO().pesquisarPorProjeto(projeto);
+		this.setAvaliacoes(avaliacoes);
+	}
 	
 	
 }

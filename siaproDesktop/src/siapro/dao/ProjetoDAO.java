@@ -40,13 +40,30 @@ public class ProjetoDAO implements InterfaceDAO{
 				throw new RuntimeException(e);
 			}
 		}
-		return null;
+		return entidade;
 	}
 
 	@Override
 	public Entidade editar(Entidade entidade) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE contato SET titulo = ?, autores = ?, ativo = ?, idEvento = ?, idCategoria = ?, idArea = ? WHERE id = ?";
+		if(entidade instanceof Projeto) {
+			Projeto projeto = (Projeto)entidade;
+			try {
+				stmt = conexao.prepareStatement(sql);
+				stmt.setString(1, projeto.getTitulo());
+				stmt.setString(2, projeto.getAutores());
+				stmt.setBoolean(3, true);
+				stmt.setLong(4, projeto.getEvento().getId());
+				stmt.setLong(5, projeto.getCategoria().getId());
+				stmt.setLong(6, projeto.getArea().getId());
+				stmt.setLong(7, projeto.getId());
+				stmt.execute();
+				stmt.close();
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return entidade;
 	}
 
 	@Override
@@ -58,12 +75,17 @@ public class ProjetoDAO implements InterfaceDAO{
 				stmt = conexao.prepareStatement(sql);
 				stmt.setLong(1, evento.getId());
 				ResultSet rs = stmt.executeQuery();
+				Projeto projeto = new Projeto();
 				List<Entidade> listaProjeto = new ArrayList<Entidade>();
 				while (rs.next()) {
-					ArrayList<Avaliacao> avaliacoes = new AvaliacaoDAO().pesquisarIdProjeto();
-					Area area = new AreaDAO().pesquisarId(rs.getLong("idArea"));
-					Categoria categoria = new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
-					Projeto projeto = new Projeto(rs.getLong("id"), rs.getString("titulo"), rs.getString("autores"), avaliacoes , area, categoria);
+					projeto.setId(rs.getLong("id"));
+					Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
+					Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
+					projeto.setTitulo(rs.getString("titulo"));
+					projeto.setAutores(rs.getString("autores"));
+					projeto.setCategoria(categoria);
+					projeto.setArea(area);
+					projeto.setEvento(evento);
 					listaProjeto.add((Entidade) projeto);
 				}
 				stmt.close();
@@ -76,7 +98,7 @@ public class ProjetoDAO implements InterfaceDAO{
 	}
 
 	@Override
-	public Entidade pesquisarId(int id) {
+	public Entidade pesquisarId(long id) {
 		String sql = "SELECT * FROM projeto WHERE id = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
@@ -85,12 +107,16 @@ public class ProjetoDAO implements InterfaceDAO{
 			Projeto projeto;
 			List<Entidade> listaProjeto = new ArrayList<Entidade>();
 			if (rs.next()) {
-				projeto = new Projeto(rs.getLong("id"), null, null, null, null, null);
-				Evento evento = new EventoDAO().pesquisarPorProjeto(projeto);
-				ArrayList<Avaliacao> avaliacoes = new AvaliacaoDAO().pesquisarPorProjeto(projeto);
-				Area area = new AreaDAO().pesquisarId(rs.getLong("idArea"));
-				Categoria categoria = new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
-				projeto = new Projeto(rs.getLong("id"), rs.getString("titulo"), rs.getString("autores"), avaliacoes , area, categoria);
+				projeto.setId(rs.getLong("id"));
+				Evento evento = (Evento)new EventoDAO().pesquisarId(rs.getLong("idEvento"));
+				Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
+				Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
+				projeto.setTitulo(rs.getString("titulo"));
+				projeto.setAutores(rs.getString("autores"));
+				projeto.setCategoria(categoria);
+				projeto.setArea(area);
+				projeto.setEvento(evento);
+				listaProjeto.add((Entidade) projeto);
 			}
 			stmt.close();
 			return (Entidade) projeto;

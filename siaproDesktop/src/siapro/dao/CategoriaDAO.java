@@ -26,12 +26,13 @@ public class CategoriaDAO implements InterfaceDAO {
 	public Entidade salvar(Entidade entidade) {
 		Categoria c = (Categoria)entidade;
 		
-		String sql = "INSERT INTO categoria (nome, qntMinAvalProjeto, qntMaxAvalProjeto) VALUES (?, ?, ?)";
+		String sql = "INSERT INTO categoria (nome, idEvento,qntMinAvalProjeto, qntMaxAvalProjeto) VALUES (?, ?, ?, ?)";
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, c.getNome());
-			stmt.setInt(2, c.getQntMinAvalProjeto());
-			stmt.setInt(3, c.getQntMaxAvalProjeto());
+			stmt.setLong(2, c.getEvento().getId());
+			stmt.setInt(3, c.getQntMinAvalProjeto());
+			stmt.setInt(4, c.getQntMaxAvalProjeto());
 			stmt.execute();
 			stmt.close();
 			return c;
@@ -61,23 +62,26 @@ public class CategoriaDAO implements InterfaceDAO {
 	}
 
 	@Override
-	public List<Entidade> listarTudo() {
-		String sql = "SELECT * FROM categoria";
+	public List<Entidade> listarTudo(Entidade entidade) {
+		Evento e = (Evento)entidade;
+		String sql = "SELECT * FROM categoria WHERE idEvento = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1,e.getId());
 			ResultSet rs = stmt.executeQuery();
 			List<Entidade> lista = new ArrayList<Entidade>();
 			while (rs.next()) {
 				Categoria c = new Categoria(rs.getString("nome"));
 				c.setId(rs.getInt("id"));
+				c.setEvento(e);
 				c.setQntMinAvalProjeto(rs.getInt("QntMinAvalProjeto"));
 				c.setQntMaxAvalProjeto(rs.getInt("QntMaxAvalProjeto"));
 				lista.add(c);
 			}
 			stmt.close();
 			return lista;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
 		}
 	}
 

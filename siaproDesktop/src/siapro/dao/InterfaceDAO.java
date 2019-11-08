@@ -12,6 +12,6 @@ public interface InterfaceDAO {
 	
 	public List<Entidade> listarTudo();
 	
-	public Entidade pesquisarId(int id);
+	public Entidade pesquisarId(long id);
 
 }

@@ -27,6 +27,12 @@ public class Criterio implements Entidade{
 		this.notaMinima = notaMinima;
 		this.notaMaxima = notaMaxima;
 	}
+	
+	
+	public Criterio() {
+		super();
+	}
+
 	public long getId() {
 		return id;
 	}

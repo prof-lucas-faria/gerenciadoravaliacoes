@@ -8,6 +8,25 @@ public class Criterio implements Entidade{
 	private double notaMaxima;
 	private Categoria categoria;
 	
+	
+	
+	
+	public Criterio(long id, String descricao, String nome, double notaMinima, double notaMaxima) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.nome = nome;
+		this.notaMinima = notaMinima;
+		this.notaMaxima = notaMaxima;
+	}
+	
+	public Criterio(long id, String nome, double notaMinima, double notaMaxima) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.notaMinima = notaMinima;
+		this.notaMaxima = notaMaxima;
+	}
 	public long getId() {
 		return id;
 	}

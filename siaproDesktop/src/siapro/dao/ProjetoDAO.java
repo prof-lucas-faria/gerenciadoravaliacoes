@@ -125,10 +125,4 @@ public class ProjetoDAO implements InterfaceDAO{
 		}
 		return null;
 	}
-	
-	public Projeto carregarAvaliacao(Projeto projeto) {
-		List<Avaliacao> avaliacoes = new AvaliacaoDAO().pesquisarPorProjeto(projeto);
-		projeto.setAvaliacoes(avaliacoes);
-		return projeto;
-	}
 }

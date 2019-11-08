@@ -2,6 +2,8 @@ package siapro.model;
 
 import java.util.List;
 
+import siapro.dao.AvaliacaoDAO;
+
 public class Projeto {
 	private long id;
 	private String titulo;
@@ -78,6 +80,10 @@ public class Projeto {
 		this.evento = evento;
 	}
 	
+	public void carregarAvaliacoes(Projeto projeto) {
+		List<Avaliacao> avaliacoes = new AvaliacaoDAO().pesquisarPorProjeto(projeto);
+		this.setAvaliacoes(avaliacoes);
+	}
 	
 	
 }

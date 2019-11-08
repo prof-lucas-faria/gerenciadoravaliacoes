@@ -10,7 +10,7 @@ public interface InterfaceDAO {
 	
 	public Entidade editar(Entidade entidade);
 	
-	public List<Entidade> listarTudo();
+	public List<Entidade> listarTudo(Entidade entidade);
 	
 	public Entidade pesquisarId(long id);
 

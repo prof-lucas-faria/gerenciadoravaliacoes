@@ -3,8 +3,10 @@ package siapro.model;
 public class Criterio implements Entidade{
 	private long id;
 	private String descricao;
-	private int notaMinima;
-	private int notaMaxima;
+	private String nome;
+	private double notaMinima;
+	private double notaMaxima;
+	private Categoria categoria;
 	
 	public long getId() {
 		return id;
@@ -18,18 +20,31 @@ public class Criterio implements Entidade{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getNotaMinima() {
+	public double getNotaMinima() {
 		return notaMinima;
 	}
-	public void setNotaMinima(int notaMinima) {
+	public void setNotaMinima(double notaMinima) {
 		this.notaMinima = notaMinima;
 	}
-	public int getNotaMaxima() {
+	public double getNotaMaxima() {
 		return notaMaxima;
 	}
-	public void setNotaMaxima(int notaMaxima) {
+	public void setNotaMaxima(double notaMaxima) {
 		this.notaMaxima = notaMaxima;
 	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public Categoria getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+	
 	
 	
 }

@@ -100,5 +100,31 @@ public class AvaliacaoDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public List<Entidade> pesquisarPorProjeto(Entidade entidade) {
+		// TODO Auto-generated method stub
+		Projeto projeto = (Projeto) entidade;
+		String sql = "SELECT * FROM avaliacao WHERE idProjeto = ?";
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, projeto.getId());
+			ResultSet rs = stmt.executeQuery();
+			List<Entidade> lista = new ArrayList<Entidade>();
+			while (rs.next()) {
+				Avaliacao avaliacao = new Avaliacao();
+				avaliacao.setId(rs.getLong("id"));
+				avaliacao.getAvaliador().setId(rs.getLong("idAvaliador"));
+				avaliacao.getProjeto().setId(rs.getInt("idProjeto"));
+				avaliacao.setNota(rs.getDouble("nota"));
+				avaliacao.setAvaliacao(rs.getBoolean("avaliado"));
+				lista.add(avaliacao);
+			}
+			stmt.close();
+			return lista;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

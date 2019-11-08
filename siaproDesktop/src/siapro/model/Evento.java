@@ -7,7 +7,7 @@ public class Evento implements Entidade {
 	private String nome;
 	private String informacoes;
 	private boolean liberado;
-	private String logo;
+	private String logotipo;
 	private List<Projeto> projetos;
 	private List<Avaliador> avaliadores;
 	private List<Organizador> organizadores;
@@ -67,7 +67,7 @@ public class Evento implements Entidade {
 		this.informacoes = informacoes;
 	}
 
-	public boolean isLiberado() {
+	public boolean getLiberado() {
 		return liberado;
 	}
 
@@ -113,6 +113,14 @@ public class Evento implements Entidade {
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	public String getLogotipo() {
+		return logotipo;
+	}
+
+	public void setLogotipo(String logotipo) {
+		this.logotipo = logotipo;
 	}
 	
 }

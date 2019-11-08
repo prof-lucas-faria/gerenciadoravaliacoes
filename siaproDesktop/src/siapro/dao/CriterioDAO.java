@@ -22,14 +22,15 @@ public class CriterioDAO implements InterfaceDAO {
 	@Override
 	public Entidade salvar(Entidade entidade) {
 		// TODO Auto-generated method stub
-		String sql = "INSET INTO criterio(descricao,notaMinima,NotaMaxima, nome) VALUES(?,?,?,?)";
+		String sql = "INSET INTO criterio(descricao,notaMinima,NotaMaxima,idCategoria, nome) VALUES(?,?,?,?,?)";
 		try {
 			Criterio c = (Criterio) entidade;
 			this.stmt = this.conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			this.stmt.setString(1, c.descricao());
-			this.stmt.setInt(2, c.getNotaMinima());
-			this.stmt.setInt(3, c.getNotaMaxima());
-			this.stmt.setString(4, c,getNome());
+			this.stmt.setDouble(2, c.getNotaMinima());
+			this.stmt.setDouble(3, c.getNotaMaxima());
+			this.stmt.setLong(4, criterio.getProjeto.getId());
+			this.stmt.setString(5, c,getNome());
 			this.stmt.execute();
 			
 			ResultSet rs = this.stmt.getGeneratedKeys();

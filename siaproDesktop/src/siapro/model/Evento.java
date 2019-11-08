@@ -7,7 +7,8 @@ public class Evento implements Entidade {
 	private String nome;
 	private String informacoes;
 	private boolean liberado;
-	private List<Projeto> area;
+	private String logo;
+	private List<Projeto> projetos;
 	private List<Avaliador> avaliadores;
 	private List<Organizador> organizadores;
 	private List<Area> areas;
@@ -21,7 +22,7 @@ public class Evento implements Entidade {
 		this.nome = nome;
 		this.informacoes = informacoes;
 		this.liberado = liberado;
-		this.area = projetos;
+		this.projetos = projetos;
 		this.avaliadores = avaliadores;
 		this.organizadores = organizadores;
 		this.areas = areas;
@@ -35,7 +36,7 @@ public class Evento implements Entidade {
 		this.nome = nome;
 		this.informacoes = informacoes;
 		this.liberado = liberado;
-		this.area = area;
+		this.projetos = area;
 		this.avaliadores = avaliadores;
 		this.organizadores = organizadores;
 		this.areas = areas;
@@ -75,11 +76,11 @@ public class Evento implements Entidade {
 	}
 
 	public List<Projeto> getArea() {
-		return area;
+		return projetos;
 	}
 
 	public void setArea(List<Projeto> area) {
-		this.area = area;
+		this.projetos = area;
 	}
 
 	public List<Avaliador> getAvaliadores() {

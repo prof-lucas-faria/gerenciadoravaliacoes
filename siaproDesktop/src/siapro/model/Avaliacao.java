@@ -7,6 +7,7 @@ public class Avaliacao implements Entidade {
 	private double nota;
 	private boolean avaliacao;
 	private Avaliador avaliador;
+	private Projeto projeto;
 	private ArrayList<Criterio> criterios;
 	
 	public Avaliacao(long id, double nota, boolean avaliacao, Avaliador avaliador, ArrayList<Criterio> criterios) {
@@ -61,5 +62,13 @@ public class Avaliacao implements Entidade {
 	}
 	public void setCriterios(ArrayList<Criterio> criterios) {
 		this.criterios = criterios;
+	}
+
+	public void setProjeto(Projeto projeto) {
+		this.projeto = projeto;
+	}
+	
+	public Projeto getProjeto() {
+		return projeto;
 	}
 }

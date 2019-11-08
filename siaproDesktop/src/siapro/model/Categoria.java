@@ -2,10 +2,14 @@ package siapro.model;
 
 import java.util.ArrayList;
 
+
 public class Categoria implements Entidade {
 	private long id;
 	private String nome;
 	private ArrayList<Criterio> criterios;
+	private int qntMinAvalProjeto;
+	private int qntMaxAvalProjeto;
+	private Evento evento;
 	
 	public Categoria(long id, String nome, ArrayList<Criterio> criterios) {;
 		this.id = id;
@@ -31,6 +35,22 @@ public class Categoria implements Entidade {
 	public void setId(long id) {
 		this.id = id;
 	}
+	public int getQntMinAvalProjeto() {
+		return qntMinAvalProjeto;
+	}
+
+	public void setQntMinAvalProjeto(int qntMinAvalProjeto) {
+		this.qntMinAvalProjeto = qntMinAvalProjeto;
+	}
+
+	public int getQntMaxAvalProjeto() {
+		return qntMaxAvalProjeto;
+	}
+
+	public void setQntMaxAvalProjeto(int qntMaxAvalProjeto) {
+		this.qntMaxAvalProjeto = qntMaxAvalProjeto;
+	}
+
 	public String getNome() {
 		return nome;
 	}
@@ -43,5 +63,15 @@ public class Categoria implements Entidade {
 	
 	public void setCriterios(ArrayList<Criterio> criterios) {
 		this.criterios = criterios;
-	}	
+	}
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento e) {
+		this.evento = e;
+	}
+	
+	
 }

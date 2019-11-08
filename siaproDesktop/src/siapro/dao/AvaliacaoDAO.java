@@ -101,16 +101,15 @@ public class AvaliacaoDAO implements InterfaceDAO {
 		}
 	}
 	
-	public List<Entidade> pesquisarPorProjeto(Entidade entidade) {
+	public List<Avaliacao> pesquisarPorProjeto(Projeto projeto) {
 		// TODO Auto-generated method stub
-		Projeto projeto = (Projeto) entidade;
 		String sql = "SELECT * FROM avaliacao WHERE idProjeto = ?";
 		
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, projeto.getId());
 			ResultSet rs = stmt.executeQuery();
-			List<Entidade> lista = new ArrayList<Entidade>();
+			ArrayList<Avaliacao> lista = new ArrayList<Avaliacao>();
 			while (rs.next()) {
 				Avaliacao avaliacao = new Avaliacao();
 				avaliacao.setId(rs.getLong("id"));

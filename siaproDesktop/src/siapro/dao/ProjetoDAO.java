@@ -79,7 +79,6 @@ public class ProjetoDAO implements InterfaceDAO{
 				List<Entidade> listaProjeto = new ArrayList<Entidade>();
 				while (rs.next()) {
 					projeto.setId(rs.getLong("id"));
-					Evento evento = (Evento)new EventoDAO().pesquisarPorProjeto(projeto);
 					Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
 					Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
 					projeto.setTitulo(rs.getString("titulo"));
@@ -109,7 +108,7 @@ public class ProjetoDAO implements InterfaceDAO{
 			List<Entidade> listaProjeto = new ArrayList<Entidade>();
 			if (rs.next()) {
 				projeto.setId(rs.getLong("id"));
-				Evento evento = (Evento)new EventoDAO().pesquisarPorProjeto(projeto);
+				Evento evento = (Evento)new EventoDAO().pesquisarId(rs.getLong("idEvento"));
 				Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
 				Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
 				projeto.setTitulo(rs.getString("titulo"));

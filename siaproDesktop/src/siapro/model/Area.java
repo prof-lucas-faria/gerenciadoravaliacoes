@@ -1,14 +1,15 @@
 package siapro.model;
 
 public class Area implements Entidade{
-	int id;
-	String nome;
-	int idEvento;
-	String descricao;
-	public int getId() {
+	private long id;
+	private String nome;
+	private int idEvento;
+	private String descricao;
+	
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getNome() {

@@ -1,7 +1,7 @@
 package siapro.model;
 
 public class Organizador extends Pessoa implements Entidade {
-	String email;
+	private String email;
 	
 	
 	public Organizador(String email) {

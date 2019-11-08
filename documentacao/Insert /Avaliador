@@ -1,0 +1,18 @@
+INSERT INTO avaliador (nome, login, senha) 
+    values ("Lucas Farias", "lucas123@gmail.com", "lucas123"),
+           ("Jorge Costa", "jorgerevolucionario123@hotmail.com", "123456"),
+           ("Augusto Fernando", "augustoff@gmail.com", "augusto"),
+           ("Rangel Rigo", "rangelrr@gmail.com", "rangelif"),
+           ("Marcos Lucas Vinicius", "marcos15@gmail.com", "marcos1515"),
+           ("Larissa Macedo", "laaramacedo@gmail.com", "lara11"),
+           ("Jorge Lucas", "jorgg@gmail.com", "jorge12"),
+           ("Augusto Cesar", "augusto@gmail.com", "12333"),
+           ("Fernanda Cristina Souza", "fernandaaaa@hotmail.com", "151515"),
+           ("Luana Camargo", "lulu12@gmail.com", "luluana"),
+           ("João Lucas Costa", "jlucascosta@ifgoiano.edu.br", "vaimengao"),
+           ("Mariana Ferreira", "mariferreira@hotmail.com", "98765"),
+           ("Gustavo Santos", "gustasantos45@gmail.com", "gustavo123"),
+           ("Tarcisio de Amaral", "tarcisio56@hotmail.com", "tarcisio3096"),
+           ("Fernanda Santos", "fesantos@gmail.com", "fersantos");
+           
+

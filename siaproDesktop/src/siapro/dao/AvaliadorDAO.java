@@ -40,21 +40,40 @@ public class AvaliadorDAO implements InterfaceDAO {
 			rs.next();
 			
 			avaliador.setId(rs.getInt(1));
+		
+			AreaDAO areaDAO = new AreaDAO();
+			//areaDAO.pesquisaArea(avaliador.getArea());
+			System.out.println(avaliador.getArea().size());
+			
+			for(int i = 0;  i < avaliador.getArea().size(); i++) {
+				System.out.println("Entrou aqui 1");
+				String sql2 = "insert into avaliadorArea(idAvaliador,idArea) values (?,1)";
+				stmt = conexao.prepareStatement(sql2);
+				stmt.setLong(1, avaliador.getId());
+				//stmt.setLong(2, areaDAO.pesquisaArea(avaliador.getArea().get(i).getNome()).getId());
+				stmt.execute();
+				stmt.close();
+			}
 			
 			
-			for(siapro.model.Area area: avaliador.getArea()) {
+			/*for(siapro.model.Area area: avaliador.getArea()) {
+				areaDAO.pesquisaArea()
+				
 				String sql2 = "insert into avaliadorArea(idAvaliador,idArea) values (?,?)";
 				stmt = conexao.prepareStatement(sql2);
 				stmt.setLong(1, avaliador.getId());
 				stmt.setLong(2, area.getId());
-			}
+				stmt.execute();
+				stmt.close();
+			} */
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 		
-		return null ;
+		return avaliador ;
 	}
+	
 
 	@Override
 	public Entidade editar(Entidade entidade) {
@@ -77,6 +96,8 @@ public class AvaliadorDAO implements InterfaceDAO {
 				stmt.setLong(1, avaliador.getId());
 				stmt.setLong(2, area.getId());
 				stmt.setLong(3, avaliador.getId());
+				stmt.execute();
+				stmt.close();
 			}
 			
 		} catch (Exception e) {
@@ -106,7 +127,7 @@ public class AvaliadorDAO implements InterfaceDAO {
 				avaliador.setLogin(rs.getString("login"));
 				avaliador.setSenha(rs.getString("senha"));
 				
-				Area area = new Area();
+				
 				AreaDAO areaDAO = new AreaDAO();
 				
 				avaliador.setArea(areaDAO.listarTudo(avaliador)); // O metodo areaDAO.listarTudo() pesquisa por avalaidor ou por evento?

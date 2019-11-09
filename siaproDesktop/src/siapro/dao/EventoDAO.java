@@ -61,35 +61,39 @@ public class EventoDAO implements InterfaceDAO {
 
 	public List<Entidade> listarTudo(Entidade entidade) {
 		String sql = "select * from evento e INNER JOIN organizadorEvento oe ON oe.idEvento = e.id INNER JOIN organizador o ON oe.idOrganizador = o.id;";
-		ArrayList<Evento> resultadoConsulta = new ArrayList<Evento>();
-			try {
-				stmt = conexao.prepareStatement(sql);
-				ResultSet rs = stmt.executeQuery();
-				 while (rs.next()) {
-					 Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
-					 resultadoConsulta.add(evento); }
-				 	 stmt.close();
-	  }     
-			catch (Exception ex) {
-			throw new RuntimeException(ex); };
-			return null;
+		List<Entidade> resultadoConsulta = new ArrayList<Entidade>();
+		try {
+			stmt = conexao.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			 while (rs.next()) {
+				 Evento evento = new Evento(rs.getLong("id"), rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+				 resultadoConsulta.add(evento); 
+			}
+			stmt.close();
+			return resultadoConsulta;
+		}     
+		catch (Exception ex) {
+			throw new RuntimeException(ex); 
+		}
 	}
 	
 	public Entidade pesquisarId(long id) {
 		String sql = "SELECT * FROM evento WHERE id = ?";
-		ArrayList<Evento> resultadoConsulta = new ArrayList<Evento>();
-			try {
-				stmt = conexao.prepareStatement(sql);
-				stmt.setLong(1, id);
-				ResultSet rs = stmt.executeQuery();
-				 while (rs.next()) {
-					 Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
-					 resultadoConsulta.add(evento); }
-				 	 stmt.close();
-	  }     
-			catch (Exception ex) {
-			throw new RuntimeException(ex); };
-			return null;
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, id);
+			ResultSet rs = stmt.executeQuery();
+			Evento evento = new Evento();
+			if (rs.next()) {
+				 evento = new Evento(rs.getLong("id"), rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+			}
+			stmt.close();
+			
+			return evento;
+		}     
+		catch (Exception ex) {
+			throw new RuntimeException(ex); 
+		}
 	}
 	
 	}

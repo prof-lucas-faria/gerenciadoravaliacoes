@@ -61,3 +61,4 @@
 * Marcos Lima
 * Márcia Linhares
 * Gustavo Faquim
+* Ricardo Takayuki

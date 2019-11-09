@@ -1,8 +1,6 @@
 package siapro.dao;
 
 import java.util.List;
-
-
 import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
@@ -70,16 +68,28 @@ public class EventoDAO implements InterfaceDAO {
 				 while (rs.next()) {
 					 Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
 					 resultadoConsulta.add(evento); }
-		stmt.close();
-	  } catch (Exception ex) {
+				 	 stmt.close();
+	  }     
+			catch (Exception ex) {
 			throw new RuntimeException(ex); };
 			return null;
 	}
 	
 	public Entidade pesquisarId(long id) {
-		return null;
-	
+		String sql = "SELECT * FROM evento WHERE id = ?";
+		ArrayList<Evento> resultadoConsulta = new ArrayList<Evento>();
+			try {
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, id);
+				ResultSet rs = stmt.executeQuery();
+				 while (rs.next()) {
+					 Evento evento = new Evento (rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+					 resultadoConsulta.add(evento); }
+				 	 stmt.close();
+	  }     
+			catch (Exception ex) {
+			throw new RuntimeException(ex); };
+			return null;
+	}
 	
 	}
-
-}

@@ -5,6 +5,7 @@ import java.util.List;
 import siapro.conexao.Conexao;
 import siapro.model.Entidade;
 import siapro.model.Area;
+import siapro.model.Avaliador;
 import siapro.dao.AreaDAO;
 
 import java.sql.Connection;
@@ -44,6 +45,7 @@ public class AreaDAO implements InterfaceDAO{
 			Area area = (Area) entidade;	
 	        String sql = "UPDATE area SET nome = ?, descricao = ? WHERE id = ?";
 	        try {
+	        	
 	            stmt = conexao.prepareStatement(sql);
 	            stmt.setString(1, area.getNome());
 	            stmt.setString(2,area.getDescricao());
@@ -61,11 +63,39 @@ public class AreaDAO implements InterfaceDAO{
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
 		Area area = (Area) entidade;	
-		String sql = "SELECT * FROM area";
+		String sql = "SELECT * FROM area where idEvento = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, area.getEvento()); 
 			ResultSet rs = stmt.executeQuery();
+			
 			List<Entidade> lista = new ArrayList<Entidade>();
+			while (rs.next()) {
+				area.setId(rs.getInt("id"));
+				area.setNome(rs.getString("nome"));
+				area.setDescricao(rs.getString("descricao"));
+				area.setIdEvento(rs.getInt("idEvento"));
+				lista.add(area);
+			}
+			stmt.close();
+			return lista;
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	
+	
+	public List<Entidade> pesquisarAvaliador(Entidade entidade){
+		Avaliador avaliador = (Avaliador) entidade;
+		String sql = "select a.id, a.nome, a.descricao from avaliadorArea aa inner join area a on a.id = aa.idArea where aa.idAvaliador = ?;";
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1,avaliador.getId()); 
+			ResultSet rs = stmt.executeQuery();
+			
+			List<Entidade> lista = new ArrayList<Entidade>();
+			Area area = new Area();
 			while (rs.next()) {
 				area.setId(rs.getInt("id"));
 				area.setNome(rs.getString("nome"));
@@ -74,9 +104,13 @@ public class AreaDAO implements InterfaceDAO{
 			}
 			stmt.close();
 			return lista;
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
+			
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
+		
+		return null;
 	}
 	
 	

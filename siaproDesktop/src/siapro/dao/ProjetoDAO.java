@@ -3,12 +3,13 @@ package siapro.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import siapro.conexao.Conexao;
 import siapro.model.Area;
-import siapro.model.Avaliacao;
 import siapro.model.Categoria;
 import siapro.model.Entidade;
 import siapro.model.Evento;
@@ -23,11 +24,11 @@ public class ProjetoDAO implements InterfaceDAO{
 	}
 	@Override
 	public Entidade salvar(Entidade entidade) {
-		String sql = "INSERT INTO contato (titulo, autores, ativo, idEvento, idCategoria, idArea) VALUES (?,?,?,?,?,?)";
+		String sql = "INSERT INTO projeto (titulo, autores, ativo, idEvento, idCategoria, idArea) VALUES (?,?,?,?,?,?)";
 		if(entidade instanceof Projeto) {
 			Projeto projeto = (Projeto)entidade;
 			try {
-				stmt = conexao.prepareStatement(sql);
+				stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, projeto.getTitulo());
 				stmt.setString(2, projeto.getAutores());
 				stmt.setBoolean(3, true);
@@ -35,17 +36,23 @@ public class ProjetoDAO implements InterfaceDAO{
 				stmt.setLong(5, projeto.getCategoria().getId());
 				stmt.setLong(6, projeto.getArea().getId());
 				stmt.execute();
+				ResultSet rs = stmt.getGeneratedKeys();
+				rs.next();
+				
+				projeto.setId(rs.getInt(1));
+				
 				stmt.close();
+				return (Entidade) projeto;
 			} catch (Exception e) {
 				throw new RuntimeException(e);
 			}
 		}
-		return entidade;
+		return null;
 	}
 
 	@Override
 	public Entidade editar(Entidade entidade) {
-		String sql = "UPDATE contato SET titulo = ?, autores = ?, ativo = ?, idEvento = ?, idCategoria = ?, idArea = ? WHERE id = ?";
+		String sql = "UPDATE projeto SET titulo = ?, autores = ?, ativo = ?, idEvento = ?, idCategoria = ?, idArea = ? WHERE id = ?";
 		if(entidade instanceof Projeto) {
 			Projeto projeto = (Projeto)entidade;
 			try {
@@ -104,8 +111,7 @@ public class ProjetoDAO implements InterfaceDAO{
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, id);
 			ResultSet rs = stmt.executeQuery();
-			Projeto projeto;
-			List<Entidade> listaProjeto = new ArrayList<Entidade>();
+			Projeto projeto = new Projeto();
 			if (rs.next()) {
 				projeto.setId(rs.getLong("id"));
 				Evento evento = (Evento)new EventoDAO().pesquisarId(rs.getLong("idEvento"));
@@ -116,10 +122,9 @@ public class ProjetoDAO implements InterfaceDAO{
 				projeto.setCategoria(categoria);
 				projeto.setArea(area);
 				projeto.setEvento(evento);
-				listaProjeto.add((Entidade) projeto);
+				stmt.close();
+				return (Entidade) projeto;
 			}
-			stmt.close();
-			return (Entidade) projeto;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

@@ -18,11 +18,11 @@ import java.awt.event.ActionEvent;
 public class TelaCategoria extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField nomeCategoria;
+	private JTextField nomeItem;
+	private JTextField descrição;
+	private JTextField notaMin;
 	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -59,10 +59,10 @@ public class TelaCategoria extends JFrame {
 		lblNewLabel.setBounds(86, 58, 71, 14);
 		contentPane.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setBounds(86, 74, 159, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		nomeCategoria = new JTextField();
+		nomeCategoria.setBounds(86, 74, 159, 20);
+		contentPane.add(nomeCategoria);
+		nomeCategoria.setColumns(10);
 		
 		JLabel lblItensDeAvaliao = new JLabel("Itens de Avaliação");
 		lblItensDeAvaliao.setBounds(86, 105, 110, 14);
@@ -72,57 +72,57 @@ public class TelaCategoria extends JFrame {
 		lblNomeDoItem.setBounds(86, 130, 71, 14);
 		contentPane.add(lblNomeDoItem);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(86, 150, 159, 20);
-		contentPane.add(textField_1);
+		nomeItem = new JTextField();
+		nomeItem.setColumns(10);
+		nomeItem.setBounds(86, 150, 159, 20);
+		contentPane.add(nomeItem);
 		
 		JLabel lblDescrio = new JLabel("Descrição:");
 		lblDescrio.setBounds(86, 181, 55, 14);
 		contentPane.add(lblDescrio);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(86, 206, 159, 69);
-		contentPane.add(textField_2);
+		descrição = new JTextField();
+		descrição.setColumns(10);
+		descrição.setBounds(86, 206, 159, 69);
+		contentPane.add(descrição);
 		
 		JLabel lblNewLabel_1 = new JLabel("Pontuação das Avaliações");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		lblNewLabel_1.setBounds(86, 286, 140, 14);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		lblNewLabel_1.setBounds(86, 286, 125, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("NotaMínima");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 6));
-		lblNewLabel_2.setBounds(95, 300, 46, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblNewLabel_2.setBounds(95, 300, 55, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(96, 311, 17, 20);
-		contentPane.add(textField_3);
+		notaMin = new JTextField();
+		notaMin.setColumns(10);
+		notaMin.setBounds(96, 314, 23, 20);
+		contentPane.add(notaMin);
 		
 		JLabel lblNotamxima = new JLabel("NotaMáxima");
-		lblNotamxima.setFont(new Font("Tahoma", Font.PLAIN, 6));
-		lblNotamxima.setBounds(138, 300, 46, 14);
+		lblNotamxima.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		lblNotamxima.setBounds(165, 300, 61, 14);
 		contentPane.add(lblNotamxima);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(140, 311, 17, 20);
-		contentPane.add(textField_4);
-		
-		JButton btnNewButton = new JButton("Adcionar Item");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton addItem = new JButton("Adcionar Item");
+		addItem.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		addItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(86, 352, 83, 14);
-		contentPane.add(btnNewButton);
+		addItem.setBounds(86, 352, 102, 20);
+		contentPane.add(addItem);
 		
-		JButton btnSalvarCategoria = new JButton("Salvar Categoria");
-		btnSalvarCategoria.setFont(new Font("Tahoma", Font.PLAIN, 8));
-		btnSalvarCategoria.setBounds(335, 371, 89, 14);
-		contentPane.add(btnSalvarCategoria);
+		JButton salvaCategoria = new JButton("Salvar Categoria");
+		salvaCategoria.setFont(new Font("Tahoma", Font.PLAIN, 10));
+		salvaCategoria.setBounds(314, 365, 110, 20);
+		contentPane.add(salvaCategoria);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(165, 314, 23, 20);
+		contentPane.add(textField);
 	}
 }

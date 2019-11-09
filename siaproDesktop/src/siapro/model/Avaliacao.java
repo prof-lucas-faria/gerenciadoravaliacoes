@@ -1,6 +1,7 @@
 package siapro.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Avaliacao implements Entidade {
 	private long id;
@@ -57,11 +58,11 @@ public class Avaliacao implements Entidade {
 	public void setAvaliacao(boolean avaliacao) {
 		this.avaliacao = avaliacao;
 	}
-	public ArrayList<Criterio> getCriterios() {
+	public List<Criterio> getCriterios() {
 		return criterios;
 	}
-	public void setCriterios(ArrayList<Criterio> criterios) {
-		this.criterios = criterios;
+	public void setCriterios(List<Criterio> criterios) {
+		this.criterios = (ArrayList<Criterio>) criterios;
 	}
 
 	public void setProjeto(Projeto projeto) {

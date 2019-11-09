@@ -11,6 +11,7 @@ import siapro.model.Entidade;
 import siapro.model.Projeto;
 import siapro.model.Avaliacao;
 import siapro.model.Criterio;
+import siapro.dao.CriterioDAO;
 
 public class AvaliacaoDAO implements InterfaceDAO {
 	 private Connection conexao;
@@ -35,12 +36,13 @@ public class AvaliacaoDAO implements InterfaceDAO {
             stmt.execute();
             stmt.close();
             
-            String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?)";
             
-            stmt = conexao.prepareStatement(sql2);
-            stmt.setLong(1, avaliacao.getId());
             for(Criterio criterio: avaliacao.getCriterios()) {
-            	  stmt.setLong(2, criterio.getId());
+            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?)";
+                
+                stmt = conexao.prepareStatement(sql2);
+                stmt.setLong(1, avaliacao.getId());
+            	stmt.setLong(2, criterio.getId());
             }
             stmt.execute();
             stmt.close();
@@ -54,14 +56,27 @@ public class AvaliacaoDAO implements InterfaceDAO {
 	@Override
 	public Entidade editar(Entidade entidade) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE avaliacao SET idAvaliador = ? WHERE idProjeto = ?";
+		String sql = "UPDATE avaliacao SET idAvaliador = ?, idProjeto = ?, nota = ?, avaliado = ? WHERE id = ?";
 		Avaliacao avaliacao = (Avaliacao) entidade;
 		try {
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, avaliacao.getAvaliador().getId());
+            stmt.setLong(1, avaliacao.getAvaliador().getId());
             stmt.setLong(2, avaliacao.getProjeto().getId());
-			stmt.execute();
-			stmt.close();
+            stmt.setDouble(3, avaliacao.getNota());
+            stmt.setBoolean(4, avaliacao.isAvaliacao());
+            stmt.execute();
+            stmt.close();
+            
+           
+            for(Criterio criterio: avaliacao.getCriterios()) {
+            	 String sql2 = "UPDATE avaliadcaoCriterio(idAvaliacao,idACriterio,nota) values (?,?,?) where idAvaliacao = ?";
+                 
+                 stmt = conexao.prepareStatement(sql2);
+                 stmt.setLong(1, avaliacao.getId());
+            	 stmt.setLong(2, criterio.getId());
+            }
+            stmt.execute();
+            stmt.close();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -84,6 +99,10 @@ public class AvaliacaoDAO implements InterfaceDAO {
 				avaliacao.getProjeto().setId(rs.getInt("idProjeto"));
 				avaliacao.setNota(rs.getDouble("nota"));
 				avaliacao.setAvaliacao(rs.getBoolean("avaliado"));
+				
+				CriterioDAO criterioDAO = new CriterioDAO();
+				
+				avaliacao.setCriterios(criterioDAO.pesquisarPorAvalicao(avaliacao));
 				lista.add(avaliacao);
 			}
 			stmt.close();

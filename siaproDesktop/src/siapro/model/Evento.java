@@ -29,8 +29,9 @@ public class Evento implements Entidade {
 		this.categorias = categorias;
 	}
 	
-	public Evento(String nome, String informacoes, Boolean liberado, String logotipo ) {
+	public Evento(Long id, String nome, String informacoes, Boolean liberado, String logotipo ) {
 		// criado para listar
+		this.id = id;
 		this.nome = nome;
 		this.informacoes = informacoes;
 		this.liberado = liberado;
@@ -50,6 +51,7 @@ public class Evento implements Entidade {
 		this.areas = areas;
 		this.categorias = categorias;
 	}
+	public Evento() {}
 
 	public long getId() {
 		return id;

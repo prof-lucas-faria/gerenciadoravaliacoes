@@ -4,7 +4,7 @@ import java.util.List;
 
 import siapro.dao.AvaliacaoDAO;
 
-public class Projeto {
+public class Projeto implements Entidade{
 	private long id;
 	private String titulo;
 	private String autores;

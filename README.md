@@ -62,3 +62,4 @@
 * Márcia Linhares
 * Gustavo Faquim
 * Ricardo Takayuki
+* João Cláudio 

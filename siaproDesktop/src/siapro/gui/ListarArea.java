@@ -41,7 +41,7 @@ public class ListarArea extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		
-		JButton btnAdcionarArea = new JButton("Adcionar");
+		JButton btnAdcionarArea = new JButton("Adicionar");
 		contentPane.add(btnAdcionarArea, BorderLayout.NORTH);
 		
 		JList listArea = new JList();

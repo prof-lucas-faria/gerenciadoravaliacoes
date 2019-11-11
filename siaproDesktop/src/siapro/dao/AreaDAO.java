@@ -69,7 +69,7 @@ public class AreaDAO implements InterfaceDAO{
 			stmt.setLong(1, area.getEvento()); 
 			ResultSet rs = stmt.executeQuery();
 			
-			List<Entidade> lista = new ArrayList<Entidade>();
+			ArrayList<Entidade> lista = new ArrayList<Entidade>();
 			while (rs.next()) {
 				area.setId(rs.getInt("id"));
 				area.setNome(rs.getString("nome"));
@@ -94,23 +94,21 @@ public class AreaDAO implements InterfaceDAO{
 			stmt.setLong(1,avaliador.getId()); 
 			ResultSet rs = stmt.executeQuery();
 			
-			List<Entidade> lista = new ArrayList<Entidade>();
+			ArrayList<Entidade> areas = new ArrayList<Entidade>();
 			Area area = new Area();
 			while (rs.next()) {
 				area.setId(rs.getInt("id"));
 				area.setNome(rs.getString("nome"));
 				area.setDescricao(rs.getString("descricao"));
-				lista.add(area);
+				areas.add(area);
 			}
 			stmt.close();
-			return lista;
+			return areas;
 			
 			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		
-		return null;
 	}
 	
 	

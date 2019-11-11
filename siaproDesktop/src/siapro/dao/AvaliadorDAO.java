@@ -1,6 +1,6 @@
 package siapro.dao;
 
-import java.awt.geom.Area;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +10,7 @@ import java.util.List;
 
 
 import siapro.conexao.Conexao;
+import siapro.model.Area;
 import siapro.model.Avaliador;
 import siapro.model.Entidade;
 import siapro.model.Evento;
@@ -94,7 +95,7 @@ public class AvaliadorDAO implements InterfaceDAO {
 
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
-		String sql = "select * from avaliador a inner join eventoAvaliador ea a.id = ae.idAvaliador where ae.idEvento = ?"; // Selecionar avaliadores de um evento..
+		String sql = "select * from avaliador a inner join eventoAvaliador ea on ea.idAvaliador =  a.id  where ea.idEvento = ?;"; 
 		
 		try {
 			Evento evento = (Evento) entidade;
@@ -102,7 +103,7 @@ public class AvaliadorDAO implements InterfaceDAO {
 			stmt.setLong(1,evento.getId());
 			ResultSet rs = stmt.executeQuery();
 			
-			
+			 
 			List<Entidade> avaliadores = new ArrayList<Entidade>();
 		
 			while(rs.next()) {
@@ -114,16 +115,17 @@ public class AvaliadorDAO implements InterfaceDAO {
 				
 				
 				AreaDAO areaDAO = new AreaDAO();
+				Area area = null;
+				ArrayList<Area> lista_area = new ArrayList<Area>();
+				List<Entidade> area_entidade = areaDAO.pesquisarAvaliador(avaliador);
 				
-				avaliador.setArea(areaDAO.listarTudo(avaliador)); // O metodo areaDAO.listarTudo() pesquisa por avalaidor ou por evento?
+				for(int x = 0; x < area_entidade.size(); x++) {
+					area = (Area) area_entidade.get(x);
+					lista_area.add(area);
+					
+				}
 				
-				
-				
-				// Depois de pesquisar as área de um avaliador eu tenho que dar set no list o avalaidor
-				// Vou precisar de um metódo que pesquise area por avaliador?
-				// Adicionar também as áreas que o avalaidor tem.
-				
-			
+				avaliador.setArea(lista_area);
 				avaliadores.add(avaliador); 
 			}
 			stmt.close();
@@ -151,22 +153,24 @@ public class AvaliadorDAO implements InterfaceDAO {
 				avaliador.setLogin(rs.getString("login"));
 				avaliador.setSenha(rs.getString("senha"));
 				
-				Area area = new Area();
 				AreaDAO areaDAO = new AreaDAO();
-				avaliador.setArea(areaDAO.listarTudo(entidade));  // O metodo areaDAO.listarTudo() pesquisa por avalaidor ou por evento?
+				Area area = null;
+				ArrayList<Area> lista_area = new ArrayList<Area>();
+				List<Entidade> area_entidade = areaDAO.pesquisarAvaliador(avaliador);
 				
-				
-				// Depois de pesquisar as área de um avaliador eu tenho que dar set no list o avalaidor
-				// Vou precisar de um metódo que pesquise area por avaliador?
-				// Adicionar também as áreas que o avalaidor tem.
-				
+				for(int x = 0; x < area_entidade.size(); x++) {
+					area = (Area) area_entidade.get(x);
+					lista_area.add(area);
+					
+				}
+				avaliador.setArea(lista_area);
 			}
 			stmt.close();
 			return avaliador;
+			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return null;
 	}
 	
 	
@@ -180,20 +184,23 @@ public class AvaliadorDAO implements InterfaceDAO {
 			stmt.setLong(2, evento.getId()); // Pegar o evento.
 			ResultSet rs = stmt.executeQuery();
 			
-			Avaliador avaliador = new Avaliador();
 			if(rs.next()) {
 				avaliador.setId(rs.getLong("id"));
 				avaliador.setNome(rs.getString("nome"));
 				avaliador.setLogin(rs.getString("login"));
 				avaliador.setSenha(rs.getString("senha"));
 				
-				Area area = new Area();
 				AreaDAO areaDAO = new AreaDAO();
-				areaDAO.pesquisaArea(nome);
-				avaliador.setArea(areaDAO.pesquisaArea()); // Metodo que retorna a area de acordo com o avaliador
+				Area area = null;
+				ArrayList<Area> lista_area = new ArrayList<Area>();
+				List<Entidade> area_entidade = areaDAO.pesquisarAvaliador(avaliador);
 				
-				
-				// Usar metodo pesquisa Area por nome para pesquisar a area e setar junto;
+				for(int x = 0; x < area_entidade.size(); x++) {
+					area = (Area) area_entidade.get(x);
+					lista_area.add(area);
+					
+				}
+				avaliador.setArea(lista_area);
 				
 			}
 			stmt.close();

@@ -173,8 +173,8 @@ public class AvaliadorDAO implements InterfaceDAO {
 		}
 	}
 	
-	
-	public Entidade pesquisar(Entidade entidade) {
+	// Metodo para pesquisar por nome.
+	/*public Entidade pesquisar(Entidade entidade) {
 		String sql = "select * from avaliador a inner join eventoAvaliador ae where nome like '%?%' and ae.idEvento = ?; ";
 		Avaliador avaliador = (Avaliador) entidade;
 		try {
@@ -213,6 +213,6 @@ public class AvaliadorDAO implements InterfaceDAO {
 		
 		return entidade;
 		
-	}
+	} */
 
 	}

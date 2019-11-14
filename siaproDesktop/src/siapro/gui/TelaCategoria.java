@@ -19,8 +19,8 @@ public class TelaCategoria extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField nomeCategoria;
-	private JTextField notaMin;
-	private JTextField textField;
+	private JTextField qntMinAvalProjeto;
+	private JTextField qntMaxAvalProjeto;
 
 	/**
 	 * Launch the application.
@@ -43,7 +43,7 @@ public class TelaCategoria extends JFrame {
 	 */
 	public TelaCategoria() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 453);
+		setBounds(100, 100, 450, 384);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -72,10 +72,10 @@ public class TelaCategoria extends JFrame {
 		lblNewLabel_2.setBounds(86, 204, 55, 14);
 		contentPane.add(lblNewLabel_2);
 		
-		notaMin = new JTextField();
-		notaMin.setColumns(10);
-		notaMin.setBounds(86, 218, 23, 20);
-		contentPane.add(notaMin);
+		qntMinAvalProjeto = new JTextField();
+		qntMinAvalProjeto.setColumns(10);
+		qntMinAvalProjeto.setBounds(86, 218, 23, 20);
+		contentPane.add(qntMinAvalProjeto);
 		
 		JLabel lblNotamxima = new JLabel("NotaMáxima");
 		lblNotamxima.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -96,9 +96,9 @@ public class TelaCategoria extends JFrame {
 		salvaCategoria.setBounds(86, 310, 110, 20);
 		contentPane.add(salvaCategoria);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(165, 218, 23, 20);
-		contentPane.add(textField);
+		qntMaxAvalProjeto = new JTextField();
+		qntMaxAvalProjeto.setColumns(10);
+		qntMaxAvalProjeto.setBounds(165, 218, 23, 20);
+		contentPane.add(qntMaxAvalProjeto);
 	}
 }

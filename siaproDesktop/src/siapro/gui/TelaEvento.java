@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
+import java.awt.Panel;
 
 public class TelaEvento extends JFrame {
 
@@ -120,5 +121,9 @@ public class TelaEvento extends JFrame {
 		abrirInformacoes.setForeground(Color.BLUE);
 		abrirInformacoes.setBounds(478, 58, 134, 25);
 		contentPane.add(abrirInformacoes);
+		
+		Panel panel = new Panel();
+		panel.setBounds(223, 111, 544, 312);
+		contentPane.add(panel);
 	}
 }

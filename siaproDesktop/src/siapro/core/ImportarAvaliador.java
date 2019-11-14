@@ -20,16 +20,23 @@ public class ImportarAvaliador {
 			ler.readLine();
 			while (ler.ready()) {
 				String linha = ler.readLine();
-				String[] colunas = linha.split("");
-
+				String[] colunas = linha.split(",");
+				String[] areas = this.formatar(linha).split(",");
+				
 				Avaliador a = new Avaliador();
 				a.setNome(colunas[0]);
 				a.setLogin(colunas[1]);
 				a.setSenha(colunas[2]);
-
-				System.out.println(a.getNome());
-				System.out.println(a.getLogin());
-				System.out.println(a.getSenha());
+				
+				System.out.println("Nome: " + a.getNome());
+				System.out.println("Login: " +a.getLogin());
+				System.out.println("Senha: " +a.getSenha());
+				int i;
+				for(i=0; i<areas.length ;i++) {
+					System.out.println("Area"+(i+1)+": "+ areas[i]);
+				}
+				System.out.println("\n");
+				
 
 			}
 			ler.close();
@@ -58,33 +65,15 @@ public class ImportarAvaliador {
 		return null;
 	}
 
-	public void formatar() {
-		
-		final String regex = "\\G" // Início do texto ou fim do casamento anterior
-				+ "[^\\\"']*" // Texto sem colchetes nem aspas simples
-				+ "(?:'[^']*'[^\\\"'*]*)*" // Opcional: Texto em aspas + texto sem "[" nem "'"
-				+ "(\\\"" // Grupo 1: Colchete de abertura
-				+ "[^]']*" // + texto sem "]" nem "'"
-				+ "(?:'[^']*'[^]']*)*" // + texto em aspas + texto sem "]" nem "'"
-				+ "\\\")"; // + colchete de fechamento
-		final Pattern pat = Pattern.compile(regex);
-		Matcher mat;
-
-		final String[] entrada = { "1 + [aa]", "[bb] + 2", "'a' + [cc]", "['ola' + 'mundo']", "'[a' + 'b]'",
-				"'[' + ']'", "[]", "'Ola [world] legal'", "Oi ['[aa]'] ola" };
-
-//Loop cada string na entrada
-		for (String stringlToVerify : entrada) {
-			mat = pat.matcher(stringlToVerify);
-			System.out.println("\nEntrada: " + stringlToVerify);
-
-			if (mat.find())
-				do { // Loop cada texto entre colchetes casado
-					System.out.println("Captura: " + mat.group(1));
-				} while (mat.find());
-			else
-				System.out.println("Não há colchetes fora das aspas");
+	public String formatar(String linha) {
+		String regex = "\"([^\"]*)\""; // regex com um grupo entre aspas
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(linha); // linha é a variável que contém a linha que foi lida do arquivo
+		if (matcher.find()) {
+		    String textoEntreAspas = matcher.group(1); // obtém o grupo lido da regex
+		    return textoEntreAspas;
 		}
+		return null;
 	}
 
 }

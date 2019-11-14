@@ -12,6 +12,13 @@ public class Area implements Entidade{
 		super();
 		this.nome = nome;
 	}
+	
+	
+	public Area() {
+		super();
+	}
+
+
 	public long getId() {
 		return id;
 	}

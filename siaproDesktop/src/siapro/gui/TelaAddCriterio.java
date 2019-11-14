@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import siapro.controller.CriterioController;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -13,13 +16,22 @@ import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextPane;
 
 public class TelaAddCriterio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNomeCriterio;
-	private JTextField textField;
-
+	private JTextField textFieldDescricao;
+	private JTextField textFieldNotaMinima;
+	private JTextField textFieldNotaMaxima;
+	
+	public void salvar() {
+		new CriterioController().Salvar(textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText());
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -56,7 +68,7 @@ public class TelaAddCriterio extends JFrame {
 		contentPane.add(lblCategoria_1);
 		
 		JLabel lblNewLabel = new JLabel("Criterios de Avalia\u00E7\u00E3o");
-		lblNewLabel.setBounds(37, 90, 126, 14);
+		lblNewLabel.setBounds(37, 90, 273, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblCriterio = new JLabel("Criterio");
@@ -73,16 +85,39 @@ public class TelaAddCriterio extends JFrame {
 		textFieldNomeCriterio.setColumns(10);
 		
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setBounds(57, 167, 77, 14);
+		lblDescrio.setBounds(57, 167, 147, 14);
 		contentPane.add(lblDescrio);
 		
-		textField = new JTextField();
-		textField.setBounds(57, 192, 164, 71);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textFieldDescricao = new JTextField();
+		textFieldDescricao.setBounds(57, 192, 164, 71);
+		contentPane.add(textFieldDescricao);
+		textFieldDescricao.setColumns(10);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setBounds(262, 240, 89, 23);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				salvar();
+			}
+		});
+		btnSalvar.setBounds(57, 280, 89, 23);
 		contentPane.add(btnSalvar);
+		
+		textFieldNotaMinima = new JTextField();
+		textFieldNotaMinima.setBounds(255, 233, 77, 30);
+		contentPane.add(textFieldNotaMinima);
+		textFieldNotaMinima.setColumns(10);
+		
+		textFieldNotaMaxima = new JTextField();
+		textFieldNotaMaxima.setColumns(10);
+		textFieldNotaMaxima.setBounds(393, 233, 77, 30);
+		contentPane.add(textFieldNotaMaxima);
+		
+		JLabel lblNotaMinima = new JLabel("Nota Minima");
+		lblNotaMinima.setBounds(257, 205, 133, 15);
+		contentPane.add(lblNotaMinima);
+		
+		JLabel lblNotaMaxima = new JLabel("Nota Maxima");
+		lblNotaMaxima.setBounds(383, 205, 133, 15);
+		contentPane.add(lblNotaMaxima);
 	}
 }

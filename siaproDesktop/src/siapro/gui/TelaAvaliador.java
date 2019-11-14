@@ -9,10 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JList;
+import javax.swing.JLabel;
 
 public class TelaAvaliador extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField pesquisarAvaliadores;
 
 	/**
 	 * Launch the application.
@@ -40,14 +44,34 @@ public class TelaAvaliador extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("Adicionar Avaliadores");
-		btnNewButton.setBounds(12, 12, 90, 79);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnAddAvaliadores = new JButton("Adicionar Avaliadores");
+		btnAddAvaliadores.setBounds(36, 57, 215, 29);
+		btnAddAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		contentPane.setLayout(null);
-		contentPane.add(btnNewButton);
+		contentPane.add(btnAddAvaliadores);
+		
+		pesquisarAvaliadores = new JTextField();
+		pesquisarAvaliadores.setBounds(38, 120, 309, 33);
+		contentPane.add(pesquisarAvaliadores);
+		pesquisarAvaliadores.setColumns(10);
+		
+		JList list = new JList();
+		list.setBounds(23, 253, 388, -134);
+		contentPane.add(list);
+		
+		JLabel lblAvaliadores = new JLabel("AVALIADORES");
+		lblAvaliadores.setBounds(164, 12, 125, 17);
+		contentPane.add(lblAvaliadores);
+		
+		JList list_1 = new JList();
+		list_1.setBounds(52, 195, 1, 1);
+		contentPane.add(list_1);
+		
+		JList listaAvalaidores = new JList();
+		listaAvalaidores.setBounds(52, 195, 1, 1);
+		contentPane.add(listaAvalaidores);
 	}
-
 }

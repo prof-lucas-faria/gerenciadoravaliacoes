@@ -45,7 +45,7 @@ public class TelaAvaliador extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnAddAvaliadores = new JButton("Adicionar Avaliadores");
-		btnAddAvaliadores.setBounds(36, 57, 215, 29);
+		btnAddAvaliadores.setBounds(38, 60, 193, 29);
 		btnAddAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -54,7 +54,7 @@ public class TelaAvaliador extends JFrame {
 		contentPane.add(btnAddAvaliadores);
 		
 		pesquisarAvaliadores = new JTextField();
-		pesquisarAvaliadores.setBounds(38, 120, 309, 33);
+		pesquisarAvaliadores.setBounds(38, 120, 251, 33);
 		contentPane.add(pesquisarAvaliadores);
 		pesquisarAvaliadores.setColumns(10);
 		
@@ -73,5 +73,9 @@ public class TelaAvaliador extends JFrame {
 		JList listaAvalaidores = new JList();
 		listaAvalaidores.setBounds(52, 195, 1, 1);
 		contentPane.add(listaAvalaidores);
+		
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBounds(301, 123, 105, 27);
+		contentPane.add(btnPesquisar);
 	}
 }

@@ -47,7 +47,6 @@ public class AreaDAO implements InterfaceDAO{
 			Area area = (Area) entidade;	
 	        String sql = "UPDATE area SET nome = ?, idEvento = ?, descricao = ? WHERE id = ?";
 	        try {
-	        	
 	            stmt = conexao.prepareStatement(sql);
 	            stmt.setString(1, area.getNome());
 	            stmt.setLong(2, area.getEvento().getId());
@@ -90,7 +89,6 @@ public class AreaDAO implements InterfaceDAO{
 	public List<Entidade> pesquisarAvaliador(Entidade entidade){
 		Avaliador avaliador = (Avaliador) entidade;
 		String sql = "select a.id, a.nome, a.descricao from avaliadorArea aa inner join area a on a.id = aa.idArea where aa.idAvaliador = ?;";
-		
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1,avaliador.getId()); 

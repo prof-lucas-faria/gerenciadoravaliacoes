@@ -105,8 +105,6 @@ public class AreaDAO implements InterfaceDAO{
 			}
 			stmt.close();
 			return areas;
-			
-			
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

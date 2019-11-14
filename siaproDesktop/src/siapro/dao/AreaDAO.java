@@ -4,6 +4,7 @@ import java.util.List;
 
 import siapro.conexao.Conexao;
 import siapro.model.Entidade;
+import siapro.model.Evento;
 import siapro.model.Area;
 import siapro.model.Avaliador;
 import siapro.dao.AreaDAO;
@@ -25,11 +26,12 @@ public class AreaDAO implements InterfaceDAO{
 	public Entidade salvar(Entidade entidade) {
 		if (entidade instanceof Area) {
 			Area area = (Area) entidade;
-			String sql = "INSERT INTO area (nome, descricao) VALUES (?,?)";
+			String sql = "INSERT INTO area (nome, idEvento, descricao) VALUES (?,?,?)";
 	        try {
 	            stmt = conexao.prepareStatement(sql);
 				stmt.setString(1, area.getNome());
-				stmt.setString(2, area.getDescricao());
+				stmt.setLong(2, area.getEvento().getId());
+				stmt.setString(3, area.getDescricao());
 	            stmt.execute();
 	            stmt.close();
 	        } catch (Exception e) {
@@ -43,16 +45,16 @@ public class AreaDAO implements InterfaceDAO{
 	public Entidade editar(Entidade entidade) {
 		if (entidade instanceof Area) {
 			Area area = (Area) entidade;	
-	        String sql = "UPDATE area SET nome = ?, descricao = ? WHERE id = ?";
+	        String sql = "UPDATE area SET nome = ?, idEvento = ?, descricao = ? WHERE id = ?";
 	        try {
 	        	
 	            stmt = conexao.prepareStatement(sql);
 	            stmt.setString(1, area.getNome());
-	            stmt.setString(2,area.getDescricao());
-	            stmt.setLong(3, area.getId());
+	            stmt.setLong(2, area.getEvento().getId());
+	            stmt.setString(3,area.getDescricao());
+	            stmt.setLong(4, area.getId());
 	            stmt.execute();
 	            stmt.close();
-	            return area;
 	        } catch (Exception e) {
 	            throw new RuntimeException(e);
 	        }
@@ -66,16 +68,17 @@ public class AreaDAO implements InterfaceDAO{
 		String sql = "SELECT * FROM area where idEvento = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, area.getEvento()); 
+			stmt.setLong(1, area.getEvento().getId());
 			ResultSet rs = stmt.executeQuery();
-			
 			ArrayList<Entidade> lista = new ArrayList<Entidade>();
 			while (rs.next()) {
-				area.setId(rs.getInt("id"));
-				area.setNome(rs.getString("nome"));
-				area.setDescricao(rs.getString("descricao"));
-				area.setIdEvento(rs.getInt("idEvento"));
-				lista.add(area);
+	            Area areas = new Area();
+				areas.setId(rs.getInt("id"));
+				areas.setNome(rs.getString("nome"));
+				EventoDAO eventoDAO = new EventoDAO();
+				areas.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
+				areas.setDescricao(rs.getString("descricao"));
+				lista.add(areas);
 			}
 			stmt.close();
 			return lista;
@@ -83,7 +86,6 @@ public class AreaDAO implements InterfaceDAO{
 			throw new RuntimeException(ex);
 		}
 	}
-	
 	
 	public List<Entidade> pesquisarAvaliador(Entidade entidade){
 		Avaliador avaliador = (Avaliador) entidade;
@@ -93,7 +95,6 @@ public class AreaDAO implements InterfaceDAO{
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1,avaliador.getId()); 
 			ResultSet rs = stmt.executeQuery();
-			
 			ArrayList<Entidade> areas = new ArrayList<Entidade>();
 			Area area = new Area();
 			while (rs.next()) {
@@ -111,7 +112,6 @@ public class AreaDAO implements InterfaceDAO{
 		}
 	}
 	
-	
 	@Override
 	public Entidade pesquisarId(long id) {
 		String sql = "SELECT * FROM area WHERE id = ?";
@@ -123,6 +123,8 @@ public class AreaDAO implements InterfaceDAO{
 				Area area = new Area();
 				area.setId(rs.getLong("id"));
 				area.setNome(rs.getString("nome"));
+				EventoDAO eventoDAO = new EventoDAO();
+				area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
 				area.setDescricao(rs.getString("descricao"));
 				 return area;
 			}
@@ -132,8 +134,7 @@ public class AreaDAO implements InterfaceDAO{
 		}
 		return null;
 	}
-	 
-       
+	     
 	 public ArrayList<Area>pesquisaNomeArea(String nome) {
 	        String sql = "SELECT * FROM area WHERE nome LIKE ?";
 	        try {
@@ -145,6 +146,8 @@ public class AreaDAO implements InterfaceDAO{
 	            	Area area = new Area();
 	            	area.setId(rs.getLong("id"));
 	            	area.setNome(rs.getString("nome"));
+	            	EventoDAO eventoDAO = new EventoDAO();
+					area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
 	            	area.setDescricao(rs.getString("descricao"));
 	            	areas.add(area);
 	            }
@@ -156,15 +159,17 @@ public class AreaDAO implements InterfaceDAO{
 	    }
 	    
 	 public Area pesquisaArea(String nome) {
-	        String sql = "SELECT * FROM area WHERE nome = ?";
+		 String sql = "SELECT * FROM area WHERE nome = ?";
 	        try {
 	            stmt = conexao.prepareStatement(sql);
-	            stmt.setString(1, "%"+ nome +"%");
+	            stmt.setString(1, nome);
 	            ResultSet rs = stmt.executeQuery();
 	            Area area = new Area();
 	            if (rs.next()) {
 	            	area.setId(rs.getLong("id"));
 	            	area.setNome(rs.getString("nome"));
+	            	EventoDAO eventoDAO = new EventoDAO();
+					area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
 	            	area.setDescricao(rs.getString("descricao"));
 	            }
 	            stmt.close();
@@ -173,6 +178,4 @@ public class AreaDAO implements InterfaceDAO{
 	            throw new RuntimeException(e);
 	        }
 	    }
-
-
 }

@@ -6,6 +6,12 @@ public class Area implements Entidade{
 	private Evento evento;
 	private String descricao;
 	
+	
+	
+	public Area(String nome) {
+		super();
+		this.nome = nome;
+	}
 	public long getId() {
 		return id;
 	}

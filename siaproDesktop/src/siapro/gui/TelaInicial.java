@@ -12,6 +12,14 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
+import javax.swing.JList;
+import java.awt.Color;
+import java.awt.SystemColor;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaInicial extends JFrame {
 
@@ -59,6 +67,11 @@ public class TelaInicial extends JFrame {
 		contentPane.add(selecionarEvento);
 		
 		JButton btnIncio = new JButton("INÍCIO");
+		btnIncio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaInicial();
+			}
+		});
 		btnIncio.setBounds(22, 139, 134, 25);
 		contentPane.add(btnIncio);
 		
@@ -67,6 +80,11 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btnEvento);
 		
 		JButton btnAvaliadores = new JButton("AVALIADORES");
+		btnAvaliadores.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaAvaliador();
+			}
+		});
 		btnAvaliadores.setBounds(22, 233, 134, 25);
 		contentPane.add(btnAvaliadores);
 		
@@ -82,5 +100,11 @@ public class TelaInicial extends JFrame {
 		lblAvTrabalhos.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblAvTrabalhos.setBounds(686, 12, 201, 15);
 		contentPane.add(lblAvTrabalhos);
+		
+		JList listaTrabalhos = new JList();
+		listaTrabalhos.setBorder(new LineBorder(new Color(0, 0, 0)));
+		listaTrabalhos.setBackground(UIManager.getColor("CheckBox.background"));
+		listaTrabalhos.setBounds(174, 12, 500, 481);
+		contentPane.add(listaTrabalhos);
 	}
 }

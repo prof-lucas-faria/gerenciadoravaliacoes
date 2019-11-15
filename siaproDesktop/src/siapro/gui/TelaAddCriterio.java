@@ -48,7 +48,7 @@ public class TelaAddCriterio extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblCategoria = new JLabel("ADICIONAR CRITERIOS");
-		lblCategoria.setBounds(27, 11, 132, 23);
+		lblCategoria.setBounds(12, 12, 229, 23);
 		contentPane.add(lblCategoria);
 		
 		JLabel lblCategoria_1 = new JLabel("Categoria");
@@ -73,7 +73,7 @@ public class TelaAddCriterio extends JFrame {
 		textFieldNomeCriterio.setColumns(10);
 		
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
-		lblDescrio.setBounds(57, 167, 48, 14);
+		lblDescrio.setBounds(57, 167, 77, 14);
 		contentPane.add(lblDescrio);
 		
 		textField = new JTextField();

@@ -1,20 +1,19 @@
 package siapro.gui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import java.awt.Font;
+import javax.swing.border.EmptyBorder;
+
+import siapro.controller.AvaliadorController;
+import siapro.model.Avaliador;
 
 public class ListarAvaliadores extends JFrame {
 
@@ -41,6 +40,7 @@ public class ListarAvaliadores extends JFrame {
 	 * Create the frame.
 	 */
 	public ListarAvaliadores() {
+		List<Avaliador> avaliadores = new AvaliadorController().listarAvaliadores(e);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 559, 502);
 		contentPane = new JPanel();
@@ -58,6 +58,7 @@ public class ListarAvaliadores extends JFrame {
 		
 		JLabel txtAvaliadores = new JLabel("AVALIADORES");
 		txtAvaliadores.setBounds(32, 44, 180, 15);
+		txtAvaliadores.
 		contentPane.add(txtAvaliadores);
 		
 		pesqAvaliadores = new JTextField();

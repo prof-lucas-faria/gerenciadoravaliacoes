@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import siapro.controller.ListarAreaController;
+import siapro.dao.AreaDAO;
+
 import javax.swing.JButton;
 import javax.swing.JList;
 
@@ -38,15 +42,18 @@ public class ListarArea extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JButton btnAdcionarArea = new JButton("Adicionar");
-		contentPane.add(btnAdcionarArea, BorderLayout.NORTH);
+		btnAdcionarArea.setBounds(5, 5, 424, 23);
+		contentPane.add(btnAdcionarArea);
 		
-		JList listArea = new JList();
+		ListarAreaController c = new ListarAreaController();
+		JList listArea = new JList(c.listarAreas(e));
+		listArea.setBounds(5, 28, 0, 228);
 		listArea.setToolTipText("");
-		contentPane.add(listArea, BorderLayout.WEST);
+		contentPane.add(listArea);
+		listArea.setListData(c.listarAreas(e).toArray());
 	}
-
 }

@@ -4,6 +4,8 @@ import java.util.List;
 import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
+import siapro.model.Organizador;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,11 +62,15 @@ public class EventoDAO implements InterfaceDAO {
 	}
 
 	public List<Entidade> listarTudo(Entidade entidade) {
-		String sql = "select * from evento e INNER JOIN organizadorEvento oe ON oe.idEvento = e.id INNER JOIN organizador o ON oe.idOrganizador = o.id;";
+		String sql = "select * from evento e inner join organizadorEvento oe on oe.idEvento = e.id where oe.idOrganizador = ?;";
 		List<Entidade> resultadoConsulta = new ArrayList<Entidade>();
 		try {
+			Organizador organizador = (Organizador) entidade;
 			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1,organizador.getId());
 			ResultSet rs = stmt.executeQuery();
+			
+			
 			 while (rs.next()) {
 				 Evento evento = new Evento(rs.getLong("id"), rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
 				 resultadoConsulta.add(evento); 

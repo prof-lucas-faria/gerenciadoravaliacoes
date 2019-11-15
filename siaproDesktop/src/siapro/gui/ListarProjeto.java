@@ -45,106 +45,66 @@ public class ListarProjeto extends JFrame {
 	public ListarProjeto() {
 		setTitle("Lista de Projetos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 910, 542);
+		setBounds(100, 100, 737, 638);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNomeSistema = new JLabel("Nome Sistema");
-		lblNomeSistema.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNomeSistema.setBounds(26, 12, 130, 15);
-		contentPane.add(lblNomeSistema);
-		
-		JButton btnUsuario = new JButton("USUARIO");
-		btnUsuario.setBounds(22, 39, 134, 25);
-		contentPane.add(btnUsuario);
-		
-		JComboBox selecionarEvento = new JComboBox();
-		selecionarEvento.setBounds(22, 92, 134, 24);
-		contentPane.add(selecionarEvento);
-		
-		JButton btnIncio = new JButton("INÍCIO");
-		btnIncio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new TelaInicial();
-			}
-		});
-		btnIncio.setBounds(22, 139, 134, 25);
-		contentPane.add(btnIncio);
-		
-		JButton btnEvento = new JButton("EVENTO");
-		btnEvento.setBounds(22, 188, 134, 25);
-		contentPane.add(btnEvento);
-		
-		JButton btnAvaliadores = new JButton("AVALIADORES");
-		btnAvaliadores.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new TelaAvaliador();
-			}
-		});
-		btnAvaliadores.setBounds(22, 233, 134, 25);
-		contentPane.add(btnAvaliadores);
-		
-		JButton btnTrabalhos = new JButton("TRABALHOS");
-		btnTrabalhos.setBounds(22, 277, 134, 25);
-		contentPane.add(btnTrabalhos);
-		
-		JButton btnRelatrios = new JButton("RELATÓRIOS");
-		btnRelatrios.setBounds(22, 319, 134, 25);
-		contentPane.add(btnRelatrios);
-		
 		JLabel lblTrabalhos = new JLabel("TRABALHOS");
 		lblTrabalhos.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblTrabalhos.setBounds(217, 12, 114, 15);
+		lblTrabalhos.setBounds(12, 8, 114, 15);
 		contentPane.add(lblTrabalhos);
 		
 		JButton btnAddTrabalho = new JButton("Adicionar Trabalhos");
-		btnAddTrabalho.setBounds(217, 39, 169, 25);
+		btnAddTrabalho.setBounds(12, 30, 169, 25);
 		contentPane.add(btnAddTrabalho);
 		
 		JButton btnDistribuirTrabalho = new JButton("Distribuir Trabalhos");
-		btnDistribuirTrabalho.setBounds(419, 39, 183, 25);
+		btnDistribuirTrabalho.setBounds(214, 30, 183, 25);
 		contentPane.add(btnDistribuirTrabalho);
 		
 		txtDigiteNomeDo = new JTextField();
-		txtDigiteNomeDo.setBounds(217, 92, 235, 25);
+		txtDigiteNomeDo.setText("Digite sua pesquisa");
+		txtDigiteNomeDo.setBounds(12, 80, 235, 25);
 		contentPane.add(txtDigiteNomeDo);
 		txtDigiteNomeDo.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(460, 90, 114, 25);
+		btnPesquisar.setBounds(255, 78, 114, 25);
 		contentPane.add(btnPesquisar);
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
-		lblCategoria.setBounds(217, 144, 80, 15);
+		lblCategoria.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblCategoria.setBounds(12, 132, 98, 15);
 		contentPane.add(lblCategoria);
 		
 		JLabel lblrea = new JLabel("Área:");
-		lblrea.setBounds(460, 144, 66, 15);
+		lblrea.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblrea.setBounds(372, 127, 73, 25);
 		contentPane.add(lblrea);
 		
 		JList listaCategoria = new JList();
 		listaCategoria.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listaCategoria.setBackground(UIManager.getColor("CheckBox.background"));
-		listaCategoria.setBounds(217, 169, 220, 175);
+		listaCategoria.setBounds(12, 157, 330, 175);
 		contentPane.add(listaCategoria);
 		
 		JList list = new JList();
 		list.setBorder(new LineBorder(new Color(0, 0, 0)));
 		list.setBackground(UIManager.getColor("CheckBox.background"));
-		list.setBounds(460, 169, 220, 175);
+		list.setBounds(372, 157, 330, 175);
 		contentPane.add(list);
 		
 		JLabel lblTrabalhosAdicionados = new JLabel("Trabalhos Adicionados");
 		lblTrabalhosAdicionados.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblTrabalhosAdicionados.setBounds(217, 362, 194, 15);
+		lblTrabalhosAdicionados.setBounds(12, 350, 194, 15);
 		contentPane.add(lblTrabalhosAdicionados);
 		
 		JList list_1 = new JList();
-		list_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		list_1.setBorder(new LineBorder(new Color(60, 179, 113)));
 		list_1.setBackground(UIManager.getColor("CheckBox.background"));
-		list_1.setBounds(217, 389, 463, 104);
+		list_1.setBounds(12, 377, 463, 219);
 		contentPane.add(list_1);
 	}
 }

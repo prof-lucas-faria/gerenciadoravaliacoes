@@ -32,7 +32,12 @@ public class Criterio implements Entidade{
 	public Criterio() {
 		super();
 	}
-
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNome();
+	}
 	public long getId() {
 		return id;
 	}

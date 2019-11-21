@@ -52,7 +52,12 @@ public class Evento implements Entidade {
 		this.categorias = categorias;
 	}
 	public Evento() {}
-
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNome();
+	}
 	public long getId() {
 		return id;
 	}

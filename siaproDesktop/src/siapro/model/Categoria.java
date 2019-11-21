@@ -26,6 +26,13 @@ public class Categoria implements Entidade {
 		this.nome = nome;
 	}
 	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getNome();
+	}
+	
 	public Categoria() {
 	}
 

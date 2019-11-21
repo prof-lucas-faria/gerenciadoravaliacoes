@@ -27,7 +27,7 @@ import siapro.model.Projeto;
 import java.awt.Color;
 
 public class ListarProjeto extends JFrame {
-
+	private ListarProjetoController lpc = new ListarProjetoController();
 	private JPanel contentPane;
 	private JTextField txtDigiteNomeDo;
 
@@ -50,11 +50,6 @@ public class ListarProjeto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public static ArrayList<Projeto> listaProjeto(Evento evento) {
-		ListarProjetoController lpc = new ListarProjetoController();
-		ArrayList<Projeto>  lista = (ArrayList<Projeto>) lpc.listarProjeto(evento);
-		return lista;
-	}
 	
 	public ListarProjeto() {
 		setTitle("Lista de Projetos");
@@ -119,7 +114,7 @@ public class ListarProjeto extends JFrame {
 		Evento evento = new Evento();
 		evento = (Evento) new EventoDAO().pesquisarId(1);
 		
-		JList listaTrabalho = new JList(listaProjeto(evento).toArray());
+		JList listaTrabalho = new JList(lpc.listarProjeto(evento).toArray());
 		listaTrabalho.setBorder(new LineBorder(new Color(60, 179, 113)));
 		listaTrabalho.setBackground(UIManager.getColor("CheckBox.background"));
 		listaTrabalho.setBounds(12, 377, 463, 219);

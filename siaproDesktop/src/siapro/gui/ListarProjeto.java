@@ -16,6 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
+
+import siapro.controller.ListarProjetoController;
+
 import java.awt.Color;
 
 public class ListarProjeto extends JFrame {
@@ -90,21 +93,25 @@ public class ListarProjeto extends JFrame {
 		listaCategoria.setBounds(12, 157, 330, 175);
 		contentPane.add(listaCategoria);
 		
-		JList list = new JList();
-		list.setBorder(new LineBorder(new Color(0, 0, 0)));
-		list.setBackground(UIManager.getColor("CheckBox.background"));
-		list.setBounds(372, 157, 330, 175);
-		contentPane.add(list);
+		JList listaArea = new JList();
+		listaArea.setBorder(new LineBorder(new Color(0, 0, 0)));
+		listaArea.setBackground(UIManager.getColor("CheckBox.background"));
+		listaArea.setBounds(372, 157, 330, 175);
+		contentPane.add(listaArea);
 		
 		JLabel lblTrabalhosAdicionados = new JLabel("Trabalhos Adicionados");
 		lblTrabalhosAdicionados.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblTrabalhosAdicionados.setBounds(12, 350, 194, 15);
 		contentPane.add(lblTrabalhosAdicionados);
 		
-		JList list_1 = new JList();
-		list_1.setBorder(new LineBorder(new Color(60, 179, 113)));
-		list_1.setBackground(UIManager.getColor("CheckBox.background"));
-		list_1.setBounds(12, 377, 463, 219);
-		contentPane.add(list_1);
+//		String[] texto = {"Trabalhoo 01""Trabalhoo 02", "Trabalhoo 03"};
+//		JList listaTrabalho = new JList(texto);
+		ListarProjetoController lpc = new ListarProjetoController();
+		JList listaTrabalho = new JList(lpc.listarProjeto(entidade));
+		listaTrabalho.setBorder(new LineBorder(new Color(60, 179, 113)));
+		listaTrabalho.setBackground(UIManager.getColor("CheckBox.background"));
+		listaTrabalho.setBounds(12, 377, 463, 219);
+		contentPane.add(listaTrabalho);
+		
 	}
 }

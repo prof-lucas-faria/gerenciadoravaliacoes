@@ -16,7 +16,4 @@ public interface InterfaceDAO {
 	
 	public Entidade pesquisarId(long id);
 
-	List<Categoria> pesquisarPorEvento(Categoria categoria);
-
-
 }

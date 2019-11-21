@@ -85,5 +85,9 @@ public class Projeto implements Entidade{
 		this.setAvaliacoes(avaliacoes);
 	}
 	
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getTitulo();
+	}
 }

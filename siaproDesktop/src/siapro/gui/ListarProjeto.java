@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -13,11 +14,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
 import javax.swing.JList;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
 import siapro.controller.ListarProjetoController;
+import siapro.dao.EventoDAO;
+import siapro.model.Evento;
+import siapro.model.Projeto;
 
 import java.awt.Color;
 
@@ -45,6 +50,12 @@ public class ListarProjeto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	public static ArrayList<Projeto> listaProjeto(Evento evento) {
+		ListarProjetoController lpc = new ListarProjetoController();
+		ArrayList<Projeto>  lista = (ArrayList<Projeto>) lpc.listarProjeto(evento);
+		return lista;
+	}
+	
 	public ListarProjeto() {
 		setTitle("Lista de Projetos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,10 +115,11 @@ public class ListarProjeto extends JFrame {
 		lblTrabalhosAdicionados.setBounds(12, 350, 194, 15);
 		contentPane.add(lblTrabalhosAdicionados);
 		
-//		String[] texto = {"Trabalhoo 01""Trabalhoo 02", "Trabalhoo 03"};
-//		JList listaTrabalho = new JList(texto);
-		ListarProjetoController lpc = new ListarProjetoController();
-		JList listaTrabalho = new JList(lpc.listarProjeto(entidade));
+		// Para testes
+		Evento evento = new Evento();
+		evento = (Evento) new EventoDAO().pesquisarId(1);
+		
+		JList listaTrabalho = new JList(listaProjeto(evento).toArray());
 		listaTrabalho.setBorder(new LineBorder(new Color(60, 179, 113)));
 		listaTrabalho.setBackground(UIManager.getColor("CheckBox.background"));
 		listaTrabalho.setBounds(12, 377, 463, 219);

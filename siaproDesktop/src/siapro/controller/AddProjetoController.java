@@ -1,8 +1,11 @@
 package siapro.controller;
 
+import java.awt.geom.Area;
+
 import siapro.dao.AreaDAO;
 import siapro.dao.CategoriaDAO;
 import siapro.dao.ProjetoDAO;
+import siapro.model.Categoria;
 import siapro.model.Projeto;
 
 public class AddProjetoController {

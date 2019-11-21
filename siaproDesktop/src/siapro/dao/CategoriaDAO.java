@@ -107,7 +107,7 @@ public class CategoriaDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
+	/*
 	@Override
 	public List<Categoria> pesquisarPorEvento(Evento evento) {
 		String sql = "SELECT * FROM categoria WHERE idEvento like ?";
@@ -127,5 +127,5 @@ public class CategoriaDAO implements InterfaceDAO {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-	}
+	} */
 }

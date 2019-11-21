@@ -8,7 +8,7 @@ import siapro.model.Projeto;
 public class AddProjetoController {
 
 
-	public void salvarProjeto(String titulo,String autores, String categoria, String area) {
+	public void salvarProjeto(String titulo,String autores, Categoria categoria, Area area) {
 		
 		CategoriaDAO catdao = new CategoriaDAO();
 		
@@ -17,8 +17,8 @@ public class AddProjetoController {
 		Projeto proj = new Projeto();
 		proj.setTitulo(titulo);
 		proj.setAutores(autores);
-		proj.setCategoria(catdao.pesquisarNome(categoria));
-		proj.setArea(ardao.pesquisarNome(area));
+		proj.setCategoria(catdao.pesquisarPorEvento(categoria));
+		proj.setArea(ardao.pesquisarporEvento(area));
 	
 		
 		new ProjetoDAO().salvar(proj);

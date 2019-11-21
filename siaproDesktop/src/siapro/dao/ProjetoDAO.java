@@ -82,9 +82,9 @@ public class ProjetoDAO implements InterfaceDAO{
 				stmt = conexao.prepareStatement(sql);
 				stmt.setLong(1, evento.getId());
 				ResultSet rs = stmt.executeQuery();
-				Projeto projeto = new Projeto();
-				List<Entidade> listaProjeto = new ArrayList<Entidade>();
+				ArrayList<Entidade> listaProjeto = new ArrayList<Entidade>();
 				while (rs.next()) {
+					Projeto projeto = new Projeto();
 					projeto.setId(rs.getLong("id"));
 					Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
 					Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));

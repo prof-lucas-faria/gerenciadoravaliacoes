@@ -48,6 +48,8 @@ public class TelaAvaliador extends JFrame {
 		btnAddAvaliadores.setBounds(38, 60, 193, 29);
 		btnAddAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new TelaAddAvaliador();
+				
 			}
 		});
 		contentPane.setLayout(null);

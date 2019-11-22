@@ -59,7 +59,7 @@ public class ListarArea extends JFrame {
 		
 		Evento e = new Evento();
 		
-		ListarAreaController c = new ListarAreaController();
+		//ListarAreaController c = new ListarAreaController();
 		JList listArea = new JList(listaArea(e).toArray());
 		listArea.setBounds(5, 28, 0, 228);
 		listArea.setToolTipText("");

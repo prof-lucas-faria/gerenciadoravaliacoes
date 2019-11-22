@@ -15,10 +15,14 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.Panel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLayeredPane;
+import javax.swing.JDesktopPane;
 
 public class TelaEvento extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel painel;
 
 	/**
 	 * Launch the application.
@@ -43,16 +47,16 @@ public class TelaEvento extends JFrame {
 		setTitle("Evento");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 795, 483);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		painel = new JPanel();
+		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(painel);
+		painel.setLayout(null);
 		
 		JLabel nomeSistema = new JLabel("Nome do Sistema");
 		nomeSistema.setForeground(Color.RED);
 		nomeSistema.setFont(new Font("Dialog", Font.BOLD, 14));
 		nomeSistema.setBounds(26, 12, 150, 15);
-		contentPane.add(nomeSistema);
+		painel.add(nomeSistema);
 		
 		JButton usuario = new JButton("Usuario");
 		usuario.addActionListener(new ActionListener() {
@@ -60,15 +64,15 @@ public class TelaEvento extends JFrame {
 			}
 		});
 		usuario.setBounds(26, 58, 134, 25);
-		contentPane.add(usuario);
+		painel.add(usuario);
 		
 		JComboBox selecione = new JComboBox();
 		selecione.setBounds(26, 123, 134, 24);
-		contentPane.add(selecione);
+		painel.add(selecione);
 		
 		JButton inicio = new JButton("Inicio");
 		inicio.setBounds(26, 181, 134, 25);
-		contentPane.add(inicio);
+		painel.add(inicio);
 		
 		JButton evento = new JButton("Evento");
 		evento.addActionListener(new ActionListener() {
@@ -76,7 +80,7 @@ public class TelaEvento extends JFrame {
 			}
 		});
 		evento.setBounds(26, 250, 134, 25);
-		contentPane.add(evento);
+		painel.add(evento);
 		
 		JButton avaliadores = new JButton("Avaliadores");
 		avaliadores.addActionListener(new ActionListener() {
@@ -84,7 +88,7 @@ public class TelaEvento extends JFrame {
 			}
 		});
 		avaliadores.setBounds(26, 301, 134, 25);
-		contentPane.add(avaliadores);
+		painel.add(avaliadores);
 		
 		JButton trabalhos = new JButton("Trabalhos");
 		trabalhos.addActionListener(new ActionListener() {
@@ -92,38 +96,54 @@ public class TelaEvento extends JFrame {
 			}
 		});
 		trabalhos.setBounds(26, 353, 134, 25);
-		contentPane.add(trabalhos);
+		painel.add(trabalhos);
 		
 		JButton relatorios = new JButton("Relatorios");
 		relatorios.setBounds(26, 398, 134, 25);
-		contentPane.add(relatorios);
+		painel.add(relatorios);
 		
 		JLabel lblNomeDoEvento = new JLabel("Nome do Evento");
 		lblNomeDoEvento.setForeground(Color.RED);
 		lblNomeDoEvento.setBounds(252, 12, 134, 15);
-		contentPane.add(lblNomeDoEvento);
+		painel.add(lblNomeDoEvento);
 		
 		JButton abrirCategoria = new JButton("Categoria");
 		abrirCategoria.setForeground(Color.BLUE);
 		abrirCategoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Categoria oTela = new Categoria();
+				//painelinterno.add(oTela);
+				oTela.setVisible(true);
 			}
 		});
 		abrirCategoria.setBounds(226, 58, 114, 25);
-		contentPane.add(abrirCategoria);
+		painel.add(abrirCategoria);
 		
 		JButton abrirArea = new JButton("Area");
+		abrirArea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Area oTela = new Area();
+				oTela.setVisible(true);
+			}
+		});
 		abrirArea.setForeground(Color.BLUE);
 		abrirArea.setBounds(352, 58, 114, 25);
-		contentPane.add(abrirArea);
+		painel.add(abrirArea);
 		
 		JButton abrirInformacoes = new JButton("Informações");
+		abrirInformacoes.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Informacoes oTela = new Informacoes();
+				oTela.setVisible(true);
+			}
+		});
 		abrirInformacoes.setForeground(Color.BLUE);
 		abrirInformacoes.setBounds(478, 58, 134, 25);
-		contentPane.add(abrirInformacoes);
+		painel.add(abrirInformacoes);
 		
-		Panel panel = new Panel();
-		panel.setBounds(223, 111, 544, 312);
-		contentPane.add(panel);
+		JDesktopPane painelinterno = new JDesktopPane();
+		painelinterno.setBackground(Color.BLACK);
+		painelinterno.setBounds(226, 122, 529, 301);
+		painel.add(painelinterno);
 	}
 }

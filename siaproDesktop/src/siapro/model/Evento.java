@@ -137,5 +137,9 @@ public class Evento implements Entidade {
 	public void setLogotipo(String logotipo) {
 		this.logotipo = logotipo;
 	}
-	
+
+	@Override
+	public String toString() {
+		return this.getNome();
+	}
 }

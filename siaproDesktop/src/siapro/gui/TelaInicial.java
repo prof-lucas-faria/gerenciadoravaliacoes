@@ -1,49 +1,39 @@
 package siapro.gui;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
-import java.awt.Color;
-import java.awt.SystemColor;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import siapro.controller.TelaInicialController;
+import siapro.dao.EventoDAO;
+import siapro.dao.OrganizadorDAO;
+import siapro.model.Entidade;
+import siapro.model.Evento;
+import siapro.model.Organizador;
 
 public class TelaInicial extends JFrame {
 
 	private JPanel contentPane;
+	private JComboBox selecionarEvento;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicial frame = new TelaInicial();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public void botaoEvento() {
+		Evento e = (Evento) getSelecionarEvento().getSelectedItem();
+		new TelaEvento(e);
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	
 	public TelaInicial() {
 		setTitle("Tela Inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,8 +52,14 @@ public class TelaInicial extends JFrame {
 		btnUsuario.setBounds(22, 39, 134, 25);
 		contentPane.add(btnUsuario);
 		
-		JComboBox selecionarEvento = new JComboBox();
-		selecionarEvento.setBounds(22, 92, 134, 24);
+		selecionarEvento = new JComboBox();
+		
+		List<Evento> eventos = new TelaInicialController().listarEventos();
+		for (Evento evento : eventos) {
+			selecionarEvento.addItem(evento);
+		}
+		
+		selecionarEvento.setBounds(26, 92, 130, 24);
 		contentPane.add(selecionarEvento);
 		
 		JButton btnIncio = new JButton("INÍCIO");
@@ -76,6 +72,11 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btnIncio);
 		
 		JButton btnEvento = new JButton("EVENTO");
+		btnEvento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				botaoEvento();
+			}
+		});
 		btnEvento.setBounds(22, 188, 134, 25);
 		contentPane.add(btnEvento);
 		
@@ -106,5 +107,11 @@ public class TelaInicial extends JFrame {
 		listaTrabalhos.setBackground(UIManager.getColor("CheckBox.background"));
 		listaTrabalhos.setBounds(174, 12, 500, 481);
 		contentPane.add(listaTrabalhos);
+		
+//		Isso é necessário para que a tela APAREÇA
+		setVisible(true);
+	}
+	public JComboBox getSelecionarEvento() {
+		return selecionarEvento;
 	}
 }

@@ -9,9 +9,12 @@ import javax.swing.border.EmptyBorder;
 
 import siapro.controller.ListarAreaController;
 import siapro.controller.ListarCategoriaController;
+import siapro.model.Categoria;
+import siapro.model.Evento;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 
@@ -38,6 +41,13 @@ public class ListarCategoria extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public static ArrayList<Categoria> listaCategoria(Evento evento) {
+		ListarCategoriaController lcc = new ListarCategoriaController();
+		ArrayList<Categoria>  lista = (ArrayList<Categoria>) lcc.listarCategoria(evento);
+		return lista;
+	}
+	
 	public ListarCategoria() {
 		setTitle("Categoria");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,13 +64,15 @@ public class ListarCategoria extends JFrame {
 		});
 		contentPane.add(btnNewButton, BorderLayout.NORTH);
 		
+		Evento e = new Evento();
+		//ListarCategoriaController c = new ListarCategoriaController();
 		
-		ListarCategoriaController c = new ListarCategoriaController();
-		JList listCategoria = new JList(c.listarCategoria(e));
+		JList listCategoria = new JList(listaCategoria(e).toArray());
 		listCategoria.setBounds(5, 28, 0, 228);
 		listCategoria.setToolTipText("");
 		contentPane.add(listCategoria);
-		listCategoria.setListData(c.listarCategoria(e).toArray());
+		//listCategoria.setListData(c.listarCategoria(e).toArray());
+		
 		
 	}
 

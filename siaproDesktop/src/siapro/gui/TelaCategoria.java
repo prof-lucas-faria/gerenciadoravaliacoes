@@ -69,7 +69,7 @@ public class TelaCategoria extends JFrame {
 		contentPane.add(tfNomeCategoria);
 		tfNomeCategoria.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Pontuação das Avaliações");
+		JLabel lblNewLabel_1 = new JLabel("Quantidade de Avaliadores:");
 		lblNewLabel_1.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lblNewLabel_1.setBounds(12, 86, 263, 14);
 		contentPane.add(lblNewLabel_1);

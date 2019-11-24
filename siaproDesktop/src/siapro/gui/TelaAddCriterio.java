@@ -67,7 +67,6 @@ public class TelaAddCriterio extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAddCriterio() {
-		//this.categoria.setNome("Nomw");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 528, 343);
 		contentPane = new JPanel();
@@ -124,8 +123,6 @@ public class TelaAddCriterio extends JFrame {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {			
 				categoria = (Categoria) selecionarCategoria.getSelectedItem();
-				System.out.println(categoria);
-				System.out.println(categoria.getId());
 				salvar();
 			}
 		});

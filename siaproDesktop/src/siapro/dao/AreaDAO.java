@@ -64,26 +64,25 @@ public class AreaDAO implements InterfaceDAO{
 
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
-		Area area = (Area) entidade;	
+		Evento evento = (Evento)entidade;
 		String sql = "SELECT * FROM area where idEvento = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, area.getEvento().getId());
+			stmt.setLong(1, evento.getId());
 			ResultSet rs = stmt.executeQuery();
 			ArrayList<Entidade> lista = new ArrayList<Entidade>();
 			while (rs.next()) {
 	            Area areas = new Area();
 				areas.setId(rs.getInt("id"));
 				areas.setNome(rs.getString("nome"));
-				EventoDAO eventoDAO = new EventoDAO();
-				areas.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
+				areas.setEvento(evento);
 				areas.setDescricao(rs.getString("descricao"));
 				lista.add(areas);
 			}
 			stmt.close();
 			return lista;
-		} catch (Exception ex) {
-			throw new RuntimeException(ex);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
 	}
 	

@@ -130,4 +130,29 @@ public class ProjetoDAO implements InterfaceDAO{
 		}
 		return null;
 	}
+	
+	public List<Entidade> pesquisarTitulo(Entidade entidade, String pesquisa) {
+		String sql = "SELECT titulo FROM projeto WHERE idEvento = ? AND titulo LIKE ?";
+		if(entidade instanceof Evento) {
+			Evento evento = (Evento)entidade;
+			try {
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, evento.getId());
+				stmt.setString(2, '%'+pesquisa+'%');
+				ResultSet rs = stmt.executeQuery();
+				ArrayList<Entidade> listaTitulo = new ArrayList<Entidade>();
+				while (rs.next()) {
+					Projeto projeto = new Projeto();
+					projeto.setTitulo(rs.getString("titulo"));
+					listaTitulo.add((Entidade) projeto);
+				}
+				stmt.close();
+				return listaTitulo;
+			} catch (Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
+		return null;
+	}
+	
 }

@@ -12,10 +12,19 @@ public class ListarProjetoController {
 	public List<Projeto> listarProjeto(Entidade entidade) {
 		List<Projeto> listaProjeto = new ArrayList<Projeto>();
 		List<Entidade> listaEnt = new ProjetoDAO().listarTudo(entidade);
-		for (Entidade entidades : listaEnt) {
-			listaProjeto.add((Projeto)entidades);
+		for (Entidade ent : listaEnt) {
+			listaProjeto.add((Projeto)ent);
 		}
 		return listaProjeto;
+	}
+	
+	public List<Projeto> pesquisarTitulo(Entidade entidade, String pesquisa) {
+		List<Projeto> listaTitulo = new ArrayList<Projeto>();
+		List<Entidade> listaEnt = new ProjetoDAO().pesquisarTitulo(entidade, pesquisa);
+		for (Entidade ent : listaEnt) {
+			listaTitulo.add((Projeto)ent);
+		}
+		return listaTitulo;
 	}
 
 }

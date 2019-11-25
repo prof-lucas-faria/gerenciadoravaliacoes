@@ -25,7 +25,7 @@ import siapro.model.Evento;
 public class ListarProjeto extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtDigiteNomeDo;
+	private JTextField txtfPesquisarProjeto;
 
 	/**
 	 * Launch the application.
@@ -83,11 +83,11 @@ public class ListarProjeto extends JFrame {
 		btnDistribuirTrabalho.setBounds(214, 30, 183, 25);
 		contentPane.add(btnDistribuirTrabalho);
 		
-		txtDigiteNomeDo = new JTextField();
-		txtDigiteNomeDo.setText("Digite sua pesquisa");
-		txtDigiteNomeDo.setBounds(12, 80, 235, 25);
-		contentPane.add(txtDigiteNomeDo);
-		txtDigiteNomeDo.setColumns(10);
+		txtfPesquisarProjeto = new JTextField();
+		txtfPesquisarProjeto.setText("Digite sua pesquisa");
+		txtfPesquisarProjeto.setBounds(12, 80, 235, 25);
+		contentPane.add(txtfPesquisarProjeto);
+		txtfPesquisarProjeto.setColumns(10);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.setBounds(255, 78, 114, 25);
@@ -110,7 +110,7 @@ public class ListarProjeto extends JFrame {
 		listaCategoria.setBounds(12, 157, 330, 175);
 		contentPane.add(listaCategoria);
 		
-		JList listaArea = new JList(/**new ListarAreaController().listarAreas(evento).toArray()*/);
+		JList listaArea = new JList(new ListarAreaController().listarAreas(evento).toArray());
 		listaArea.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listaArea.setBackground(UIManager.getColor("CheckBox.background"));
 		listaArea.setBounds(372, 157, 330, 175);

@@ -39,8 +39,9 @@ public class TelaAddCriterio extends JFrame {
 	private Evento evento;
 	private Categoria categoria;
 	
-	public TelaAddCriterio(Evento e) {
-		this.evento = e;
+	public TelaAddCriterio(Categoria c) {
+		this.categoria = c;
+		
 	}
 	
 	public void salvar() {
@@ -91,15 +92,14 @@ public class TelaAddCriterio extends JFrame {
 		contentPane.add(lblCriterio);
 		
 		selecionarCategoria = new JComboBox();
-		selecionarCategoria.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
+	
 		selecionarCategoria.setBounds(36, 57, 147, 22);
 		contentPane.add(selecionarCategoria);
 		
 		
+		
+		
+		this.evento = new CriterioController().listarCategorias(this.categoria);
 		ArrayList<Categoria> categorias = (ArrayList<Categoria>) new CriterioController().listaCategorias(this.evento);
 		for(Categoria c : categorias ) {
 			this.selecionarCategoria.addItem(c);

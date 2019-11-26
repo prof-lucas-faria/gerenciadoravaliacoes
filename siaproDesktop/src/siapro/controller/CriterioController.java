@@ -3,6 +3,7 @@ package siapro.controller;
 import java.util.List;
 
 import siapro.dao.CriterioDAO;
+import siapro.dao.EventoDAO;
 import siapro.model.Categoria;
 import siapro.model.Criterio;
 import siapro.model.Evento;
@@ -24,5 +25,10 @@ public class CriterioController {
 	public List<Categoria> listaCategorias(Evento e){
 		List<Categoria> categorias =  new ListarCategoriaController().listarCategoria(e);
 		return categorias;
+	}
+	
+	public Evento listarCategorias(Categoria c) {
+		c.setEvento((Evento) new EventoDAO().pesquisarPorCategoria(c));
+		return c.getEvento();
 	}
 }

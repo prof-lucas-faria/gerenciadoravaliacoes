@@ -1,6 +1,8 @@
 package siapro.dao;
 
 import java.util.List;
+
+import siapro.model.Categoria;
 import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
@@ -83,23 +85,42 @@ public class EventoDAO implements InterfaceDAO {
 		}
 	}
 	
-	public Entidade pesquisarId(long id) {
-		String sql = "SELECT * FROM evento WHERE id = ?";
-		try {
-			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, id);
-			ResultSet rs = stmt.executeQuery();
-			Evento evento = new Evento();
-			if (rs.next()) {
-				 evento = new Evento(rs.getLong("id"), rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+		public Entidade pesquisarId(long id) {
+			String sql = "SELECT * FROM evento WHERE id = ?";
+			try {
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, id);
+				ResultSet rs = stmt.executeQuery();
+				Evento evento = new Evento();
+				if (rs.next()) {
+					 evento = new Evento(rs.getLong("id"), rs.getString("nome"), rs.getString("informacoes"), rs.getBoolean("liberado"), rs.getString("logotipo"));
+				}
+				stmt.close();
+				
+				return evento;
+			}     
+			catch (Exception ex) {
+				throw new RuntimeException(ex); 
 			}
-			stmt.close();
-			
-			return evento;
-		}     
-		catch (Exception ex) {
-			throw new RuntimeException(ex); 
 		}
-	}
+		
+		public Evento pesquisarPorCategoria(Categoria categoria) {
+			String sql = "SELECT e.id FROM evento e INNER JOIN categoria c  ON e.id = c.idEvento WHERE c.id = ?";
+			try {
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, categoria.getId());
+				ResultSet rs = stmt.executeQuery();
+				long idEvento = 0;
+				Evento evento =  new Evento();
+				if(rs.next()) {
+					idEvento = rs.getLong("id");
+					evento = (Evento) this.pesquisarId(idEvento);
+				}
+				
+				return evento;
+			}catch(Exception e) {
+				throw new RuntimeException(e);
+			}
+		}
 	
 	}

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import siapro.controller.AreaController;
+import siapro.model.Evento;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -14,36 +15,22 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaAdicionarArea extends JFrame {
+public class TelaAddArea extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField tfNomeArea;
+	private Evento evento;
 	private JTextField tfDescricaoArea;
 	
 	public void botaoSalvar() {
-		new AreaController().salvarArea(tfNomeArea.getText(), tfDescricaoArea.getText());
+		Evento e = (evento);
+		new AreaController().salvarArea(tfNomeArea.getText(), evento, tfDescricaoArea.getText());
 	}
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaAdicionarArea frame = new TelaAdicionarArea();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public TelaAdicionarArea() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
+	public TelaAddArea(Evento evento) {
+		this.evento = evento;
+		setTitle("Adicionar Área");
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,7 +42,7 @@ public class TelaAdicionarArea extends JFrame {
 		contentPane.add(lblrea);
 		
 		JLabel lblNewLabel = new JLabel("Área:");
-		lblNewLabel.setBounds(112, 39, 66, 15);
+		lblNewLabel.setBounds(112, 38, 66, 15);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblDescrio = new JLabel("Descrição da área:");
@@ -63,9 +50,14 @@ public class TelaAdicionarArea extends JFrame {
 		contentPane.add(lblDescrio);
 		
 		tfNomeArea = new JTextField();
-		tfNomeArea.setBounds(112, 61, 220, 19);
+		tfNomeArea.setBounds(112, 53, 220, 19);
 		contentPane.add(tfNomeArea);
 		tfNomeArea.setColumns(10);
+		
+		tfDescricaoArea = new JTextField();
+		tfDescricaoArea.setBounds(112, 108, 220, 72);
+		contentPane.add(tfDescricaoArea);
+		tfDescricaoArea.setColumns(10);
 		
 		JButton btnSalvarArea = new JButton("Salvar área");
 		btnSalvarArea.addActionListener(new ActionListener() {
@@ -73,12 +65,9 @@ public class TelaAdicionarArea extends JFrame {
 				botaoSalvar();
 			}
 		});
-		btnSalvarArea.setBounds(306, 233, 114, 25);
+		btnSalvarArea.setBounds(283, 191, 114, 25);
 		contentPane.add(btnSalvarArea);
 		
-		tfDescricaoArea = new JTextField();
-		tfDescricaoArea.setBounds(112, 119, 220, 72);
-		contentPane.add(tfDescricaoArea);
-		tfDescricaoArea.setColumns(10);
+		setVisible(true);
 	}
 }

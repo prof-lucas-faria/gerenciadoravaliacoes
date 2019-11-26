@@ -21,11 +21,14 @@ import siapro.controller.ListarCategoriaController;
 import siapro.controller.ListarProjetoController;
 import siapro.dao.EventoDAO;
 import siapro.model.Evento;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ListarProjeto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtfPesquisarProjeto;
+	private Evento evento; // teste
 
 	/**
 	 * Launch the application.
@@ -57,7 +60,6 @@ public class ListarProjeto extends JFrame {
 		contentPane.setLayout(null);
 		
 		// Para testes
-		Evento evento = new Evento();
 		evento = (Evento) new EventoDAO().pesquisarId(4);
 		
 		JLabel lblTrabalhos = new JLabel("TRABALHOS");
@@ -84,14 +86,16 @@ public class ListarProjeto extends JFrame {
 		contentPane.add(btnDistribuirTrabalho);
 		
 		txtfPesquisarProjeto = new JTextField();
+		txtfPesquisarProjeto.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtfPesquisarProjeto.setText("");
+			}
+		});
 		txtfPesquisarProjeto.setText("Digite sua pesquisa");
 		txtfPesquisarProjeto.setBounds(12, 80, 235, 25);
 		contentPane.add(txtfPesquisarProjeto);
 		txtfPesquisarProjeto.setColumns(10);
-		
-		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(255, 78, 114, 25);
-		contentPane.add(btnPesquisar);
 		
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -126,6 +130,16 @@ public class ListarProjeto extends JFrame {
 		listaTrabalho.setBackground(UIManager.getColor("CheckBox.background"));
 		listaTrabalho.setBounds(12, 377, 463, 219);
 		contentPane.add(listaTrabalho);
+		
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+					String texto = txtfPesquisarProjeto.getText();
+					listaTrabalho.setListData(new ListarProjetoController().pesquisarTitulo(evento, texto).toArray());
+			}
+		});
+		btnPesquisar.setBounds(255, 78, 114, 25);
+		contentPane.add(btnPesquisar);
 		
 		JButton btnEditarTrabalho = new JButton("Editar Trabalho");
 		btnEditarTrabalho.addActionListener(new ActionListener() {

@@ -55,7 +55,7 @@ public class TelaAddArea extends JFrame {
 		tfNomeArea.setColumns(10);
 		
 		tfDescricaoArea = new JTextField();
-		tfDescricaoArea.setBounds(112, 108, 220, 72);
+		tfDescricaoArea.setBounds(112, 107, 220, 72);
 		contentPane.add(tfDescricaoArea);
 		tfDescricaoArea.setColumns(10);
 		

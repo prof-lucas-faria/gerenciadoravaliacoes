@@ -5,7 +5,7 @@ import siapro.model.Area;
 import siapro.model.Evento;
 
 public class AreaController {
-
+	
 	public void salvarArea(String nome, Evento evento, String descricao) {
 		Area area = new Area();
 		area.setNome(nome);

@@ -6,14 +6,19 @@ import java.util.List;
 
 import siapro.dao.AreaDAO;
 import siapro.dao.CategoriaDAO;
+import siapro.dao.EventoDAO;
+import siapro.dao.OrganizadorDAO;
 import siapro.dao.ProjetoDAO;
 import siapro.model.Categoria;
 import siapro.model.Entidade;
+import siapro.model.Evento;
+import siapro.model.Organizador;
 import siapro.model.Projeto;
 
 public class AddProjetoController {
 	
-	public List<Categoria> listarCategoria(Entidade e) {
+
+		public List<Categoria> listarCategoria(Entidade e) {
 		List<Categoria> a = new ArrayList<Categoria>();
 		List<Entidade>	en =	new CategoriaDAO().listarTudo(e);
 		for (Entidade entidade : en) {
@@ -21,7 +26,8 @@ public class AddProjetoController {
 		}
 		return a;
 	}
-	public List<Area> listarAreas(Entidade e) {
+		
+	    public List<Area> listarAreas(Entidade e) {
 		List<Area> b = new ArrayList<Area>();
 		List<Entidade>	en =	new AreaDAO().listarTudo(e);
 		for (Entidade entidade : en) {
@@ -29,17 +35,14 @@ public class AddProjetoController {
 		}
 		return b;
 	}
-	public void salvarProjeto(String titulo,String autores, Categoria categoria, Area area) {		
-		//CategoriaDAO catdao = new CategoriaDAO();
-		
-		//AreaDAO ardao = new AreaDAO();				
+	public void salvarProjeto(String titulo,String autores, Categoria a, Area b) {		
+				
 		Projeto proj = new Projeto();
 		proj.setTitulo(titulo);
 		proj.setAutores(autores);
-		//List<Categoria> a = new ArrayList<Categoria>();
-		//List<Area> b = new ArrayList<Area>();		
-		//proj.setCategoria(catdao.pesquisarPorEvento(categoria));
-		//proj.setArea(ardao.pesquisarporEvento(area));		
+		proj.getCategoria();
+		proj.getArea();
 		new ProjetoDAO().salvar(proj);
 	}
+
 }

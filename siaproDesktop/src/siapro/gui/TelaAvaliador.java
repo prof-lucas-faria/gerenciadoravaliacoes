@@ -6,8 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import siapro.controller.AvaliadorController;
+import siapro.controller.TelaInicialController;
+import siapro.model.Avaliador;
+import siapro.model.Evento;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JList;
@@ -25,7 +32,7 @@ public class TelaAvaliador extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAvaliador frame = new TelaAvaliador();
+					TelaAvaliador frame = new TelaAvaliador(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,8 +43,9 @@ public class TelaAvaliador extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param e 
 	 */
-	public TelaAvaliador() {
+	public TelaAvaliador(Evento e) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -60,9 +68,17 @@ public class TelaAvaliador extends JFrame {
 		contentPane.add(pesquisarAvaliadores);
 		pesquisarAvaliadores.setColumns(10);
 		
-		JList list = new JList();
-		list.setBounds(23, 253, 388, -134);
-		contentPane.add(list);
+		JList listaAvaliadores = new JList();
+		listaAvaliadores.setBounds(24, 253, 387, -70);
+		contentPane.add(listaAvaliadores);
+		
+		List<Evento> eventos = new TelaInicialController().listarEventos();
+		for (Evento evento : eventos) {
+			//selecionarEvento.addItem(evento)
+			listaAvalaidores.add(evento);
+		}
+		
+		List<Avaliador> avaliadores = new AvaliadorController().listarAvaliadores(e); 
 		
 		JLabel lblAvaliadores = new JLabel("AVALIADORES");
 		lblAvaliadores.setBounds(164, 12, 125, 17);

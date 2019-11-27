@@ -11,6 +11,7 @@ import javax.swing.border.EmptyBorder;
 import siapro.controller.ListarAreaController;
 import siapro.controller.ListarProjetoController;
 import siapro.dao.AreaDAO;
+import siapro.dao.EventoDAO;
 import siapro.model.Area;
 import siapro.model.Evento;
 import siapro.model.Projeto;
@@ -19,7 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 
 public class ListarArea extends JFrame {
-
+	private ListarAreaController lac = new ListarAreaController();
 	private JPanel contentPane;
 
 	/**
@@ -58,6 +59,7 @@ public class ListarArea extends JFrame {
 		contentPane.add(btnAdcionarArea);
 		
 		Evento e = new Evento();
+		e = (Evento) new EventoDAO().pesquisarId(1);
 		
 		//ListarAreaController c = new ListarAreaController();
 		JList listArea = new JList(listaArea(e).toArray());

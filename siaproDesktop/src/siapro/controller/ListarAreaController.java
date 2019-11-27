@@ -10,12 +10,12 @@ import siapro.model.Entidade;
 public class ListarAreaController {
 	
 	public List<Area> listarAreas(Entidade e) {
-		List<Area> a = new ArrayList<Area>();
-		List<Entidade>	en =	new AreaDAO().listarTudo(e);
-		for (Entidade entidade : en) {
-			a.add((Area)entidade);
+		List<Area> listaArea = new ArrayList<Area>();
+		List<Entidade>	listaEnt =	new AreaDAO().listarTudo(e);
+		for (Entidade entidade : listaEnt) {
+			listaArea.add((Area)entidade);
 		}
-		return a;
+		return listaArea;
 	}
 
 }

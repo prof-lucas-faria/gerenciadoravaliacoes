@@ -1,7 +1,10 @@
 package siapro.controller;
 
+import java.util.List;
+
 import siapro.dao.CategoriaDAO;
 import siapro.model.Categoria;
+import siapro.model.Evento;
 
 public class CategoriaController {
 
@@ -12,6 +15,19 @@ public class CategoriaController {
 		cat.setQntMinAvalProjeto(Integer.parseInt(minimo));
 		
 		new CategoriaDAO().salvar(cat);
+	}
+	
+	public void editarCategoria(Categoria categoria) {
+		new CategoriaDAO().editar(categoria);		
+	}
+	
+	public List<Categoria> listarCategoria(Evento evento) {
+		evento.carregarCategoria();
+		return evento.getCategorias();
+	}
+
+	public void deletarCategoria(Categoria categoria) {
+		new CategoriaDAO().deletar(categoria);
 	}
 
 }

@@ -8,10 +8,8 @@ import java.sql.ResultSet;
 
 import siapro.model.Entidade;
 import siapro.conexao.Conexao;
-import siapro.model.Avaliacao;
 import siapro.model.Categoria;
 import siapro.model.Evento;
-import siapro.model.Projeto;
 
 
 public class CategoriaDAO implements InterfaceDAO {
@@ -48,12 +46,13 @@ public class CategoriaDAO implements InterfaceDAO {
 	public Entidade editar(Entidade entidade) {
 		Categoria c = (Categoria)entidade;
 		
-		String sql = "UPDATE categoria SET nome = ?, qntMinAvalProjeto = ?, qntMaxAvalProjeto = ?";
+		String sql = "UPDATE categoria SET nome = ?, qntMinAvalProjeto = ?, qntMaxAvalProjeto = ? WHERE id = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, c.getNome());
 			stmt.setInt(2, c.getQntMinAvalProjeto());
 			stmt.setInt(3, c.getQntMaxAvalProjeto());
+			stmt.setLong(4, c.getId());
 			stmt.execute();
 			stmt.close();
 			return c;
@@ -128,4 +127,18 @@ public class CategoriaDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	} */
+
+
+	public void deletar(Categoria categoria) {
+		String sql = "DELETE FROM categoria WHERE id = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, categoria.getId());
+			stmt.execute();
+			stmt.close();
+		} catch (Exception e) {
+			
+			throw new RuntimeException(e);
+		}
+	}
 }

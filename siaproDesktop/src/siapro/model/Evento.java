@@ -1,6 +1,13 @@
 package siapro.model;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import siapro.dao.AreaDAO;
+import siapro.dao.AvaliadorDAO;
+import siapro.dao.CategoriaDAO;
+import siapro.dao.OrganizadorDAO;
+import siapro.dao.ProjetoDAO;
 
 public class Evento implements Entidade {
 	private long id;
@@ -137,9 +144,44 @@ public class Evento implements Entidade {
 	public void setLogotipo(String logotipo) {
 		this.logotipo = logotipo;
 	}
+	
+	public void carregarAvaliadores() {
+		this.avaliadores = new ArrayList<>();
+		List<Entidade> entidades = new AvaliadorDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.avaliadores.add((Avaliador) entidade);
+		}
+	}
+	
+	public void carregarArea() {
+		this.areas = new ArrayList<>();
+		List<Entidade> entidades = new AreaDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.areas.add((Area) entidade);
+		}
+	}
 
-	@Override
-	public String toString() {
-		return this.getNome();
+	public void carregarProjeto() {
+		this.projetos = new ArrayList<>();
+		List<Entidade> entidades = new ProjetoDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.projetos.add((Projeto) entidade);
+		}
+	}
+	
+	public void carregarCategoria() {
+		this.categorias = new ArrayList<>();
+		List<Entidade> entidades = new CategoriaDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.categorias.add((Categoria) entidade);
+		}
+	}
+	
+	public void carregarOrganizadores() {
+		this.organizadores = new ArrayList<>();
+		List<Entidade> entidades = new OrganizadorDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.organizadores.add((Organizador) entidade);
+		}
 	}
 }

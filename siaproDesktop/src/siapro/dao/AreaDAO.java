@@ -174,25 +174,4 @@ public class AreaDAO implements InterfaceDAO{
 	            throw new RuntimeException(e);
 	        }
 	    }
-	 
-	/* @Override
-		public List<Area> pesquisarPorEvento(Evento evento) {
-			String sql = "SELECT * FROM area WHERE idEvento like ?";
-			try {
-				stmt = conexao.prepareStatement(sql);
-				stmt.setString(1, evento.getNome());
-				ResultSet rs = stmt.executeQuery();
-				ArrayList<Area> lista = new ArrayList<Area>();
-				while (rs.next()) {
-					Area area = new area(rs.getString("nome"));
-					area.setId(rs.getLong("id"));
-					area.getNome();
-					lista.add(area);
-				}
-				stmt.close();
-				return lista;
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		} */
 }

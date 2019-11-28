@@ -22,16 +22,20 @@ import siapro.model.Area;
 
 public class TelaAddProjeto extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textFieldTitulo;
 	private JTextField textFieldAutores;
 	private static AddProjetoController apc = new AddProjetoController();
+	private  JComboBox selecionarCategoria;
+	private JComboBox selecionarArea;
+	private Object evento;
+	
 
 
+	public void salvar() {
+		new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  null, null);
+	}
 
 	/**
 	 * Launch the application.
@@ -101,7 +105,7 @@ public class TelaAddProjeto extends JFrame {
 		btnSalvar.setBounds(401, 398, 89, 23);
 		contentPane.add(btnSalvar);
 		
-		JComboBox selecionarCategoria = new JComboBox();
+		selecionarCategoria = new JComboBox();
 		List<Categoria> categorias = new AddProjetoController().listarCategoria(evento);
 		for (Categoria categoria : categorias) {
 			selecionarCategoria.addItem(categoria);
@@ -109,14 +113,12 @@ public class TelaAddProjeto extends JFrame {
 		selecionarCategoria.setBounds(344, 248, 202, 24);
 		contentPane.add(selecionarCategoria);
 		
-		JComboBox selecionarArea = new JComboBox();
+		selecionarArea = new JComboBox();
 		List<Area> areas = apc.listarAreas(evento);
 		for (Area area : areas) {
 			selecionarArea.addItem(area);
 		}
 		selecionarArea.setBounds(344, 341, 202, 23);
 		contentPane.add(selecionarArea);
-		
-		
-	}
+		}
 }

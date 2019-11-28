@@ -106,29 +106,6 @@ public class CategoriaDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	/*
-	@Override
-	public List<Categoria> pesquisarPorEvento(Evento evento) {
-		String sql = "SELECT * FROM categoria WHERE idEvento like ?";
-		try {
-			stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, evento.getNome());
-			ResultSet rs = stmt.executeQuery();
-			ArrayList<Categoria> lista = new ArrayList<Categoria>();
-			while (rs.next()) {
-				Categoria categoria = new Categoria(rs.getString("nome"));
-				categoria.setId(rs.getLong("id"));
-				categoria.getNome();
-				lista.add(categoria);
-			}
-			stmt.close();
-			return lista;
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	} */
-
-
 	public void deletar(Categoria categoria) {
 		String sql = "DELETE FROM categoria WHERE id = ?";
 		try {

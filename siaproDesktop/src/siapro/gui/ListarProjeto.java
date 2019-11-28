@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -60,7 +61,7 @@ public class ListarProjeto extends JFrame {
 		contentPane.setLayout(null);
 		
 		// Para testes
-		evento = (Evento) new EventoDAO().pesquisarId(4);
+		evento = (Evento) new EventoDAO().pesquisarId(1);
 		
 		JLabel lblTrabalhos = new JLabel("TRABALHOS");
 		lblTrabalhos.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -70,7 +71,7 @@ public class ListarProjeto extends JFrame {
 		JButton btnAddTrabalho = new JButton("Adicionar Trabalhos");
 		btnAddTrabalho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaAddProjeto();
+				new TelaAddProjeto(evento);
 			}
 		});
 		btnAddTrabalho.setBounds(12, 30, 169, 25);
@@ -154,6 +155,18 @@ public class ListarProjeto extends JFrame {
 		btnExcluirTrabalho.setBounds(500, 425, 152, 25);
 		contentPane.add(btnExcluirTrabalho);
 		
+		JScrollPane scrollLCategoria = new JScrollPane(listaCategoria);
+		scrollLCategoria.setBounds(12, 157, 342, 175);
+		contentPane.add(scrollLCategoria);
+		
+		JScrollPane scrollLArea = new JScrollPane(listaArea);
+		scrollLArea.setBounds(372, 157, 330, 175);
+		contentPane.add(scrollLArea);
+		
+		JScrollPane scrollLTrabalho = new JScrollPane(listaTrabalho);
+		scrollLTrabalho.setBounds(12, 377, 463, 219);
+		contentPane.add(scrollLTrabalho);
+ 		
 		setVisible(true);
 	}
 }

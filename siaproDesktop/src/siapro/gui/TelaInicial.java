@@ -74,7 +74,7 @@ public class TelaInicial extends JFrame {
 		JButton btnAvaliadores = new JButton("AVALIADORES");
 		btnAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaAvaliador();
+				new TelaAvaliador(null);
 			}
 		});
 		btnAvaliadores.setBounds(26, 191, 134, 25);

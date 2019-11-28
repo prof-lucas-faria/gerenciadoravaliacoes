@@ -49,7 +49,8 @@ public class ListarArea extends JFrame {
 		JButton btnAdcionarArea = new JButton("Adicionar");
 		btnAdcionarArea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaAddArea(evento);
+				TelaAddArea aTela = new TelaAddArea(evento);
+				aTela.setVisible(true);
 			}
 		});
 		btnAdcionarArea.setBounds(5, 5, 424, 23);

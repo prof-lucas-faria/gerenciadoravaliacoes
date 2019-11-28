@@ -153,7 +153,7 @@ public class Evento implements Entidade {
 		}
 	}
 	
-	public void carregarArea() {
+	public void carregarAreas() {
 		this.areas = new ArrayList<>();
 		List<Entidade> entidades = new AreaDAO().listarTudo(this);
 		for (Entidade entidade : entidades) {
@@ -161,7 +161,7 @@ public class Evento implements Entidade {
 		}
 	}
 
-	public void carregarProjeto() {
+	public void carregarProjetos() {
 		this.projetos = new ArrayList<>();
 		List<Entidade> entidades = new ProjetoDAO().listarTudo(this);
 		for (Entidade entidade : entidades) {
@@ -169,7 +169,7 @@ public class Evento implements Entidade {
 		}
 	}
 	
-	public void carregarCategoria() {
+	public void carregarCategorias() {
 		this.categorias = new ArrayList<>();
 		List<Entidade> entidades = new CategoriaDAO().listarTudo(this);
 		for (Entidade entidade : entidades) {

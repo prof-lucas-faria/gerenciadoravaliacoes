@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import siapro.controller.AddProjetoController;
+import siapro.dao.EventoDAO;
 import siapro.model.Evento;
 import siapro.model.Categoria;
 import siapro.model.Area;
@@ -28,6 +29,7 @@ public class TelaAddProjeto extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldTitulo;
 	private JTextField textFieldAutores;
+	private static AddProjetoController apc = new AddProjetoController();
 
 
 
@@ -38,7 +40,8 @@ public class TelaAddProjeto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAddProjeto frame = new TelaAddProjeto();
+					Evento evento = (Evento) new EventoDAO().pesquisarId(4);
+					TelaAddProjeto frame = new TelaAddProjeto(evento);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +53,7 @@ public class TelaAddProjeto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaAddProjeto() {
+	public TelaAddProjeto(Evento evento) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 910, 542);
 		contentPane = new JPanel();
@@ -99,7 +102,7 @@ public class TelaAddProjeto extends JFrame {
 		contentPane.add(btnSalvar);
 		
 		JComboBox selecionarCategoria = new JComboBox();
-		List<Categoria> categorias = new AddProjetoController().listarCategoria(null);
+		List<Categoria> categorias = new AddProjetoController().listarCategoria(evento);
 		for (Categoria categoria : categorias) {
 			selecionarCategoria.addItem(categoria);
 		}
@@ -107,7 +110,7 @@ public class TelaAddProjeto extends JFrame {
 		contentPane.add(selecionarCategoria);
 		
 		JComboBox selecionarArea = new JComboBox();
-		List<Area> areas = new AddProjetoController().listarAreas(null);
+		List<Area> areas = apc.listarAreas(evento);
 		for (Area area : areas) {
 			selecionarArea.addItem(area);
 		}

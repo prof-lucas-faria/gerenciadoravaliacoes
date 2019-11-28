@@ -58,6 +58,7 @@ public class ListarCategoria extends JFrame {
 		btnNewButton.setBounds(5, 5, 424, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new Categoria();
 			}
 		});
 		contentPane.setLayout(null);

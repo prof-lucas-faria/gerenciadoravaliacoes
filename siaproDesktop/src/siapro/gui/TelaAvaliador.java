@@ -1,13 +1,17 @@
 package siapro.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 import siapro.controller.AvaliadorController;
+import siapro.controller.ListarAreaController;
+import siapro.controller.ListarCategoriaController;
 import siapro.controller.TelaInicialController;
 import siapro.model.Avaliador;
 import siapro.model.Evento;
@@ -17,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.UIManager;
 import javax.swing.JList;
 import javax.swing.JLabel;
 
@@ -24,6 +30,7 @@ public class TelaAvaliador extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField pesquisarAvaliadores;
+	
 
 	/**
 	 * Launch the application.
@@ -69,14 +76,22 @@ public class TelaAvaliador extends JFrame {
 		pesquisarAvaliadores.setColumns(10);
 		
 		JList listaAvaliadores = new JList();
-		listaAvaliadores.setBounds(24, 253, 387, -70);
-		contentPane.add(listaAvaliadores);
 		
 		List<Evento> eventos = new TelaInicialController().listarEventos();
 		for (Evento evento : eventos) {
 			//selecionarEvento.addItem(evento)
-			listaAvalaidores.add(evento);
+			listaAvaliadores.add(evento);
 		}
+		
+		listaAvaliadores.setBorder(new LineBorder(new Color(0, 0, 0)));
+		listaAvaliadores.setBackground(UIManager.getColor("CheckBox.background"));
+		listaAvaliadores.setBounds(12, 157, 330, 175);
+		contentPane.add(listaAvaliadores);
+		
+		
+		List<Evento> eventos = new TelaInicialController().listarEventos();
+		
+	
 		
 		List<Avaliador> avaliadores = new AvaliadorController().listarAvaliadores(e); 
 		

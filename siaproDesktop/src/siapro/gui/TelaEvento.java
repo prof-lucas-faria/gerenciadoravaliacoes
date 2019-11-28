@@ -1,18 +1,14 @@
 package siapro.gui;
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
-
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import siapro.model.Evento;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -25,15 +21,21 @@ import javax.swing.JDesktopPane;
 
 public class TelaEvento extends JFrame {
 
-	private JPanel contentPane;
-	private Evento evento;
+	private JPanel painel;
 
-	public void botaoCategoria() {
-		System.out.println(evento.getNome());
-	}
-
-	public TelaEvento(Evento evento) {
-		this.evento = evento;
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					TelaEvento frame = new TelaEvento();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
+	public TelaEvento(Evento e) {
 		setTitle("Evento");
 //		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 795, 483);
@@ -61,16 +63,22 @@ public class TelaEvento extends JFrame {
 		painel.add(selecione);
 		
 		JButton inicio = new JButton("Inicio");
+		inicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaInicial oTela = new TelaInicial();
+				oTela.setVisible(true);
+			}
+		});
 		inicio.setBounds(26, 181, 134, 25);
 		painel.add(inicio);
 		
-		JButton btnEvento = new JButton("Evento");
-		btnEvento.addActionListener(new ActionListener() {
+		JButton evento = new JButton("Evento");
+		evento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnEvento.setBounds(26, 250, 134, 25);
-		contentPane.add(btnEvento);
+		evento.setBounds(26, 250, 134, 25);
+		painel.add(evento);
 		
 		JButton avaliadores = new JButton("Avaliadores");
 		avaliadores.addActionListener(new ActionListener() {
@@ -101,7 +109,9 @@ public class TelaEvento extends JFrame {
 		abrirCategoria.setForeground(Color.BLUE);
 		abrirCategoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				botaoCategoria();
+				Categoria oTela = new Categoria();
+				//painelinterno.add(oTela);
+				oTela.setVisible(true);
 			}
 		});
 		abrirCategoria.setBounds(226, 58, 114, 25);
@@ -129,10 +139,11 @@ public class TelaEvento extends JFrame {
 		abrirInformacoes.setBounds(478, 58, 134, 25);
 		painel.add(abrirInformacoes);
 		
-		Panel panel = new Panel();
-		panel.setBounds(223, 111, 544, 312);
-		contentPane.add(panel);
-		
+		JDesktopPane painelinterno = new JDesktopPane();
+		painelinterno.setBackground(Color.BLACK);
+		painelinterno.setBounds(226, 122, 529, 301);
+		painel.add(painelinterno);
+
 		setVisible(true);
 	}
 }

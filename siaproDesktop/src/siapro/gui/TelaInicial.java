@@ -62,22 +62,13 @@ public class TelaInicial extends JFrame {
 		selecionarEvento.setBounds(26, 92, 130, 24);
 		contentPane.add(selecionarEvento);
 		
-		JButton btnIncio = new JButton("INÍCIO");
-		btnIncio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new TelaInicial();
-			}
-		});
-		btnIncio.setBounds(22, 139, 134, 25);
-		contentPane.add(btnIncio);
-		
 		JButton btnEvento = new JButton("EVENTO");
 		btnEvento.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				botaoEvento();
 			}
 		});
-		btnEvento.setBounds(22, 188, 134, 25);
+		btnEvento.setBounds(26, 146, 134, 25);
 		contentPane.add(btnEvento);
 		
 		JButton btnAvaliadores = new JButton("AVALIADORES");
@@ -86,15 +77,15 @@ public class TelaInicial extends JFrame {
 				new TelaAvaliador();
 			}
 		});
-		btnAvaliadores.setBounds(22, 233, 134, 25);
+		btnAvaliadores.setBounds(26, 191, 134, 25);
 		contentPane.add(btnAvaliadores);
 		
 		JButton btnTrabalhos = new JButton("TRABALHOS");
-		btnTrabalhos.setBounds(22, 277, 134, 25);
+		btnTrabalhos.setBounds(26, 235, 134, 25);
 		contentPane.add(btnTrabalhos);
 		
 		JButton btnRelatrios = new JButton("RELATÓRIOS");
-		btnRelatrios.setBounds(22, 319, 134, 25);
+		btnRelatrios.setBounds(26, 277, 134, 25);
 		contentPane.add(btnRelatrios);
 		
 		JLabel lblAvTrabalhos = new JLabel("Avaliações de Trabalhos");

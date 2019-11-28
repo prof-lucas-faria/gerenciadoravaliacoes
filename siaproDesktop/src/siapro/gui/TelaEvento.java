@@ -109,8 +109,7 @@ public class TelaEvento extends JFrame {
 		abrirCategoria.setForeground(Color.BLUE);
 		abrirCategoria.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Categoria oTela = new Categoria();
-				//painelinterno.add(oTela);
+				ListarCategoria oTela = new ListarCategoria(e);
 				oTela.setVisible(true);
 			}
 		});
@@ -120,7 +119,7 @@ public class TelaEvento extends JFrame {
 		JButton abrirArea = new JButton("Area");
 		abrirArea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Area oTela = new Area();
+				ListarArea oTela = new ListarArea();
 				oTela.setVisible(true);
 			}
 		});
@@ -138,11 +137,6 @@ public class TelaEvento extends JFrame {
 		abrirInformacoes.setForeground(Color.BLUE);
 		abrirInformacoes.setBounds(478, 58, 134, 25);
 		painel.add(abrirInformacoes);
-		
-		JDesktopPane painelinterno = new JDesktopPane();
-		painelinterno.setBackground(Color.BLACK);
-		painelinterno.setBounds(226, 122, 529, 301);
-		painel.add(painelinterno);
 
 		setVisible(true);
 	}

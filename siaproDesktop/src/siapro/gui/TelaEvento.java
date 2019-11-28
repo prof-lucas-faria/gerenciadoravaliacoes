@@ -37,7 +37,6 @@ public class TelaEvento extends JFrame {
 //	}
 	public TelaEvento(Evento e) {
 		setTitle("Evento");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 795, 483);
 		painel = new JPanel();
 		painel.setBorder(new EmptyBorder(5, 5, 5, 5));

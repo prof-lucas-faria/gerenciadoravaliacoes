@@ -2,6 +2,8 @@ package siapro.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
@@ -22,6 +24,7 @@ import javax.swing.JList;
 public class ListarArea extends JFrame {
 	private ListarAreaController lac = new ListarAreaController();
 	private JPanel contentPane;
+	private Evento evento;
 
 	/**
 	 * Launch the application.
@@ -45,16 +48,27 @@ public class ListarArea extends JFrame {
 		return lista;
 	}
 	
+	public void botaoAddArea() {
+		new Area();
+	}
+	
 	public ListarArea() {
 		setTitle("Listar Área");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//Teste
+		Evento evento = (Evento) new EventoDAO().pesquisarId(1);
+		
 		JButton btnAdcionarArea = new JButton("Adicionar");
+		btnAdcionarArea.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				botaoAddArea();
+			}
+		});
 		btnAdcionarArea.setBounds(5, 5, 424, 23);
 		contentPane.add(btnAdcionarArea);
 		

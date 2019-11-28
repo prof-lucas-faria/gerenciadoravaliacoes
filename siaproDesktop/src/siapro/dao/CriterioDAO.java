@@ -136,4 +136,17 @@ public class CriterioDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public boolean deletar(Criterio criterio) {
+		String sql = "DELETE FROM criterio WHERE id = ?";
+		try {
+			this.stmt = conexao.prepareStatement(sql);
+			this.stmt.setLong(1, criterio.getId() );
+			this.stmt.execute();
+			this.stmt.close();
+			return true;
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

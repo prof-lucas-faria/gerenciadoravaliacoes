@@ -17,6 +17,7 @@ import siapro.model.Evento;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.Color;
@@ -37,7 +38,7 @@ public class TelaAddCriterio extends JFrame {
 	private JComboBox selecionarCategoria;
 	
 	private Evento evento;
-	private Categoria categoria;
+	private Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(2);
 	
 	public TelaAddCriterio(Categoria c) {
 		this.categoria = c;
@@ -45,7 +46,15 @@ public class TelaAddCriterio extends JFrame {
 	}
 	
 	public void salvar() {
-		new CriterioController().Salvar(this.categoria, textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText());
+		if(textFieldNomeCriterio.getText().isEmpty() || textFieldDescricao.getText().isEmpty() || textFieldNotaMinima.getText().isEmpty() || textFieldNotaMaxima.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Não é possivel salvar dados vazios");
+		}else {
+			boolean salvou = new CriterioController().Salvar(this.categoria, textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText());
+			if(salvou) {
+				invalidate();
+				JOptionPane.showMessageDialog(null, "Critério salvo com sucesso!!");
+			}
+		}
 	}
 	
 	/**

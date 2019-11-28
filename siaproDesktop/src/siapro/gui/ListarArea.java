@@ -26,21 +26,7 @@ public class ListarArea extends JFrame {
 	private JPanel contentPane;
 	private Evento evento;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ListarArea frame = new ListarArea();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	public static ArrayList<Area> listaArea(Evento evento) {
 		ListarAreaController lac = new ListarAreaController();
@@ -49,7 +35,7 @@ public class ListarArea extends JFrame {
 	}
 	
 	public void botaoAddArea() {
-		new Area();
+		new TelaAddArea(evento);
 	}
 	
 	public ListarArea() {
@@ -76,10 +62,12 @@ public class ListarArea extends JFrame {
 		e = (Evento) new EventoDAO().pesquisarId(1);
 		
 		//ListarAreaController c = new ListarAreaController();
-		JList listArea = new JList(listaArea(e).toArray());
+		JList listArea = new JList(lac.listarAreas(e).toArray());
 		listArea.setBounds(5, 28, 0, 228);
 		listArea.setToolTipText("");
 		contentPane.add(listArea);
 		//listArea.setListData(c.listarAreas(e).toArray());
+		
+		setVisible(true);
 	}
 }

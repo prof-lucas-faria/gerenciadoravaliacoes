@@ -53,7 +53,6 @@ public class ListarProjeto extends JFrame {
 	
 	public ListarProjeto() {
 		setTitle("Lista de Projetos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 737, 638);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

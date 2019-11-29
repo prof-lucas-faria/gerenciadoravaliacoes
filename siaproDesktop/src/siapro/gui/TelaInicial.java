@@ -33,6 +33,10 @@ public class TelaInicial extends JFrame {
 		Evento e = (Evento) getSelecionarEvento().getSelectedItem();
 		new TelaEvento(e);
 	}
+	public void botaoTrabalho() {
+		Evento e = (Evento) getSelecionarEvento().getSelectedItem();
+		new ListarProjeto(e);
+	}
 	
 	public void botaoAvaliador() {
 		Evento e = (Evento) getSelecionarEvento().getSelectedItem();
@@ -88,7 +92,7 @@ public class TelaInicial extends JFrame {
 		JButton btnTrabalhos = new JButton("TRABALHOS");
 		btnTrabalhos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ListarProjeto();
+				botaoTrabalho();
 			}
 		});
 		btnTrabalhos.setBounds(26, 229, 134, 25);

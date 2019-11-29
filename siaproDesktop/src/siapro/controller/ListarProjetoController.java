@@ -24,9 +24,6 @@ public class ListarProjetoController {
 		projeto.setTitulo(titulo);
 		projeto.setEvento(evento);
 		List<Projeto> listaTitulo = new ProjetoDAO().pesquisarTitulo(projeto);
-		for (Projeto pj : listaTitulo) {
-			listaTitulo.add(pj);
-		}
 		return listaTitulo;
 	}
 

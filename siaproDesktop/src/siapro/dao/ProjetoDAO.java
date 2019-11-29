@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import siapro.conexao.Conexao;
 import siapro.model.Area;
 import siapro.model.Categoria;
@@ -15,18 +14,19 @@ import siapro.model.Entidade;
 import siapro.model.Evento;
 import siapro.model.Projeto;
 
-public class ProjetoDAO implements InterfaceDAO{
+public class ProjetoDAO implements InterfaceDAO {
 	private Connection conexao;
 	private PreparedStatement stmt;
 
 	public ProjetoDAO() {
 		this.conexao = new Conexao().getConexao();
 	}
+
 	@Override
 	public Entidade salvar(Entidade entidade) {
 		String sql = "INSERT INTO projeto (titulo, autores, ativo, idEvento, idCategoria, idArea) VALUES (?,?,?,?,?,?)";
-		if(entidade instanceof Projeto) {
-			Projeto projeto = (Projeto)entidade;
+		if (entidade instanceof Projeto) {
+			Projeto projeto = (Projeto) entidade;
 			try {
 				stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 				stmt.setString(1, projeto.getTitulo());
@@ -38,9 +38,9 @@ public class ProjetoDAO implements InterfaceDAO{
 				stmt.execute();
 				ResultSet rs = stmt.getGeneratedKeys();
 				rs.next();
-				
+
 				projeto.setId(rs.getInt(1));
-				
+
 				stmt.close();
 				return (Entidade) projeto;
 			} catch (Exception e) {
@@ -53,8 +53,8 @@ public class ProjetoDAO implements InterfaceDAO{
 	@Override
 	public Entidade editar(Entidade entidade) {
 		String sql = "UPDATE projeto SET titulo = ?, autores = ?, ativo = ?, idEvento = ?, idCategoria = ?, idArea = ? WHERE id = ?";
-		if(entidade instanceof Projeto) {
-			Projeto projeto = (Projeto)entidade;
+		if (entidade instanceof Projeto) {
+			Projeto projeto = (Projeto) entidade;
 			try {
 				stmt = conexao.prepareStatement(sql);
 				stmt.setString(1, projeto.getTitulo());
@@ -76,8 +76,8 @@ public class ProjetoDAO implements InterfaceDAO{
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
 		String sql = "SELECT * FROM projeto WHERE idEvento = ?";
-		if(entidade instanceof Evento) {
-			Evento evento = (Evento)entidade;
+		if (entidade instanceof Evento) {
+			Evento evento = (Evento) entidade;
 			try {
 				stmt = conexao.prepareStatement(sql);
 				stmt.setLong(1, evento.getId());
@@ -86,7 +86,7 @@ public class ProjetoDAO implements InterfaceDAO{
 				while (rs.next()) {
 					Projeto projeto = new Projeto();
 					projeto.setId(rs.getLong("id"));
-					Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
+					Area area = (Area) new AreaDAO().pesquisarId(rs.getLong("idArea"));
 					Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
 					projeto.setTitulo(rs.getString("titulo"));
 					projeto.setAutores(rs.getString("autores"));
@@ -114,8 +114,8 @@ public class ProjetoDAO implements InterfaceDAO{
 			Projeto projeto = new Projeto();
 			if (rs.next()) {
 				projeto.setId(rs.getLong("id"));
-				Evento evento = (Evento)new EventoDAO().pesquisarId(rs.getLong("idEvento"));
-				Area area = (Area)new AreaDAO().pesquisarId(rs.getLong("idArea"));
+				Evento evento = (Evento) new EventoDAO().pesquisarId(rs.getLong("idEvento"));
+				Area area = (Area) new AreaDAO().pesquisarId(rs.getLong("idArea"));
 				Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(rs.getLong("idCategoria"));
 				projeto.setTitulo(rs.getString("titulo"));
 				projeto.setAutores(rs.getString("autores"));
@@ -130,27 +130,26 @@ public class ProjetoDAO implements InterfaceDAO{
 		}
 		return null;
 	}
-	
+
 	public List<Projeto> pesquisarTitulo(Projeto projeto) {
 		String sql = "SELECT titulo FROM projeto WHERE idEvento = ? AND titulo LIKE ?";
-		
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, projeto.getEvento().getId());
 			stmt.setString(2, "%" + projeto.getTitulo() + "%");
-			System.out.println(stmt.toString());
 			ResultSet rs = stmt.executeQuery();
 			List<Projeto> listaTitulo = new ArrayList<Projeto>();
 			while (rs.next()) {
-				projeto.setTitulo(rs.getString(projeto.getTitulo()));
-				listaTitulo.add(projeto);
-				}
-				stmt.close();
-				return listaTitulo;
-			} catch (Exception e) {
-				throw new RuntimeException(e);
+				Projeto pj = new Projeto();
+				pj.setTitulo(rs.getString("titulo"));
+				pj.setEvento(projeto.getEvento());
+				listaTitulo.add(pj);
 			}
-//		return listaTitulo;
+			stmt.close();
+			return listaTitulo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
-	
+
 }

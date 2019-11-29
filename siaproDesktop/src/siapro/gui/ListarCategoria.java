@@ -59,7 +59,7 @@ public class ListarCategoria extends JFrame {
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaEditarCategoria();
+				//new TelaEditarCategoria();
 			}
 		});
 		btnEditar.setBounds(311, 55, 89, 23);

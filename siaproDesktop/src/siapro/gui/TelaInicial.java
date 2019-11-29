@@ -91,11 +91,11 @@ public class TelaInicial extends JFrame {
 				new ListarProjeto();
 			}
 		});
-		btnTrabalhos.setBounds(22, 277, 134, 25);
+		btnTrabalhos.setBounds(26, 229, 134, 25);
 		contentPane.add(btnTrabalhos);
 		
 		JButton btnRelatrios = new JButton("RELATÓRIOS");
-		btnRelatrios.setBounds(26, 277, 134, 25);
+		btnRelatrios.setBounds(26, 266, 134, 25);
 		contentPane.add(btnRelatrios);
 		
 		JLabel lblAvTrabalhos = new JLabel("Avaliações de Trabalhos");

@@ -55,7 +55,7 @@ public class ListarCategoria extends JFrame {
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaEditarCategoria((Categoria) listCategoria.getSelectedValue());
+				new TelaEditarCategoria(cC.atualizarCategoria((Categoria) listCategoria.getSelectedValue()));
 			}
 		});
 		btnEditar.setBounds(311, 55, 89, 23);

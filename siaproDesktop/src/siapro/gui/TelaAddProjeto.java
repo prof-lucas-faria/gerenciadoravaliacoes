@@ -131,5 +131,7 @@ public class TelaAddProjeto extends JFrame {
 		}
 		selecionarArea.setBounds(344, 341, 202, 23);
 		contentPane.add(selecionarArea);
+		
+		setVisible(true);
 		}
 }

@@ -9,7 +9,7 @@ import siapro.model.Criterio;
 import siapro.model.Evento;
 
 public class CriterioController {
-	public boolean Salvar(Categoria categoria, String nome, String descricao, String notaMax, String notaMin) {
+	public boolean salvar(Categoria categoria, String nome, String descricao, String notaMin, String notaMax, long idCriterio) {
 		double notaMaxima = Double.parseDouble(notaMax);
 		double notaMinima = Double.parseDouble(notaMin);
 		
@@ -19,12 +19,25 @@ public class CriterioController {
 		c.setNotaMaxima(notaMaxima);
 		c.setNotaMinima(notaMinima);
 		c.setCategoria(categoria);
-		c = (Criterio) new CriterioDAO().salvar(c);
+		c.setId(idCriterio);
 		if(c.getId() != 0) {
-			return true;
+			c = (Criterio) new CriterioDAO().editar(c);
+			if(c.getId() != 0) {
+				return true;
+			}else {
+				return false;
+			}
+			
 		}else {
-			return false;
+			c = (Criterio) new CriterioDAO().salvar(c);
+			if(c.getId() != 0) {
+				return true;
+			}else {
+				return false;
+			}
 		}
+		
+		
 	}
 	
 	public List<Categoria> listaCategorias(Evento e){

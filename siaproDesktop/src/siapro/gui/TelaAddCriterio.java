@@ -10,8 +10,10 @@ import javax.swing.border.EmptyBorder;
 import siapro.controller.CriterioController;
 import siapro.controller.ListarCategoriaController;
 import siapro.dao.CategoriaDAO;
+import siapro.dao.CriterioDAO;
 import siapro.dao.EventoDAO;
 import siapro.model.Categoria;
+import siapro.model.Criterio;
 import siapro.model.Evento;
 
 import javax.swing.JLabel;
@@ -35,24 +37,41 @@ public class TelaAddCriterio extends JFrame {
 	private JTextField textFieldDescricao;
 	private JTextField textFieldNotaMinima;
 	private JTextField textFieldNotaMaxima;
-	private JComboBox selecionarCategoria;
 	
-	private Evento evento;
-	private Categoria categoria = (Categoria) new CategoriaDAO().pesquisarId(2);
+	private Categoria categoria;
+	private long idCriterio = 0;
 	
-	public TelaAddCriterio(Categoria c) {
+	/*public TelaAddCriterio(Categoria c) {
+		this.criterio.setId(0);
 		this.categoria = c;
+		
+	}*/
+	
+	public TelaAddCriterio(Criterio c) {
+		
+		this(c.getCategoria());
+		textFieldNomeCriterio.setText(c.getNome()); 
+		textFieldDescricao.setText(c.getDescricao());
+		textFieldNotaMinima.setText(Double.toString(c.getNotaMinima()));
+		textFieldNotaMaxima.setText(Double.toString(c.getNotaMaxima()));
+		
+//		adicionar outros valores para o restante dos campos do formulário.
+		this.idCriterio = c.getId();
 		
 	}
 	
+	
 	public void salvar() {
 		if(textFieldNomeCriterio.getText().isEmpty() || textFieldDescricao.getText().isEmpty() || textFieldNotaMinima.getText().isEmpty() || textFieldNotaMaxima.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Nï¿½o ï¿½ possivel salvar dados vazios");
+			JOptionPane.showMessageDialog(null, "Não é possivel salvar dados vazios");
 		}else {
-			boolean salvou = new CriterioController().Salvar(this.categoria, textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText());
+			boolean salvou = new CriterioController().salvar(this.categoria, textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText(), this.idCriterio);
 			if(salvou) {
-				invalidate();
-				JOptionPane.showMessageDialog(null, "Critï¿½rio salvo com sucesso!!");
+				this.textFieldNomeCriterio.setText("");
+				this.textFieldDescricao.setText("");
+				this.textFieldNotaMinima.setText("");
+				this.textFieldNotaMaxima.setText("");
+				JOptionPane.showMessageDialog(null, "Critério salvo com sucesso!!");
 			}
 		}
 	}
@@ -64,7 +83,8 @@ public class TelaAddCriterio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAddCriterio frame = new TelaAddCriterio();
+					TelaAddCriterio frame = new TelaAddCriterio((Criterio) new CriterioDAO().pesquisarId(87));
+					//TelaAddCriterio frame = new TelaAddCriterio((Categoria) new CategoriaDAO().pesquisarId(2));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,8 +95,13 @@ public class TelaAddCriterio extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @wbp.parser.constructor
 	 */
-	public TelaAddCriterio() {
+	public TelaAddCriterio(Categoria categoria) {
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.categoria = categoria;
+		
+		
 		setBounds(100, 100, 528, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -97,22 +122,8 @@ public class TelaAddCriterio extends JFrame {
 		
 		JLabel lblCriterio = new JLabel("Criterio");
 		lblCriterio.setBounds(57, 115, 126, 14);
-		contentPane.add(lblCriterio);
-		
-		selecionarCategoria = new JComboBox();
+		contentPane.add(lblCriterio);	
 	
-		selecionarCategoria.setBounds(36, 57, 147, 22);
-		contentPane.add(selecionarCategoria);
-		
-		
-		
-		
-		this.evento = new CriterioController().listarCategorias(this.categoria);
-		ArrayList<Categoria> categorias = (ArrayList<Categoria>) new CriterioController().listaCategorias(this.evento);
-		for(Categoria c : categorias ) {
-			this.selecionarCategoria.addItem(c);
-		}
-		
 		textFieldNomeCriterio = new JTextField();
 		textFieldNomeCriterio.setBounds(57, 136, 164, 20);
 		contentPane.add(textFieldNomeCriterio);
@@ -130,7 +141,6 @@ public class TelaAddCriterio extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {			
-				categoria = (Categoria) selecionarCategoria.getSelectedItem();
 				salvar();
 			}
 		});
@@ -155,15 +165,13 @@ public class TelaAddCriterio extends JFrame {
 		lblNotaMaxima.setBounds(383, 205, 133, 15);
 		contentPane.add(lblNotaMaxima);
 		
+		JLabel labelCategoria = new JLabel("New label");
+		labelCategoria.setBounds(61, 61, 393, 23);
+		contentPane.add(labelCategoria);
+		
+		labelCategoria.setText(this.categoria.getNome());
 		
 	}
-	public Categoria getCategoria() {
-		return this.categoria;
-	}
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-	public JComboBox getSelecionarCategoria() {
-		return this.selecionarCategoria;
-	}
+
+
 }

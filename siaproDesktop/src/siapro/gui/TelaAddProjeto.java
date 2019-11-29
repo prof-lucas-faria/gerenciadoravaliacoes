@@ -18,6 +18,8 @@ import siapro.dao.EventoDAO;
 import siapro.model.Evento;
 import siapro.model.Categoria;
 import siapro.model.Area;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class TelaAddProjeto extends JFrame {
@@ -101,6 +103,16 @@ public class TelaAddProjeto extends JFrame {
 		contentPane.add(lblAutores);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String getCategoria = selecionarCategoria.getSelectedItem().toString();		
+				String getArea = selecionarArea.getSelectedItem().toString();
+				
+				System.out.println(getCategoria);
+				System.out.println(getArea);
+			}
+		});
 		btnSalvar.setBounds(401, 398, 89, 23);
 		contentPane.add(btnSalvar);
 		

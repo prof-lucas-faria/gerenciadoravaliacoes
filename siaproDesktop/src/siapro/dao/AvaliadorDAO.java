@@ -95,15 +95,12 @@ public class AvaliadorDAO implements InterfaceDAO {
 
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
+		Evento e = (Evento) entidade;
 		String sql = "select * from avaliador a inner join eventoAvaliador ea on ea.idAvaliador =  a.id  where ea.idEvento = ?;"; 
-		
 		try {
-			Evento evento = (Evento) entidade;
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1,evento.getId());
+			stmt.setLong(1,e.getId());
 			ResultSet rs = stmt.executeQuery();
-			
-			 
 			List<Entidade> avaliadores = new ArrayList<Entidade>();
 		
 			while(rs.next()) {
@@ -131,8 +128,8 @@ public class AvaliadorDAO implements InterfaceDAO {
 			stmt.close();
 			return avaliadores;
 			
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
 		}
 		
 	}

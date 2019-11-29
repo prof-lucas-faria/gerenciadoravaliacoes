@@ -28,7 +28,7 @@ public class ListarCategoria extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-
+ 
 	public ListarCategoria(Evento evento) {
 		setTitle("Categoria");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

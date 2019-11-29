@@ -43,7 +43,8 @@ public class TelaAvaliador extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAvaliador frame = new TelaAvaliador();
+					Evento evento = (Evento) new EventoDAO().pesquisarId(1);
+					TelaAvaliador frame = new TelaAvaliador(evento);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +57,7 @@ public class TelaAvaliador extends JFrame {
 	 * Create the frame.
 	 * @param e 
 	 */
-	public TelaAvaliador() {
+	public TelaAvaliador(Evento evento) {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

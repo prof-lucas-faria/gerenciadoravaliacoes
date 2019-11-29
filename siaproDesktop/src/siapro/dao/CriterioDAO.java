@@ -76,8 +76,8 @@ public class CriterioDAO implements InterfaceDAO {
 		String sql = "SELECT * FROM criterio WHERE id = ?";
 		try {
 			this.stmt = this.conexao.prepareStatement(sql);
-			ResultSet rs = this.stmt.executeQuery();
 			this.stmt.setLong(1, categoria.getId());
+			ResultSet rs = this.stmt.executeQuery();
 			List<Entidade> criterios =  new ArrayList<Entidade>();
 			
 			while(rs.next()) {

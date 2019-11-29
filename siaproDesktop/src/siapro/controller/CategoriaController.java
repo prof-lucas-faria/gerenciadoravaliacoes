@@ -22,7 +22,7 @@ public class CategoriaController {
 	}
 	
 	public List<Categoria> listarCategoria(Evento evento) {
-		evento.carregarCategoria();
+		evento.carregarCategorias();
 		return evento.getCategorias();
 	}
 

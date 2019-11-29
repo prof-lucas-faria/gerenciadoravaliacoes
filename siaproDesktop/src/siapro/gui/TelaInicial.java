@@ -81,7 +81,12 @@ public class TelaInicial extends JFrame {
 		contentPane.add(btnAvaliadores);
 		
 		JButton btnTrabalhos = new JButton("TRABALHOS");
-		btnTrabalhos.setBounds(26, 235, 134, 25);
+		btnTrabalhos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new ListarProjeto();
+			}
+		});
+		btnTrabalhos.setBounds(22, 277, 134, 25);
 		contentPane.add(btnTrabalhos);
 		
 		JButton btnRelatrios = new JButton("RELATÓRIOS");

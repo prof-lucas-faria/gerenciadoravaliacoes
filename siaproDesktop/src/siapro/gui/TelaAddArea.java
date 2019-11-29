@@ -10,6 +10,7 @@ import siapro.controller.AreaController;
 import siapro.model.Evento;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -24,13 +25,18 @@ public class TelaAddArea extends JFrame {
 	
 	public void botaoSalvar() {
 		Evento e = (evento);
-		new AreaController().salvarArea(tfNomeArea.getText(), evento, tfDescricaoArea.getText());
+		if(tfNomeArea.getText().isEmpty() ||  tfDescricaoArea.getText().isEmpty()){
+			JOptionPane.showMessageDialog(null,"Não é possivel salvar com campos vazios");		
+		}
+		else {
+			new AreaController().salvarArea(tfNomeArea.getText(), evento, tfDescricaoArea.getText());
+			JOptionPane.showMessageDialog(null,"Área salva com sucesso");		
+		}
 	}
 	
 	public TelaAddArea(Evento evento) {
 		this.evento = evento;
 		setTitle("Adicionar Área");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

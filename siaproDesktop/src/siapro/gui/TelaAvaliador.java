@@ -13,7 +13,10 @@ import siapro.controller.AvaliadorController;
 import siapro.controller.ListarAreaController;
 import siapro.controller.ListarCategoriaController;
 import siapro.controller.TelaInicialController;
+import siapro.dao.AvaliadorDAO;
+import siapro.dao.EventoDAO;
 import siapro.model.Avaliador;
+import siapro.model.Entidade;
 import siapro.model.Evento;
 
 import javax.swing.JButton;
@@ -30,6 +33,7 @@ public class TelaAvaliador extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField pesquisarAvaliadores;
+	private Evento evento;
 	
 
 	/**
@@ -39,7 +43,7 @@ public class TelaAvaliador extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaAvaliador frame = new TelaAvaliador(null);
+					TelaAvaliador frame = new TelaAvaliador();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,12 +56,14 @@ public class TelaAvaliador extends JFrame {
 	 * Create the frame.
 	 * @param e 
 	 */
-	public TelaAvaliador(Evento e) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public TelaAvaliador() {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
+		
+		// Para testes
+		evento = (Evento) new EventoDAO().pesquisarId(1);
 		
 		JButton btnAddAvaliadores = new JButton("Adicionar Avaliadores");
 		btnAddAvaliadores.setBounds(38, 60, 193, 29);
@@ -75,25 +81,21 @@ public class TelaAvaliador extends JFrame {
 		contentPane.add(pesquisarAvaliadores);
 		pesquisarAvaliadores.setColumns(10);
 		
-		JList listaAvaliadores = new JList();
+		//System.out.println(evento.getId());
+		//Evento e = (Evento) entidade;
 		
-		List<Evento> eventos = new TelaInicialController().listarEventos();
-		for (Evento evento : eventos) {
-			//selecionarEvento.addItem(evento)
-			listaAvaliadores.add(evento);
-		}
-		
+		JList listaAvaliadores = new JList(new AvaliadorController().listarAvaliadores(evento).toArray());
 		listaAvaliadores.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listaAvaliadores.setBackground(UIManager.getColor("CheckBox.background"));
 		listaAvaliadores.setBounds(12, 157, 330, 175);
 		contentPane.add(listaAvaliadores);
 		
 		
-		List<Evento> eventos = new TelaInicialController().listarEventos();
+		//List<Evento> eventos = new TelaInicialController().listarEventos();
 		
 	
 		
-		List<Avaliador> avaliadores = new AvaliadorController().listarAvaliadores(e); 
+		//List<Avaliador> avaliadores = new AvaliadorController().listarAvaliadores(e); 
 		
 		JLabel lblAvaliadores = new JLabel("AVALIADORES");
 		lblAvaliadores.setBounds(164, 12, 125, 17);

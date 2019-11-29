@@ -5,6 +5,7 @@ import java.util.List;
 
 import siapro.dao.ProjetoDAO;
 import siapro.model.Entidade;
+import siapro.model.Evento;
 import siapro.model.Projeto;
 
 public class ListarProjetoController {
@@ -18,11 +19,13 @@ public class ListarProjetoController {
 		return listaProjeto;
 	}
 	
-	public List<Projeto> pesquisarTitulo(Entidade entidade, String pesquisa) {
-		List<Projeto> listaTitulo = new ArrayList<Projeto>();
-		List<Entidade> listaEnt = new ProjetoDAO().pesquisarTitulo(entidade, pesquisa);
-		for (Entidade ent : listaEnt) {
-			listaTitulo.add((Projeto)ent);
+	public List<Projeto> pesquisarTitulo(Evento evento, String titulo) {
+		Projeto projeto = new Projeto();
+		projeto.setTitulo(titulo);
+		projeto.setEvento(evento);
+		List<Projeto> listaTitulo = new ProjetoDAO().pesquisarTitulo(projeto);
+		for (Projeto pj : listaTitulo) {
+			listaTitulo.add(pj);
 		}
 		return listaTitulo;
 	}

@@ -37,7 +37,6 @@ public class TelaEvento extends JFrame {
 //	}
 	public TelaEvento(Evento e) {
 		setTitle("Evento");
-//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 795, 483);
 		painel = new JPanel();
 		painel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,8 +64,9 @@ public class TelaEvento extends JFrame {
 		JButton inicio = new JButton("Inicio");
 		inicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaInicial oTela = new TelaInicial();
-				oTela.setVisible(true);
+				//TelaInicial oTela = new TelaInicial();
+				//oTela.setVisible(true);
+				dispose();
 			}
 		});
 		inicio.setBounds(26, 181, 134, 25);

@@ -1,6 +1,9 @@
 package siapro.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import siapro.dao.CriterioDAO;
 
 
 public class Categoria implements Entidade {
@@ -66,6 +69,14 @@ public class Categoria implements Entidade {
 	}
 	public ArrayList<Criterio> getCriterios() {
 		return criterios;
+	}
+	
+	public void carregarCriterios() {
+		this.criterios = new ArrayList<>();
+		List<Entidade> entidades = new CriterioDAO().listarTudo(this);
+		for (Entidade entidade : entidades) {
+			this.criterios.add((Criterio) entidade);
+		}
 	}
 	
 	public void setCriterios(ArrayList<Criterio> criterios) {

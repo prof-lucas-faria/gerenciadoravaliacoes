@@ -29,7 +29,6 @@ public class ListarProjeto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtfPesquisarProjeto;
-	private Evento evento; // teste
 
 	/**
 	 * Launch the application.
@@ -38,7 +37,8 @@ public class ListarProjeto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ListarProjeto frame = new ListarProjeto();
+					Evento evento = (Evento) new EventoDAO().pesquisarId(1);
+					ListarProjeto frame = new ListarProjeto(evento);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,17 +51,13 @@ public class ListarProjeto extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public ListarProjeto() {
+	public ListarProjeto(Evento evento) {
 		setTitle("Lista de Projetos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 737, 638);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		// Para testes
-		evento = (Evento) new EventoDAO().pesquisarId(1);
 		
 		JLabel lblTrabalhos = new JLabel("TRABALHOS");
 		lblTrabalhos.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -145,7 +141,7 @@ public class ListarProjeto extends JFrame {
 		JButton btnEditarTrabalho = new JButton("Editar Trabalho");
 		btnEditarTrabalho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-//				Direcionar para futura tela de editar
+//				listaTrabalho.getSelectedValue();
 			}
 		});
 		btnEditarTrabalho.setBounds(500, 374, 147, 25);

@@ -39,7 +39,11 @@ public class Informacoes extends JFrame {
 	 * Create the frame.
 	 */
 	public Informacoes() {
+<<<<<<< HEAD
 	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+=======
+
+>>>>>>> e5992fab0ec5461ee49f2b80452733a816a8d6a8
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

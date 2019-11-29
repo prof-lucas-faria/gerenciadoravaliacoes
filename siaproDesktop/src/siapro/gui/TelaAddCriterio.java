@@ -47,12 +47,12 @@ public class TelaAddCriterio extends JFrame {
 	
 	public void salvar() {
 		if(textFieldNomeCriterio.getText().isEmpty() || textFieldDescricao.getText().isEmpty() || textFieldNotaMinima.getText().isEmpty() || textFieldNotaMaxima.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Não é possivel salvar dados vazios");
+			JOptionPane.showMessageDialog(null, "Nï¿½o ï¿½ possivel salvar dados vazios");
 		}else {
 			boolean salvou = new CriterioController().Salvar(this.categoria, textFieldNomeCriterio.getText(), textFieldDescricao.getText(), textFieldNotaMinima.getText(), textFieldNotaMaxima.getText());
 			if(salvou) {
 				invalidate();
-				JOptionPane.showMessageDialog(null, "Critério salvo com sucesso!!");
+				JOptionPane.showMessageDialog(null, "Critï¿½rio salvo com sucesso!!");
 			}
 		}
 	}
@@ -77,7 +77,6 @@ public class TelaAddCriterio extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAddCriterio() {
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 528, 343);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

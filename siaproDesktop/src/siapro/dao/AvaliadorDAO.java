@@ -95,15 +95,12 @@ public class AvaliadorDAO implements InterfaceDAO {
 
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
+		Evento e = (Evento) entidade;
 		String sql = "select * from avaliador a inner join eventoAvaliador ea on ea.idAvaliador =  a.id  where ea.idEvento = ?;"; 
-		
 		try {
-			Evento evento = (Evento) entidade;
 			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1,evento.getId());
+			stmt.setLong(1,e.getId());
 			ResultSet rs = stmt.executeQuery();
-			
-			 
 			List<Entidade> avaliadores = new ArrayList<Entidade>();
 		
 			while(rs.next()) {
@@ -131,8 +128,8 @@ public class AvaliadorDAO implements InterfaceDAO {
 			stmt.close();
 			return avaliadores;
 			
-		} catch (Exception e) {
-			throw new RuntimeException(e);
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
 		}
 		
 	}
@@ -172,47 +169,4 @@ public class AvaliadorDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	// Metodo para pesquisar por nome.
-	/*public Entidade pesquisar(Entidade entidade) {
-		String sql = "select * from avaliador a inner join eventoAvaliador ae where nome like '%?%' and ae.idEvento = ?; ";
-		Avaliador avaliador = (Avaliador) entidade;
-		try {
-			
-			stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, avaliador.getNome());
-			stmt.setLong(2, evento.getId()); // Pegar o evento.
-			ResultSet rs = stmt.executeQuery();
-			
-			if(rs.next()) {
-				avaliador.setId(rs.getLong("id"));
-				avaliador.setNome(rs.getString("nome"));
-				avaliador.setLogin(rs.getString("login"));
-				avaliador.setSenha(rs.getString("senha"));
-				
-				AreaDAO areaDAO = new AreaDAO();
-				Area area = null;
-				ArrayList<Area> lista_area = new ArrayList<Area>();
-				List<Entidade> area_entidade = areaDAO.pesquisarAvaliador(avaliador);
-				
-				for(int x = 0; x < area_entidade.size(); x++) {
-					area = (Area) area_entidade.get(x);
-					lista_area.add(area);
-					
-				}
-				avaliador.setArea(lista_area);
-				
-			}
-			stmt.close();
-
-			
-			
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		
-		return entidade;
-		
-	} */
-
 	}

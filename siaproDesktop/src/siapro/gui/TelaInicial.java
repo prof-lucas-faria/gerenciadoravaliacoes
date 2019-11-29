@@ -34,6 +34,11 @@ public class TelaInicial extends JFrame {
 		new TelaEvento(e);
 	}
 	
+	public void botaoAvaliador() {
+		Evento e = (Evento) getSelecionarEvento().getSelectedItem();
+		new TelaAvaliador(e);
+	}
+	
 	public TelaInicial() {
 		setTitle("Tela Inicial");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,7 +79,7 @@ public class TelaInicial extends JFrame {
 		JButton btnAvaliadores = new JButton("AVALIADORES");
 		btnAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaAvaliador(null);
+				botaoAvaliador();
 			}
 		});
 		btnAvaliadores.setBounds(26, 191, 134, 25);

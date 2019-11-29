@@ -49,4 +49,12 @@ public class CriterioController {
 		c.setEvento((Evento) new EventoDAO().pesquisarPorCategoria(c));
 		return c.getEvento();
 	}
+	
+	public boolean deletarCriterio(Criterio c) {
+		if(new CriterioDAO().deletar(c)) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 }

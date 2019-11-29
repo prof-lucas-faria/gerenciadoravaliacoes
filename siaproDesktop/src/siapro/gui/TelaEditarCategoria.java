@@ -81,7 +81,7 @@ public class TelaEditarCategoria extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cC.salvarCategoria(categoria.getId(), textFieldCategoria.getText(), textFieldMax.getText(), textFieldMin.getText());
+				cC.salvarCategoria(textFieldCategoria.getText(), textFieldMax.getText(), textFieldMin.getText());
 			}
 		});
 		btnSalvar.setBounds(347, 381, 89, 23);

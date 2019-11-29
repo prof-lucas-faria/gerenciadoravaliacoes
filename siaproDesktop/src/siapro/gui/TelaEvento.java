@@ -64,8 +64,9 @@ public class TelaEvento extends JFrame {
 		JButton inicio = new JButton("Inicio");
 		inicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaInicial oTela = new TelaInicial();
-				oTela.setVisible(true);
+				//TelaInicial oTela = new TelaInicial();
+				//oTela.setVisible(true);
+				dispose();
 			}
 		});
 		inicio.setBounds(26, 181, 134, 25);

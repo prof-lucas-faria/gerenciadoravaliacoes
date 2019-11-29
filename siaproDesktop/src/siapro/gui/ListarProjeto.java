@@ -162,6 +162,11 @@ public class ListarProjeto extends JFrame {
 		JScrollPane scrollLTrabalho = new JScrollPane(listaTrabalho);
 		scrollLTrabalho.setBounds(12, 377, 463, 219);
 		contentPane.add(scrollLTrabalho);
+		
+		JLabel lblNomeEvento = new JLabel("EVENTO: " + evento.getNome());
+		lblNomeEvento.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNomeEvento.setBounds(400, 85, 325, 15);
+		contentPane.add(lblNomeEvento);
  		
 		setVisible(true);
 	}

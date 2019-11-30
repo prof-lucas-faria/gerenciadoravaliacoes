@@ -1,4 +1,4 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-import siapro.model.Entidade;
-import siapro.conexao.Conexao;
-import siapro.model.Categoria;
-import siapro.model.Evento;
+import siaproweb.model.Entidade;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Categoria;
+import siaproweb.model.Evento;
 
 
 public class CategoriaDAO implements InterfaceDAO {

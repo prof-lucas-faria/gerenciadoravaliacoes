@@ -1,4 +1,4 @@
-package siapro.dao;
+package siaproweb.dao;
 
 
 import java.sql.Connection;
@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import siapro.conexao.Conexao;
-import siapro.model.Area;
-import siapro.model.Avaliador;
-import siapro.model.Entidade;
-import siapro.model.Evento;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Area;
+import siaproweb.model.Avaliador;
+import siaproweb.model.Entidade;
+import siaproweb.model.Evento;
 
 public class AvaliadorDAO implements InterfaceDAO {
 	

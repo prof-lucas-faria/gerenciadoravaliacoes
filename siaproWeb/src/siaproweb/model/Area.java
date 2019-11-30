@@ -1,4 +1,4 @@
-package siapro.model;
+package siaproweb.model;
 
 public class Area implements Entidade{
 	private long id;

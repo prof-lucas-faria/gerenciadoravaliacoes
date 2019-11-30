@@ -1,4 +1,4 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import siapro.conexao.Conexao;
-import siapro.model.Entidade;
-import siapro.model.Projeto;
-import siapro.model.Avaliacao;
-import siapro.model.Criterio;
-import siapro.dao.CriterioDAO;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Entidade;
+import siaproweb.model.Projeto;
+import siaproweb.model.Avaliacao;
+import siaproweb.model.Criterio;
+import siaproweb.dao.CriterioDAO;
 
 public class AvaliacaoDAO implements InterfaceDAO {
 	 private Connection conexao;

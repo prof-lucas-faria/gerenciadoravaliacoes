@@ -1,4 +1,4 @@
-package siapro.model;
+package siaproweb.model;
 
 public class Criterio implements Entidade{
 	private long id;

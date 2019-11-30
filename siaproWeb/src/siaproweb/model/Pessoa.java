@@ -1,4 +1,4 @@
-package siapro.model;
+package siaproweb.model;
 
 public abstract class Pessoa {
 	private long id;

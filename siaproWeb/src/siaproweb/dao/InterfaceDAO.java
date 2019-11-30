@@ -1,10 +1,8 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.util.List;
 
-import siapro.model.Categoria;
-import siapro.model.Entidade;
-import siapro.model.Evento;
+import siaproweb.model.Entidade;
 
 public interface InterfaceDAO {
 	

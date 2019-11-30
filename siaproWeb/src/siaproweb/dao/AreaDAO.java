@@ -1,14 +1,14 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.util.List;
 
-import siapro.conexao.Conexao;
-import siapro.model.Entidade;
-import siapro.model.Evento;
-import siapro.model.Area;
-import siapro.model.Avaliador;
-import siapro.model.Categoria;
-import siapro.dao.AreaDAO;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Entidade;
+import siaproweb.model.Evento;
+import siaproweb.model.Area;
+import siaproweb.model.Avaliador;
+import siaproweb.model.Categoria;
+import siaproweb.dao.AreaDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

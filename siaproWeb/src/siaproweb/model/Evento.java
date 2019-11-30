@@ -1,13 +1,13 @@
-package siapro.model;
+package siaproweb.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import siapro.dao.AreaDAO;
-import siapro.dao.AvaliadorDAO;
-import siapro.dao.CategoriaDAO;
-import siapro.dao.OrganizadorDAO;
-import siapro.dao.ProjetoDAO;
+import siaproweb.dao.AreaDAO;
+import siaproweb.dao.AvaliadorDAO;
+import siaproweb.dao.CategoriaDAO;
+import siaproweb.dao.OrganizadorDAO;
+import siaproweb.dao.ProjetoDAO;
 
 public class Evento implements Entidade {
 	private long id;

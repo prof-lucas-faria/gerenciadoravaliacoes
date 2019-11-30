@@ -1,8 +1,8 @@
-package siapro.model;
+package siaproweb.model;
 
 import java.util.List;
 
-import siapro.dao.AvaliacaoDAO;
+import siaproweb.dao.AvaliacaoDAO;
 
 public class Projeto implements Entidade{
 	private long id;

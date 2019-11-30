@@ -1,9 +1,9 @@
-package siapro.model;
+package siaproweb.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import siapro.dao.CriterioDAO;
+import siaproweb.dao.CriterioDAO;
 
 
 public class Categoria implements Entidade {

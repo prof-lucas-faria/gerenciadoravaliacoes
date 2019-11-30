@@ -1,4 +1,4 @@
-package siapro.model;
+package siaproweb.model;
 
 import java.util.ArrayList;
 import java.util.List;

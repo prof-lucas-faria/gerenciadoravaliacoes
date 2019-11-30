@@ -1,12 +1,12 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.util.List;
 
-import siapro.model.Categoria;
-import siapro.model.Entidade;
-import siapro.conexao.Conexao;
-import siapro.model.Evento;
-import siapro.model.Organizador;
+import siaproweb.model.Categoria;
+import siaproweb.model.Entidade;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Evento;
+import siaproweb.model.Organizador;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

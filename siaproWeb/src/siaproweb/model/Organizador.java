@@ -1,4 +1,4 @@
-package siapro.model;
+package siaproweb.model;
 
 public class Organizador extends Pessoa implements Entidade {
 	private String email;

@@ -1,4 +1,4 @@
-package siapro.conexao;
+package siaproweb.conexao;
 
 import java.sql.DriverManager;
 import java.sql.Connection;

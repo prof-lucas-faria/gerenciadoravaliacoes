@@ -1,16 +1,14 @@
-package siapro.dao;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import siapro.model.Entidade;
-import siapro.model.Organizador;
+package siaproweb.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import siapro.conexao.Conexao;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Entidade;
+import siaproweb.model.Organizador;
 
 public class OrganizadorDAO implements InterfaceDAO {
 	 private Connection conexao;

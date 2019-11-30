@@ -1,4 +1,4 @@
-package siapro.dao;
+package siaproweb.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,12 +7,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import siapro.conexao.Conexao;
-import siapro.model.Area;
-import siapro.model.Categoria;
-import siapro.model.Entidade;
-import siapro.model.Evento;
-import siapro.model.Projeto;
+import siaproweb.conexao.Conexao;
+import siaproweb.model.Area;
+import siaproweb.model.Categoria;
+import siaproweb.model.Entidade;
+import siaproweb.model.Evento;
+import siaproweb.model.Projeto;
 
 public class ProjetoDAO implements InterfaceDAO {
 	private Connection conexao;

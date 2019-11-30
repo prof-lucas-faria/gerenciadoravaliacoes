@@ -75,7 +75,7 @@ public class ProjetoDAO implements InterfaceDAO {
 
 	@Override
 	public List<Entidade> listarTudo(Entidade entidade) {
-		String sql = "SELECT * FROM projeto WHERE idEvento = ?";
+		String sql = "SELECT * FROM projeto WHERE idEvento = ? AND ativo = 1";
 		if (entidade instanceof Evento) {
 			Evento evento = (Evento) entidade;
 			try {
@@ -132,7 +132,7 @@ public class ProjetoDAO implements InterfaceDAO {
 	}
 
 	public List<Projeto> pesquisarTitulo(Projeto projeto) {
-		String sql = "SELECT titulo FROM projeto WHERE idEvento = ? AND titulo LIKE ?";
+		String sql = "SELECT titulo FROM projeto WHERE idEvento = ? AND ativo = 1 AND titulo LIKE ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setLong(1, projeto.getEvento().getId());
@@ -151,5 +151,17 @@ public class ProjetoDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void desativar(Projeto projeto) {
+		String sql = "UPDATE projeto SET ativo = 0 WHERE id = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, projeto.getId());
+			stmt.execute();
+			stmt.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	} 
 
 }

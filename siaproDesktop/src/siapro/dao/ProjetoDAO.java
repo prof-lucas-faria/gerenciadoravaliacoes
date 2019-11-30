@@ -151,18 +151,5 @@ public class ProjetoDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	public void deletar(Projeto projeto) {
-		String sql = "DELETE FROM projeto WHERE id = ?";
-		try {
-			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1, projeto.getId());
-			stmt.execute();
-			stmt.close();
-		} catch (Exception e) {
-			
-			throw new RuntimeException(e);
-		}
-	}
 
 }

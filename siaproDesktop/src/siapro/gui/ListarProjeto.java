@@ -1,10 +1,11 @@
 package siapro.gui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -20,10 +21,7 @@ import javax.swing.border.LineBorder;
 import siapro.controller.ListarAreaController;
 import siapro.controller.ListarCategoriaController;
 import siapro.controller.ListarProjetoController;
-import siapro.dao.EventoDAO;
 import siapro.model.Evento;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ListarProjeto extends JFrame {
 
@@ -33,6 +31,7 @@ public class ListarProjeto extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/**
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -46,14 +45,14 @@ public class ListarProjeto extends JFrame {
 			}
 		});
 	}
-
+*/
 	/**
 	 * Create the frame.
 	 */
 	
 	public ListarProjeto(Evento evento) {
 		setTitle("Lista de Projetos");
-		setBounds(100, 100, 737, 638);
+		setBounds(100, 100, 826, 638);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -165,7 +164,7 @@ public class ListarProjeto extends JFrame {
 		
 		JLabel lblNomeEvento = new JLabel("EVENTO: " + evento.getNome());
 		lblNomeEvento.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNomeEvento.setBounds(400, 85, 325, 15);
+		lblNomeEvento.setBounds(400, 85, 426, 15);
 		contentPane.add(lblNomeEvento);
  		
 		setVisible(true);

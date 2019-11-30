@@ -37,7 +37,7 @@ public class TelaEditarCategoria extends JFrame {
 		setContentPane(contentPaneCategoria);
 		contentPaneCategoria.setLayout(null);
 		
-		JLabel lblEditarCategoria = new JLabel("Editar Categoria");
+		JLabel lblEditarCategoria = new JLabel(categoria.getId()!=0?"Editar Categoria":"Salvar Categoria");
 		lblEditarCategoria.setFont(new Font("Segoe UI Historic", Font.PLAIN, 17));
 		lblEditarCategoria.setBounds(181, 11, 134, 24);
 		contentPaneCategoria.add(lblEditarCategoria);
@@ -63,7 +63,7 @@ public class TelaEditarCategoria extends JFrame {
 		JButton btnEditarCriterio = new JButton("Editar criterio");
 		btnEditarCriterio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//new TelaAddCriterio((Criterio) listCriterios.getSelectedValue());
+				new TelaAddCriterio((Criterio) listCriterios.getSelectedValue());
 			}
 		});
 		btnEditarCriterio.setBounds(323, 226, 124, 23);
@@ -72,7 +72,7 @@ public class TelaEditarCategoria extends JFrame {
 		JButton btnDeletarCriterio = new JButton("Deletar criterio");
 		btnDeletarCriterio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//new CriterioDAO().deletar((Criterio) listCriterios.getSelectedValue());
+				new TelaDeletarCriterio((Criterio) listCriterios.getSelectedValue());
 			}
 		});
 		btnDeletarCriterio.setBounds(323, 271, 124, 23);
@@ -99,7 +99,17 @@ public class TelaEditarCategoria extends JFrame {
 		JButton btnAdicionarCriterio = new JButton("Adicionar criterio");
 		btnAdicionarCriterio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaAddCriterio(categoria);
+				if(categoria.getId() != 0) {
+					new TelaAddCriterio(categoria);					
+				}
+				else {
+					Categoria categoriaNova = cC.salvarCategoria(textFieldCategoria.getText(), textFieldMax.getText(), textFieldMin.getText());
+					categoria.setId(categoriaNova.getId());
+					categoria.setNome(categoriaNova.getNome());
+					categoria.setQntMaxAvalProjeto(categoriaNova.getQntMaxAvalProjeto());
+					categoria.setQntMinAvalProjeto(categoriaNova.getQntMinAvalProjeto());
+					new TelaAddCriterio(categoria);
+				}
 			}
 		});
 		btnAdicionarCriterio.setBounds(323, 184, 124, 23);

@@ -37,21 +37,24 @@ public class ListarCategoria extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnNewButton = new JButton("Adicionar Categoria");
-		btnNewButton.setBounds(5, 5, 424, 23);
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		contentPane.setLayout(null);
-		contentPane.add(btnNewButton);
 		
 		JList listCategoria = new JList(cC.listarCategoria(evento).toArray());
 		listCategoria.setBounds(5, 51, 245, 399);
 		listCategoria.setToolTipText("");
 		contentPane.add(listCategoria);
 		
+		JButton btnNewButton = new JButton("Adicionar Categoria");
+		btnNewButton.setBounds(5, 5, 424, 23);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Categoria categoria = new Categoria();
+				categoria.setEvento(evento);
+				new TelaEditarCategoria(categoria);
+			}
+		});
+		contentPane.setLayout(null);
+		contentPane.add(btnNewButton);
+
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

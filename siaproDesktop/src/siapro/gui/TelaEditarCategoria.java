@@ -81,7 +81,10 @@ public class TelaEditarCategoria extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cC.salvarCategoria(textFieldCategoria.getText(), textFieldMax.getText(), textFieldMin.getText());
+				categoria.setNome(textFieldCategoria.getText());
+				categoria.setQntMaxAvalProjeto(Integer.parseInt(textFieldMax.getText()));
+				categoria.setQntMinAvalProjeto(Integer.parseInt(textFieldMin.getText()));
+				categoria.setId(cC.salvarCategoria(categoria).getId());
 			}
 		});
 		btnSalvar.setBounds(347, 381, 89, 23);
@@ -103,11 +106,10 @@ public class TelaEditarCategoria extends JFrame {
 					new TelaAddCriterio(categoria);					
 				}
 				else {
-					Categoria categoriaNova = cC.salvarCategoria(textFieldCategoria.getText(), textFieldMax.getText(), textFieldMin.getText());
-					categoria.setId(categoriaNova.getId());
-					categoria.setNome(categoriaNova.getNome());
-					categoria.setQntMaxAvalProjeto(categoriaNova.getQntMaxAvalProjeto());
-					categoria.setQntMinAvalProjeto(categoriaNova.getQntMinAvalProjeto());
+					categoria.setNome(textFieldCategoria.getText());
+					categoria.setQntMaxAvalProjeto(Integer.parseInt(textFieldMax.getText()));
+					categoria.setQntMinAvalProjeto(Integer.parseInt(textFieldMin.getText()));
+					categoria.setId(cC.salvarCategoria(categoria).getId());
 					new TelaAddCriterio(categoria);
 				}
 			}

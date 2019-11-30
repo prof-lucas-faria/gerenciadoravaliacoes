@@ -9,17 +9,14 @@ import siapro.model.Evento;
 
 public class CategoriaController {
 
-	public Categoria salvarCategoria(String nome, String maximo, String minimo) {
-		Categoria cat = new Categoria();
-		cat.setNome(nome);
-		cat.setQntMaxAvalProjeto(Integer.parseInt(maximo));
-		cat.setQntMinAvalProjeto(Integer.parseInt(minimo));
-		
-		return (Categoria) new CategoriaDAO().salvar(cat);
-	}
-	
-	public void editarCategoria(Categoria categoria) {
-		new CategoriaDAO().editar(categoria);		
+	public Categoria salvarCategoria(Categoria categoria) {
+		if(categoria.getId() == 0) {
+			return (Categoria) new CategoriaDAO().salvar(categoria);
+		}
+		else {
+			new CategoriaDAO().editar(categoria);
+			return categoria;
+		}
 	}
 	
 	public List<Categoria> listarCategoria(Evento evento) {

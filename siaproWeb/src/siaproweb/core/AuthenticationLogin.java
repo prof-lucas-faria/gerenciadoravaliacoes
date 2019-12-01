@@ -29,9 +29,9 @@ public class AuthenticationLogin {
 		//O metodo usado pode ser substituido por outro correspondente
 		if(user.getSenha().equals(EncryptMD5.encryptText(password))) {
 			//O atributo 'userLogged' serve para verificar se o login foi sucedido
-			//SessionContext.getInstance().setAttribute("userLogged", true);
+			SessionContext.getInstance().setAttribute("userLogged", true);
 			//O atributo 'userObject' guarda uma instancea do usuario logado
-			//SessionContext.getInstance().setAttribute("userObject", user);
+			SessionContext.getInstance().setAttribute("userObject", user);
 			return SystemSuccess.ACCEPTED_PASSWORD;
 		}
 		return SystemError.INVALID_PASSWORD;

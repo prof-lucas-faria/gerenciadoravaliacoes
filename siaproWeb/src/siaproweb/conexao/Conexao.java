@@ -11,6 +11,7 @@ public class Conexao {
 	
 	public Connection getConexao() {
 		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(DSN, USUARIO, SENHA);
 			
 		} catch (Exception e) {

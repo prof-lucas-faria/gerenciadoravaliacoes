@@ -96,5 +96,25 @@ public class OrganizadorDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public Organizador pesquisarLogin(String login) {
+		String sql = "SELECT * FROM organizador WHERE email = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, login);
+			ResultSet rs = stmt.executeQuery();
+			
+			if (rs.next()) {
+				Organizador o = new Organizador(rs.getString("email"));
+				o.setId(rs.getInt("id"));
+				o.setNome(rs.getString("nome"));
+				o.setSenha(rs.getString("senha"));
+				return o;
+			}
+			return null;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
 
 }

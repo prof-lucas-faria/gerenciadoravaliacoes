@@ -12,11 +12,11 @@
 
 	<h3 style="margin-top:0">Logo</h3>
 
-	<h:form action=""> 
+	<h:form> 
 	
 	<div class="ui-inputgroup ui-fluid ui-g-12 ui-md-4">
 	    <span class="ui-inputgroup-addon"><i class="fa fa-usuario"></i></span>
-	    <p:inputText placeholder="Usuário" />
+	    <p:inputText placeholder="Usuário" value="#{autenticacaoController.avaliador.login}"/>
 	</div>
 	
 	<br />
@@ -25,7 +25,7 @@
 	
 	<div class="ui-inputgroup ui-fluid ui-g-12 ui-md-4">
 	    <span class="ui-inputgroup-addon"><i class="fa fa-senha"></i></span>
-	    <p:inputText placeholder="Senha" />
+	    <p:inputText placeholder="Senha" value="#{autenticacaoController.avaliador.senha}"/>
 	</div>
 	
 	<br />
@@ -34,7 +34,7 @@
 	
 	<p:growl id="growl" life="2000" />
      
-    <p:commandButton value="Entrar" id="ajax" update="growl" action="#{buttonView.buttonAction}" style="margin-right:20px;" styleClass="ui-priority-primary" />
+    <p:commandButton value="Entrar" id="ajax" update="growl" action="#{autenticacaoController.efetuarLogin}" style="margin-right:20px;" styleClass="ui-priority-primary" />
  
 	</h:form>
 </h:body>

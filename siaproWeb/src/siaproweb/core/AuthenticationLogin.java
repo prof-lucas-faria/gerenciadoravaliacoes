@@ -1,22 +1,33 @@
 package siaproweb.core;
 
-import javax.faces.bean.ManagedBean;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import javax.faces.bean.SessionScoped;
 
-import siaproweb.dao.OrganizadorDAO;
-import siaproweb.model.Organizador;
-
-@ManagedBean
 @SessionScoped
 public class AuthenticationLogin {
-	//O tipo deste atributo pode ser alterado para usuarios diferentes
-	private static Organizador user;
+	private static Object user;
+	private static Object dao;
+	private static String methodDAO;
 	
-	private static SystemResult validateLogin(String login) {
-		//O tipo desta variavel e o metodo de busca pode ser alterado para usuarios diferentes
-		Organizador userTransitory = new OrganizadorDAO().pesquisarLogin(login);
-		//O metodo usado pode ser substituido por outro correspondente
-		if(userTransitory.getId() != 0) {
+	public AuthenticationLogin(Object userDao, String methodConsultDao) {
+		dao = userDao;
+		methodDAO = methodConsultDao;
+	}
+	
+	public SystemResult authenticateLogin(Object userInserted, String methodGetLogin, String methodGetPassword) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		if(validateLogin(userInserted, methodGetLogin) == SystemSuccess.ACCEPTED_LOGIN) {
+			return validatePassword(userInserted, methodGetPassword);
+		}
+		else {
+			return validatePassword(userInserted, methodGetPassword);
+		}
+	}
+	
+	private static SystemResult validateLogin(Object userInserted, String methodGetLogin) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		Object userTransitory = consultUser(userInserted);
+		if(getLogin(userInserted, methodGetLogin).equals(getLogin(userTransitory, methodGetLogin))) {
 			user = userTransitory;
 			return SystemSuccess.ACCEPTED_LOGIN;			
 		}
@@ -25,24 +36,51 @@ public class AuthenticationLogin {
 		}
 	}
 	
-	private static SystemResult validatePassword(String password) {
-		//O metodo usado pode ser substituido por outro correspondente
-		if(user.getSenha().equals(EncryptMD5.encryptText(password))) {
-			//O atributo 'userLogged' serve para verificar se o login foi sucedido
+	private static SystemResult validatePassword(Object userInserted, String methodGetPassword) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+		if(getPassword(userInserted, methodGetPassword).equals(getPassword(user, methodGetPassword))) {
 			SessionContext.getInstance().setAttribute("userLogged", true);
-			//O atributo 'userObject' guarda uma instancea do usuario logado
 			SessionContext.getInstance().setAttribute("userObject", user);
 			return SystemSuccess.ACCEPTED_PASSWORD;
 		}
 		return SystemError.INVALID_PASSWORD;
 	}
 	
-	public static SystemResult authenticateLogin(String login, String password) {
-		if(validateLogin(login) == SystemSuccess.ACCEPTED_LOGIN) {
-			return validatePassword(password);
+	private static String getPassword(Object userDate, String methodGetPassword) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	 	try{
+		 	Class<?> classe = Class.forName(userDate.getClass().getName());
+		    return (String) classe.getMethod(methodGetPassword).invoke(userDate);
+		}catch(ClassNotFoundException cnfe){
+			System.err.println("Erro: " + cnfe);
 		}
-		else {
-			return validatePassword(password);
-		}
+		return null;
 	}
+	
+	private static String getLogin(Object userInserted, String methodGetLogin) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	 	try{
+		 	Class<?> classe = Class.forName(userInserted.getClass().getName());
+		 	Method metodox = classe.getMethod(methodGetLogin);
+		    return (String) metodox.invoke(userInserted);
+		}catch(ClassNotFoundException cnfe){
+			System.err.println("Erro: " + cnfe);
+		}
+		return null;
+	}
+	
+	private static Object consultUser(Object userInserted) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	 	try{
+		 	Class<?> classeDAO = Class.forName(dao.getClass().getName());
+		 	Method metodox = null;
+			for (Method metodo : classeDAO.getMethods()) {
+		 		if(metodo.getName().equals(methodDAO)) {
+		 			metodox = metodo;
+		 			break;
+		 		}
+		 	}
+		    return (Object) metodox.invoke(dao, userInserted);
+		}catch(ClassNotFoundException cnfe){
+			System.err.println("Erro: " + cnfe);
+		}
+		return null;
+	} 
+	
 }

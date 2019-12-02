@@ -169,4 +169,40 @@ public class AvaliadorDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public Avaliador pesquisarLogin(Object avaliadorInserted) {
+		Avaliador avaliadorIn = (Avaliador)avaliadorInserted;
+		String sql = "select * from avaliador where login = ?";
+		
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setString(1, avaliadorIn.getLogin());
+			ResultSet rs = stmt.executeQuery();
+			
+			Avaliador avaliador = new Avaliador();
+			if(rs.next()) {
+				avaliador.setId(rs.getLong("id"));
+				avaliador.setNome(rs.getString("nome"));
+				avaliador.setLogin(rs.getString("login"));
+				avaliador.setSenha(rs.getString("senha"));
+				
+				AreaDAO areaDAO = new AreaDAO();
+				Area area = null;
+				ArrayList<Area> lista_area = new ArrayList<Area>();
+				List<Entidade> area_entidade = areaDAO.pesquisarAvaliador(avaliador);
+				
+				for(int x = 0; x < area_entidade.size(); x++) {
+					area = (Area) area_entidade.get(x);
+					lista_area.add(area);
+					
+				}
+				avaliador.setArea(lista_area);
+			}
+			stmt.close();
+			return avaliador;
+			
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 	}
+}

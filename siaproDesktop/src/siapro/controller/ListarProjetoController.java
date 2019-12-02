@@ -26,5 +26,10 @@ public class ListarProjetoController {
 		List<Projeto> listaTitulo = new ProjetoDAO().pesquisarTitulo(projeto);
 		return listaTitulo;
 	}
+	
+	public Projeto desativarProjeto(Projeto projeto) {
+		new ProjetoDAO().desativar(projeto);
+		return projeto;
+	}
 
 }

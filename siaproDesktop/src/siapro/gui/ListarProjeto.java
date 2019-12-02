@@ -22,11 +22,13 @@ import siapro.controller.ListarAreaController;
 import siapro.controller.ListarCategoriaController;
 import siapro.controller.ListarProjetoController;
 import siapro.model.Evento;
+import siapro.model.Projeto;
 
 public class ListarProjeto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtfPesquisarProjeto;
+	private JList listaTrabalho;
 
 	/**
 	 * Launch the application.
@@ -49,6 +51,11 @@ public class ListarProjeto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	public void desativar() {
+		Projeto projeto = (Projeto) listaTrabalho.getSelectedValue();
+		new ListarProjetoController().desativarProjeto(projeto);
+	}
 	
 	public ListarProjeto(Evento evento) {
 		setTitle("Lista de Projetos");
@@ -121,7 +128,7 @@ public class ListarProjeto extends JFrame {
 		lblTrabalhosAdicionados.setBounds(12, 350, 194, 15);
 		contentPane.add(lblTrabalhosAdicionados);
 		
-		JList listaTrabalho = new JList(new ListarProjetoController().listarProjeto(evento).toArray());
+		listaTrabalho = new JList(new ListarProjetoController().listarProjeto(evento).toArray());
 		listaTrabalho.setBorder(new LineBorder(new Color(60, 179, 113)));
 		listaTrabalho.setBackground(UIManager.getColor("CheckBox.background"));
 		listaTrabalho.setBounds(12, 377, 463, 219);
@@ -147,6 +154,12 @@ public class ListarProjeto extends JFrame {
 		contentPane.add(btnEditarTrabalho);
 		
 		JButton btnExcluirTrabalho = new JButton("Excluir Trabalho");
+		btnExcluirTrabalho.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				desativar();
+				listaTrabalho.setListData(new ListarProjetoController().listarProjeto(evento).toArray());
+			}
+		});
 		btnExcluirTrabalho.setBounds(500, 425, 152, 25);
 		contentPane.add(btnExcluirTrabalho);
 		

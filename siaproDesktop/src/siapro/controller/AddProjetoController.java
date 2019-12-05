@@ -30,12 +30,13 @@ public class AddProjetoController {
 	    evento.carregarAreas();
 		return evento.getAreas();
 	}
-	public void salvarProjeto(String titulo, String autores, Categoria categoria, Area area) {		
+	public void salvarProjeto(String titulo, String autores,Evento evento, Categoria categoria, Area area) {		
 		Projeto proj = new Projeto();
 		proj.setTitulo(titulo);
 		proj.setAutores(autores);
-		proj.getCategoria();
-		proj.getArea();
+		proj.setEvento(evento);
+		proj.setCategoria(categoria);
+		proj.setArea(area);
 		new ProjetoDAO().salvar(proj);
 	}
 

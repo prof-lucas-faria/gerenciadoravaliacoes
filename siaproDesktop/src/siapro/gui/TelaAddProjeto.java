@@ -31,35 +31,18 @@ public class TelaAddProjeto extends JFrame {
 	private static AddProjetoController apc = new AddProjetoController();
 	private  JComboBox selecionarCategoria;
 	private JComboBox selecionarArea;
-	private Object evento;
+	private Evento evento;
 	
 
 
 	public void salvar() {
-		new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  null, null);
+		Categoria c = (Categoria) selecionarCategoria.getSelectedItem();
+		Area a = (Area) selecionarArea.getSelectedItem();
+		new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  evento, c, a);
 	}
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Evento evento = (Evento) new EventoDAO().pesquisarId(4);
-					TelaAddProjeto frame = new TelaAddProjeto(evento);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public TelaAddProjeto(Evento evento) {
+		this.evento = evento;
 		setBounds(100, 100, 910, 542);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,12 +88,7 @@ public class TelaAddProjeto extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-				String getCategoria = selecionarCategoria.getSelectedItem().toString();		
-				String getArea = selecionarArea.getSelectedItem().toString();
-				
-				System.out.println(getCategoria);
-				System.out.println(getArea);
+				salvar();
 			}
 		});
 		btnSalvar.setBounds(401, 398, 89, 23);

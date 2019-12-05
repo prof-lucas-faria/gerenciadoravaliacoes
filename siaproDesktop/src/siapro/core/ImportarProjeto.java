@@ -1,33 +1,38 @@
 package siapro.core;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.csvreader.CsvReader;
+
+import siapro.model.Projeto;
 
 public class ImportarProjeto {
-	
-	public boolean importar(String url) {
-		File arquivoCSV = new File(url);
-		boolean resposta = false;
+
+	public List<Projeto> importarProjetoCSV(String url) {
+		List<Projeto> projetos = new ArrayList<Projeto>();
 		try {
-			String linhasArquivo;
-			Scanner leitor = new Scanner(arquivoCSV);
-			leitor.nextLine(); // pular linha de nome das colunas
-			
-			while(leitor.hasNext()) { // Fazer leitura e separar
-				linhasArquivo = leitor.nextLine();
-				String[] valoresSepara = linhasArquivo.split(";"); // remover ;
-/*				System.out.println("titulo = " + valoresSepara[0] + 
-						" autores = " + valoresSepara[1] + " outros = " + valoresSepara[2]);
-*/			
+			CsvReader leerProjetos = new CsvReader(url);
+			leerProjetos.readHeaders();
+			while (leerProjetos.readRecord()) {
+				String titulo = leerProjetos.get(0);
+				String autores = leerProjetos.get(1);
+				;
+				Projeto projeto = new Projeto();
+				projeto.setTitulo(titulo);
+				projeto.setAutores(autores);
+
+				projetos.add(projeto);
 			}
-			
-			resposta = true;
-			
+			leerProjetos.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return resposta;
+		return projetos;
 	}
 
 }

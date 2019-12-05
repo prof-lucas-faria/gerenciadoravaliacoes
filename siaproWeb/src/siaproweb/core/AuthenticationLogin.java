@@ -45,10 +45,10 @@ public class AuthenticationLogin {
 		return SystemError.INVALID_PASSWORD;
 	}
 	
-	private static String getPassword(Object userDate, String methodGetPassword) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
+	private static String getPassword(Object userData, String methodGetPassword) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 	 	try{
-		 	Class<?> classe = Class.forName(userDate.getClass().getName());
-		    return (String) classe.getMethod(methodGetPassword).invoke(userDate);
+		 	Class<?> classe = Class.forName(userData.getClass().getName());
+		    return (String) classe.getMethod(methodGetPassword).invoke(userData);
 		}catch(ClassNotFoundException cnfe){
 			System.err.println("Erro: " + cnfe);
 		}

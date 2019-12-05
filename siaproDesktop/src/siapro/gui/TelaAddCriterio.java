@@ -76,22 +76,6 @@ public class TelaAddCriterio extends JFrame {
 		}
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaAddCriterio frame = new TelaAddCriterio((Criterio) new CriterioDAO().pesquisarId(87));
-					//TelaAddCriterio frame = new TelaAddCriterio((Categoria) new CategoriaDAO().pesquisarId(2));
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -171,6 +155,7 @@ public class TelaAddCriterio extends JFrame {
 		
 		labelCategoria.setText(this.categoria.getNome());
 		
+		setVisible(true);
 	}
 
 

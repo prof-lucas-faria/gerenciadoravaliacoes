@@ -30,7 +30,7 @@ public class AutenticacaoController {
 	public String efetuarLogin() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		avaliador.setSenha(EncryptMD5.encryptText(avaliador.getSenha()));
 		AuthenticationLogin autenticador = new AuthenticationLogin(new AvaliadorDAO(), "pesquisarLogin");
-		System.out.println(autenticador.authenticateLogin(avaliador, "getLogin", "getSenha"));
+		System.out.println(autenticador.authenticateLogin(avaliador, "getLogin", "getSenha" ));
 		return "Home";
 	}
 }

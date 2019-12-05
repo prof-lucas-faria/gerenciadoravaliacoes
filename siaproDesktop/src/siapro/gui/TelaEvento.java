@@ -119,7 +119,7 @@ public class TelaEvento extends JFrame {
 		JButton abrirArea = new JButton("Area");
 		abrirArea.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ListarArea oTela = new ListarArea();
+				ListarArea oTela = new ListarArea(e);
 				oTela.setVisible(true);
 			}
 		});

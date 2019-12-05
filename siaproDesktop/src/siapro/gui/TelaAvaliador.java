@@ -67,7 +67,7 @@ public class TelaAvaliador extends JFrame {
 		evento = (Evento) new EventoDAO().pesquisarId(1);
 		
 		JButton btnAddAvaliadores = new JButton("Adicionar Avaliadores");
-		btnAddAvaliadores.setBounds(38, 60, 193, 29);
+		btnAddAvaliadores.setBounds(38, 61, 193, 29);
 		btnAddAvaliadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new TelaAddAvaliador();
@@ -88,7 +88,7 @@ public class TelaAvaliador extends JFrame {
 		JList listaAvaliadores = new JList(new AvaliadorController().listarAvaliadores(evento).toArray());
 		listaAvaliadores.setBorder(new LineBorder(new Color(0, 0, 0)));
 		listaAvaliadores.setBackground(UIManager.getColor("CheckBox.background"));
-		listaAvaliadores.setBounds(12, 157, 330, 175);
+		listaAvaliadores.setBounds(38, 168, 330, 75);
 		contentPane.add(listaAvaliadores);
 		
 		
@@ -111,7 +111,7 @@ public class TelaAvaliador extends JFrame {
 		contentPane.add(listaAvalaidores);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
-		btnPesquisar.setBounds(301, 123, 105, 27);
+		btnPesquisar.setBounds(295, 120, 105, 27);
 		contentPane.add(btnPesquisar);
 	}
 }

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import siapro.controller.AreaController;
+import siapro.model.Area;
 import siapro.model.Evento;
 
 import javax.swing.JLabel;
@@ -22,21 +23,31 @@ public class TelaAddArea extends JFrame {
 	private JTextField tfNomeArea;
 	private Evento evento;
 	private JTextField tfDescricaoArea;
+	private long idArea;
+	
+	public TelaAddArea(Area a) {
+		this(a.getEvento());
+		tfNomeArea.setText(a.getNome()); 
+		tfDescricaoArea.setText(a.getDescricao());
+		this.idArea = a.getId();
+	}
 	
 	public void botaoSalvar() {
 		Evento e = (evento);
-		if(tfNomeArea.getText().isEmpty() ||  tfDescricaoArea.getText().isEmpty()){
+		if(tfNomeArea.getText().isEmpty() || tfDescricaoArea.getText().isEmpty()){
 			JOptionPane.showMessageDialog(null,"Não é possivel salvar com campos vazios");		
 		}
 		else {
-			new AreaController().salvarArea(tfNomeArea.getText(), evento, tfDescricaoArea.getText());
-			JOptionPane.showMessageDialog(null,"Área salva com sucesso");		
+			new AreaController().salvarArea(tfNomeArea.getText(), e, tfDescricaoArea.getText(), idArea);
+			JOptionPane.showMessageDialog(null,"Área salva com sucesso");
+			tfNomeArea.setText("");
+			tfDescricaoArea.setText("");
 		}
 	}
 	
 	public TelaAddArea(Evento evento) {
 		this.evento = evento;
-		setTitle("Adicionar Área");
+		setTitle("Área");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

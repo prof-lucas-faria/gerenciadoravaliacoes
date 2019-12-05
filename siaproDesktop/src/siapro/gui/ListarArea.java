@@ -8,8 +8,10 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
+import siapro.controller.AreaController;
 import siapro.controller.ListarAreaController;
 import siapro.controller.ListarProjetoController;
 import siapro.dao.AreaDAO;
@@ -20,52 +22,66 @@ import siapro.model.Projeto;
 
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class ListarArea extends JFrame {
-	private ListarAreaController lac = new ListarAreaController();
 	private JPanel contentPane;
 	private Evento evento;
+	private Area area;
 
-
-
-	public static ArrayList<Area> listaArea(Evento evento) {
-		ListarAreaController lac = new ListarAreaController();
-		ArrayList<Area>  lista = (ArrayList<Area>) lac.listarAreas(evento);
-		return lista;
+	public void botaoNovaArea() {
+		Evento e = (evento);
+		new TelaAddArea(e);
 	}
-	
-	
-	public ListarArea() {
+
+	public ListarArea(Evento evento) {
+		this.evento = evento;
 		setTitle("Listar Área");
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		//Teste
-		Evento evento = (Evento) new EventoDAO().pesquisarId(1);
 		
 		JButton btnAdcionarArea = new JButton("Adicionar");
+		btnAdcionarArea.setBounds(5, 5, 424, 23);
 		btnAdcionarArea.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TelaAddArea aTela = new TelaAddArea(evento);
-				aTela.setVisible(true);
+			public void actionPerformed(ActionEvent e) {
+				botaoNovaArea();
 			}
 		});
-		btnAdcionarArea.setBounds(5, 5, 424, 23);
+		contentPane.setLayout(null);
 		contentPane.add(btnAdcionarArea);
 		
-		Evento e = new Evento();
-		e = (Evento) new EventoDAO().pesquisarId(1);
-		
-		//ListarAreaController c = new ListarAreaController();
-		JList listArea = new JList(lac.listarAreas(e).toArray());
-		listArea.setBounds(5, 28, 0, 228);
-		listArea.setToolTipText("");
+		JList listArea = new JList(new ListarAreaController().listarAreas(evento).toArray());
+		listArea.setBounds(15, 39, 296, 197);
 		contentPane.add(listArea);
-		//listArea.setListData(c.listarAreas(e).toArray());
+		listArea.setToolTipText("");
+		
+		JButton btnEditar = new JButton("Editar");
+		btnEditar.setBounds(335, 82, 89, 23);
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new TelaAddArea(new AreaController().atualizarArea((Area) listArea.getSelectedValue()));
+			}
+		});
+		contentPane.add(btnEditar);
+		
+		
+		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.setBounds(335, 139, 89, 23);
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AreaController().deletarArea((Area) listArea.getSelectedValue());
+				listArea.setListData(new ListarAreaController().listarAreas(evento).toArray());
+				JOptionPane.showMessageDialog(null,"Área excluida com sucesso");
+			}
+		});
+		contentPane.add(btnExcluir);
+		
+		JScrollPane scrollListArea = new JScrollPane(listArea);
+		scrollListArea.setBounds(15, 39, 298, 208);
+		contentPane.add(scrollListArea);
 		
 		setVisible(true);
-	}
+		}
 }

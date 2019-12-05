@@ -46,13 +46,12 @@ public class AreaDAO implements InterfaceDAO{
 	public Entidade editar(Entidade entidade) {
 		if (entidade instanceof Area) {
 			Area area = (Area) entidade;	
-	        String sql = "UPDATE area SET nome = ?, idEvento = ?, descricao = ? WHERE id = ?";
+	        String sql = "UPDATE area SET nome = ?, descricao = ? WHERE id = ?";
 	        try {
 	            stmt = conexao.prepareStatement(sql);
 	            stmt.setString(1, area.getNome());
-	            stmt.setLong(2, area.getEvento().getId());
-	            stmt.setString(3,area.getDescricao());
-	            stmt.setLong(4, area.getId());
+	            stmt.setString(2,area.getDescricao());
+	            stmt.setLong(3, area.getId());
 	            stmt.execute();
 	            stmt.close();
 	        } catch (Exception e) {
@@ -132,46 +131,59 @@ public class AreaDAO implements InterfaceDAO{
 	}
 	     
 	 public ArrayList<Area>pesquisaNomeArea(String nome) {
-	        String sql = "SELECT * FROM area WHERE nome LIKE ?";
-	        try {
-	            stmt = conexao.prepareStatement(sql);
-	            stmt.setString(1, "%"+ nome +"%");
-	            ResultSet rs = stmt.executeQuery();
-	            ArrayList<Area> areas = new ArrayList<Area>();
-	            while (rs.next()) {
-	            	Area area = new Area();
-	            	area.setId(rs.getLong("id"));
-	            	area.setNome(rs.getString("nome"));
-	            	EventoDAO eventoDAO = new EventoDAO();
-					area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
-	            	area.setDescricao(rs.getString("descricao"));
-	            	areas.add(area);
-	            }
-	            stmt.close();
-	            return areas;
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
-	    }
+        String sql = "SELECT * FROM area WHERE nome LIKE ?";
+        try {
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, "%"+ nome +"%");
+            ResultSet rs = stmt.executeQuery();
+            ArrayList<Area> areas = new ArrayList<Area>();
+            while (rs.next()) {
+            	Area area = new Area();
+            	area.setId(rs.getLong("id"));
+            	area.setNome(rs.getString("nome"));
+            	EventoDAO eventoDAO = new EventoDAO();
+				area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
+            	area.setDescricao(rs.getString("descricao"));
+            	areas.add(area);
+            }
+            stmt.close();
+            return areas;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 	    
 	 public Area pesquisaArea(String nome) {
 		 String sql = "SELECT * FROM area WHERE nome = ?";
-	        try {
-	            stmt = conexao.prepareStatement(sql);
-	            stmt.setString(1, nome);
-	            ResultSet rs = stmt.executeQuery();
-	            Area area = new Area();
-	            if (rs.next()) {
-	            	area.setId(rs.getLong("id"));
-	            	area.setNome(rs.getString("nome"));
-	            	EventoDAO eventoDAO = new EventoDAO();
-					area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
-	            	area.setDescricao(rs.getString("descricao"));
-	            }
-	            stmt.close();
-	            return area;
-	        } catch (Exception e) {
-	            throw new RuntimeException(e);
-	        }
-	    }
+         try {
+            stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, nome);
+            ResultSet rs = stmt.executeQuery();
+            Area area = new Area();
+            if (rs.next()) {
+            	area.setId(rs.getLong("id"));
+            	area.setNome(rs.getString("nome"));
+            	EventoDAO eventoDAO = new EventoDAO();
+				area.setEvento((Evento) eventoDAO.pesquisarId(rs.getLong("idEvento")));
+            	area.setDescricao(rs.getString("descricao"));
+            }
+            stmt.close();
+            return area;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+	 
+	 public boolean deletar(Area area) {
+			String sql = "DELETE FROM area WHERE id = ?";
+			try {
+				this.stmt = conexao.prepareStatement(sql);
+				this.stmt.setLong(1, area.getId() );
+				this.stmt.execute();
+				this.stmt.close();
+				return true;
+			}catch(Exception e) {
+				throw new RuntimeException(e);
+			}
+	}
 }

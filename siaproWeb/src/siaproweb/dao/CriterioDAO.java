@@ -73,7 +73,7 @@ public class CriterioDAO implements InterfaceDAO {
 	public List<Entidade> listarTudo(Entidade entidade) {
 		// TODO Auto-generated method stub
 		Categoria categoria = (Categoria) entidade;
-		String sql = "SELECT * FROM criterio WHERE id = ?";
+		String sql = "SELECT * FROM criterio WHERE idCategoria = ?";
 		try {
 			this.stmt = this.conexao.prepareStatement(sql);
 			this.stmt.setLong(1, categoria.getId());

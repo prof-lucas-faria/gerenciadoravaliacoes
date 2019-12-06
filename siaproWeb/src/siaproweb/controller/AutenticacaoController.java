@@ -3,7 +3,7 @@ package siaproweb.controller;
 import java.lang.reflect.InvocationTargetException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 
 import siaproweb.core.AuthenticationLogin;
 import siaproweb.core.EncryptMD5;
@@ -13,7 +13,7 @@ import siaproweb.dao.AvaliadorDAO;
 import siaproweb.model.Avaliador;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class AutenticacaoController {
 	private Avaliador avaliador;
 	

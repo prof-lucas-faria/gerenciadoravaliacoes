@@ -7,7 +7,7 @@ public class Criterio implements Entidade{
 	private double notaMinima;
 	private double notaMaxima;
 	private Categoria categoria;
-	
+	private double nota;
 	
 	
 	
@@ -73,6 +73,14 @@ public class Criterio implements Entidade{
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public double getNota() {
+		return nota;
+	}
+
+	public void setNota(double nota) {
+		this.nota = nota;
 	}
 	
 	

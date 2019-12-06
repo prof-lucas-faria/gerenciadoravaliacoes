@@ -63,4 +63,12 @@ public class Avaliador implements Entidade {
 	public void setArea(ArrayList<Area> area) {
 		this.area = area;
 	}
+
+	@Override
+	public String toString() {
+		return nome;
+	}
+
+	
+	 
 }

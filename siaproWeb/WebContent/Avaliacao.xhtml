@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title  >Avaliação</title>
+</h:head>
+<h:body>
+	<h1>Logo</h1>
+	<h1> <h:outputLabel   value="#{avaliacaoController.projeto}"/></h1>
+	
+	<h4>Autores: <h:outputLabel id="autores" value="#{avaliacaoController.projeto.autores}"/></h4>
+	
+	<br></br>
+	 
+	<h:form> 
+	    <p:dataScroller value="#{avaliacaoController.categoria.criterios}" var="criterio" chunkSize="10">
+	        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">         
+	            <p:outputPanel>
+	                <h:panelGrid columns="2" cellpadding="5">
+		                Criterio:
+		            <h:outputText value="#{criterio.nome}" style="font-weight: bold"/>
+		                Nota:
+		                <h:inputText value="#{criterio.nota}"/>
+		               	<!--   <p:spinner id="step" value="#{criterio.nota}" stepFactor="1" />-->
+	               </h:panelGrid>
+	            </p:outputPanel>
+	        </h:panelGrid>
+	    </p:dataScroller>
+	    
+	    <h:commandButton action="#{avaliacaoController.salvarAvaliacao}" value="Salvar"/>
+	</h:form>
+	 
+	<br></br>
+	<h:commandButton action="#{avaliacaoController.voltar}" value="Voltar"/>
+	
+	
+	
+	
+	
+   
+
+ 
+
+	
+    
+	</h:body>
+</html>

@@ -35,12 +35,12 @@ public class AutenticacaoController {
 		SystemResult resultadoLogin = autenticador.authenticateLogin(avaliador, "getLogin", "getSenha");
 		if(resultadoLogin == SystemSuccess.ACCEPTED_PASSWORD) {
 			this.avaliador.setSenha(null);
-			return "Home";			
+			return "Home?faces-redirect=true";			
 		}
 		else {
 			System.out.println(resultadoLogin);
 			this.avaliador.setSenha(null);
-			return "index";
+			return "index?faces-redirect=true";
 		}
 	}
 }

@@ -7,11 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import siaproweb.conexao.Conexao;
-import siaproweb.model.Entidade;
-import siaproweb.model.Projeto;
 import siaproweb.model.Avaliacao;
 import siaproweb.model.Criterio;
-import siaproweb.dao.CriterioDAO;
+import siaproweb.model.Entidade;
+import siaproweb.model.Projeto;
 
 public class AvaliacaoDAO implements InterfaceDAO {
 	 private Connection conexao;
@@ -38,11 +37,12 @@ public class AvaliacaoDAO implements InterfaceDAO {
             
             
             for(Criterio criterio: avaliacao.getCriterios()) {
-            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?)";
+            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?,?)";
                 
                 stmt = conexao.prepareStatement(sql2);
                 stmt.setLong(1, avaliacao.getId());
             	stmt.setLong(2, criterio.getId());
+            	stmt.setDouble(3, criterio.getNota());
             }
             stmt.execute();
             stmt.close();

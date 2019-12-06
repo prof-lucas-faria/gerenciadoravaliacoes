@@ -1,15 +1,16 @@
 package siapro.dao;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
-import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Categoria;
+import siapro.model.Entidade;
 import siapro.model.Evento;
+import siapro.model.Projeto;
 
 
 public class CategoriaDAO implements InterfaceDAO {
@@ -115,6 +116,23 @@ public class CategoriaDAO implements InterfaceDAO {
 			stmt.close();
 		} catch (Exception e) {
 			
+			throw new RuntimeException(e);
+		}
+	}
+	public Categoria pesquisarPorProjeto(Projeto p) {
+		String sql = "SELECT c.id FROM categoria c INNER JOIN projeto p ON c.id = p.idCategoria WHERE p.id = ?";
+		try {
+			this.stmt = conexao.prepareStatement(sql);
+			this.stmt.setLong(1, p.getId());
+			ResultSet rs = this.stmt.executeQuery();
+			Categoria cat = new Categoria();
+			long idCategoria = 0;
+			if(rs.next()) {
+				idCategoria = rs.getLong("id");
+				cat = (Categoria) this.pesquisarId(idCategoria);
+			}
+			return cat;
+		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}
 	}

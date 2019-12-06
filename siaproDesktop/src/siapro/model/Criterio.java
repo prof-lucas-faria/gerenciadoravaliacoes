@@ -6,6 +6,7 @@ public class Criterio implements Entidade{
 	private String nome;
 	private double notaMinima;
 	private double notaMaxima;
+	private double nota;
 	private Categoria categoria;
 	
 	
@@ -73,6 +74,14 @@ public class Criterio implements Entidade{
 	}
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public double getNota() {
+		return nota;
+	}
+
+	public void setNota(double nota) {
+		this.nota = nota;
 	}
 	
 	

@@ -38,11 +38,12 @@ public class AvaliacaoDAO implements InterfaceDAO {
             
             
             for(Criterio criterio: avaliacao.getCriterios()) {
-            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?)";
+            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?,?)";
                 
                 stmt = conexao.prepareStatement(sql2);
                 stmt.setLong(1, avaliacao.getId());
             	stmt.setLong(2, criterio.getId());
+            	stmt.setDouble(3, criterio.getNota());
             }
             stmt.execute();
             stmt.close();

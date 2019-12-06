@@ -73,7 +73,9 @@ public class ListarProjeto extends JFrame {
 		JButton btnAddTrabalho = new JButton("Adicionar Trabalhos");
 		btnAddTrabalho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaAddProjeto(evento);
+				dispose();
+				TelaAddProjeto tap = new TelaAddProjeto(evento);
+				tap.setVisible(true);
 			}
 		});
 		btnAddTrabalho.setBounds(12, 30, 169, 25);

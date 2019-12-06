@@ -8,12 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import siapro.controller.AddProjetoController;
+import siapro.controller.AreaController;
 import siapro.dao.EventoDAO;
 import siapro.model.Evento;
 import siapro.model.Categoria;
@@ -38,7 +40,18 @@ public class TelaAddProjeto extends JFrame {
 	public void salvar() {
 		Categoria c = (Categoria) selecionarCategoria.getSelectedItem();
 		Area a = (Area) selecionarArea.getSelectedItem();
+		
+		if(textFieldTitulo.getText().isEmpty() || textFieldAutores.getText().isEmpty()){
+			JOptionPane.showMessageDialog(null,"Não é possivel salvar com campos vazios");		
+		}
+		else {
+			JOptionPane.showMessageDialog(null,"Projeto salvo com sucesso");
+		}	
+		
+		
 		new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  evento, c, a);
+		new ListarProjeto(evento);
+		dispose();
 	}
 
 	public TelaAddProjeto(Evento evento) {

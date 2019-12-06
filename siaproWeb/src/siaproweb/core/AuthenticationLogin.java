@@ -78,7 +78,7 @@ public class AuthenticationLogin {
 		 	}
 		    return (Object) metodox.invoke(dao, userInserted);
 		}catch(ClassNotFoundException cnfe){
-			System.err.println("Erro: " + cnfe);
+			System.err.println("Erro: " +cnfe);
 		}
 		return null;
 	} 

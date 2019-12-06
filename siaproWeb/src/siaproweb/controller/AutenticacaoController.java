@@ -7,6 +7,8 @@ import javax.faces.bean.SessionScoped;
 
 import siaproweb.core.AuthenticationLogin;
 import siaproweb.core.EncryptMD5;
+import siaproweb.core.SystemResult;
+import siaproweb.core.SystemSuccess;
 import siaproweb.dao.AvaliadorDAO;
 import siaproweb.model.Avaliador;
 
@@ -30,7 +32,15 @@ public class AutenticacaoController {
 	public String efetuarLogin() throws IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 		avaliador.setSenha(EncryptMD5.encryptText(avaliador.getSenha()));
 		AuthenticationLogin autenticador = new AuthenticationLogin(new AvaliadorDAO(), "pesquisarLogin");
-		System.out.println(autenticador.authenticateLogin(avaliador, "getLogin", "getSenha" ));
-		return "Home";
+		SystemResult resultadoLogin = autenticador.authenticateLogin(avaliador, "getLogin", "getSenha");
+		if(resultadoLogin == SystemSuccess.ACCEPTED_PASSWORD) {
+			this.avaliador.setSenha(null);
+			return "Home";			
+		}
+		else {
+			System.out.println(resultadoLogin);
+			this.avaliador.setSenha(null);
+			return "index";
+		}
 	}
 }

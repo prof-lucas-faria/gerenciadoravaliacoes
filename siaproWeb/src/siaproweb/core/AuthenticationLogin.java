@@ -21,7 +21,7 @@ public class AuthenticationLogin {
 			return validatePassword(userInserted, methodGetPassword);
 		}
 		else {
-			return validatePassword(userInserted, methodGetPassword);
+			return validateLogin(userInserted, methodGetLogin);
 		}
 	}
 	

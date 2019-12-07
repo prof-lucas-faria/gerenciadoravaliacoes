@@ -45,14 +45,12 @@ public class TelaAddProjeto extends JFrame {
 		if(textFieldTitulo.getText().isEmpty() || textFieldAutores.getText().isEmpty()){
 			JOptionPane.showMessageDialog(null,"Não é possivel salvar com campos vazios");		
 		}
-		else {
+		else {			
 			JOptionPane.showMessageDialog(null,"Projeto salvo com sucesso");
+			new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  evento, c, a);
+			new ListarProjeto(evento);
+			dispose();
 		}	
-		
-		
-		new AddProjetoController().salvarProjeto(textFieldTitulo.getText(), textFieldAutores.getText(),  evento, c, a);
-		new ListarProjeto(evento);
-		dispose();
 	}
 
 	/**

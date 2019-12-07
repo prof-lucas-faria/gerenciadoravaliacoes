@@ -107,7 +107,7 @@ public class ListarProjeto extends JFrame {
 		lblCategoria.setBounds(12, 132, 98, 15);
 		contentPane.add(lblCategoria);
 		
-		JLabel lblrea = new JLabel("Ã�rea:");
+		JLabel lblrea = new JLabel("Área:");
 		lblrea.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblrea.setBounds(372, 127, 73, 25);
 		contentPane.add(lblrea);
@@ -150,8 +150,8 @@ public class ListarProjeto extends JFrame {
 		btnEditarTrabalho.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Projeto p = (Projeto) listaTrabalho.getSelectedValue();
-				TelaAddProjeto t = new TelaAddProjeto(evento, p);
-				t.setVisible(true);
+				new TelaAddProjeto((Projeto) listaTrabalho.getSelectedValue());
+				dispose();
 			}
 		});
 		btnEditarTrabalho.setBounds(500, 374, 147, 25);

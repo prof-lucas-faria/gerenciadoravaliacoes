@@ -9,6 +9,7 @@ import java.util.List;
 
 import siaproweb.conexao.Conexao;
 import siaproweb.model.Area;
+import siaproweb.model.Avaliador;
 import siaproweb.model.Categoria;
 import siaproweb.model.Entidade;
 import siaproweb.model.Evento;
@@ -147,6 +148,27 @@ public class ProjetoDAO implements InterfaceDAO {
 			}
 			stmt.close();
 			return listaTitulo;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public List<Projeto> pesquisarProjetoAvaliador (Avaliador avaliador, Evento evento){
+		String sql = "select p.id, p.titulo, p.autores from projeto p inner join avaliacao a on p.id = a.idProjeto where a.idAvaliador = ? and p.idEvento = ?;";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, avaliador.getId());
+			stmt.setLong(2, evento.getId());
+			ResultSet rs = stmt.executeQuery();
+			List<Projeto> projetos = new ArrayList<Projeto>();
+			while(rs.next()) {
+				Projeto pj = new Projeto();
+				pj.setTitulo(rs.getString("titulo"));
+				pj.setId(rs.getInt("id"));
+				pj.setAutores(rs.getString("autores"));
+				projetos.add(pj);
+			}
+			return projetos;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

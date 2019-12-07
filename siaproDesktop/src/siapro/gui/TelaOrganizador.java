@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -49,44 +50,50 @@ public class TelaOrganizador extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblRegistroDeOrganizador = new JLabel("Registro De Organizador");
-		lblRegistroDeOrganizador.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblRegistroDeOrganizador.setBounds(10, 11, 201, 20);
+		lblRegistroDeOrganizador.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblRegistroDeOrganizador.setBounds(10, 11, 330, 20);
 		contentPane.add(lblRegistroDeOrganizador);
 		
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(10, 50, 46, 14);
+		lblNome.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNome.setBounds(10, 50, 100, 14);
 		contentPane.add(lblNome);
 		
 		textNome = new JTextField();
-		textNome.setBounds(10, 64, 131, 20);
+		textNome.setBounds(10, 64, 350, 25);
 		contentPane.add(textNome);
 		textNome.setColumns(10);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(10, 95, 46, 14);
+		lblEmail.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblEmail.setBounds(10, 85, 100, 32);
 		contentPane.add(lblEmail);
 		
 		textEmail = new JTextField();
-		textEmail.setBounds(10, 108, 131, 20);
+		textEmail.setBounds(10, 108, 350, 25);
 		contentPane.add(textEmail);
 		textEmail.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setBounds(10, 139, 46, 14);
+		lblSenha.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblSenha.setBounds(10, 139, 84, 14);
 		contentPane.add(lblSenha);
 		
 		textSenha = new JTextField();
-		textSenha.setBounds(10, 154, 131, 20);
+		textSenha.setBounds(10, 154, 350, 25);
 		contentPane.add(textSenha);
 		textSenha.setColumns(10);
 		
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setFont(new Font("Dialog", Font.BOLD, 14));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new OrganizadorController().salvarOrganizador(textNome.getText(), textEmail.getText(), textSenha.getText());
+				JOptionPane.showMessageDialog(btnRegistrar, "Cadastrado Organizador: " + textNome.getText());
+
 			}
 		});
-		btnRegistrar.setBounds(31, 185, 89, 23);
+		btnRegistrar.setBounds(150, 200, 130, 30);
 		contentPane.add(btnRegistrar);
 	}
 }

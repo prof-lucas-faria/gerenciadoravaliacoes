@@ -7,16 +7,34 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Listar Eventos</title>
 </h:head>
-<a style="color: Tomato;" href="Home.xhtml">Voltar</a>
 <h:body>
+	<a style="color: Tomato;" href="Home.xhtml">Voltar</a>
 	<br></br>
 	<h1 style="color: Tomato;">Logo</h1>
-	<br></br>
+	<h1>
+		<h:outputLabel value="#{ListarEventoController.avaliador.nome}" />
+	</h1>
 	
+	<br></br>
+	<br></br>
+
+	<br></br>
 	<hr></hr>
 	<h1 style="color: DodgerBlue;">Eventos</h1>
-
 	<a style="color: Tomato;" href="ListarTrabalhos.xhtml">Evento 1</a>
 	<a style="color: Tomato;" href="ListarTrabalhos.xhtml">Evento 2</a>
 </h:body>
+
+<h:form> 
+	    <p:dataScroller value="#{ListarEventoController.avaliador.eventos}" var="evento" chunkSize="10">
+	        <h:panelGrid columns="2" style="width:100%" columnClasses="logo,detail">         
+	            <p:outputPanel>
+	                <h:panelGrid columns="2" cellpadding="5">
+		                Evento:
+		            <h:outputText value="#{evento.nome}" style="font-weight: bold"/>
+	               </h:panelGrid>
+	            </p:outputPanel>
+	        </h:panelGrid>
+	    </p:dataScroller>
+	</h:form>
 </html>

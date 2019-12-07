@@ -10,7 +10,7 @@ import siaproweb.model.Projeto;
 public class TrabalhosController {
 	
 	public List<Projeto> listarTrabalhosAvaliador(Evento e,Avaliador a ) {
-		List<Projeto> lp = new ProjetoDAO().pesquisarProjeto(e,a);		
+		List<Projeto> lp = new ProjetoDAO().pesquisarProjetoAvaliador(a, e);		
 		return lp;
 	} 
 

@@ -3,6 +3,7 @@ package siaproweb.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +28,21 @@ public class AvaliacaoDAO implements InterfaceDAO {
 		String sql = "INSERT INTO avaliacao (idAvaliador, idProjeto, nota, avaliado) VALUES (?,?,?,?)";
 		Avaliacao avaliacao = (Avaliacao) entidade;
         try {
-            stmt = conexao.prepareStatement(sql);
+        	this.stmt = this.conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, avaliacao.getAvaliador().getId());
             stmt.setLong(2, avaliacao.getProjeto().getId());
             stmt.setDouble(3, avaliacao.getNota());
             stmt.setBoolean(4, avaliacao.isAvaliacao());
             stmt.execute();
-            stmt.close();
+          
             
+            ResultSet rs = this.stmt.getGeneratedKeys();
+			if(rs.next()) {
+				avaliacao.setId(rs.getInt(1));
+			}
             
             for(Criterio criterio: avaliacao.getCriterios()) {
-            	String sql2 = "INSERT INTO avaliacaoCriterio VALUES (?,?,?)";
+            	String sql2 = "INSERT INTO avaliacaoCriterio(idAvaliacao, idCriterio, nota) VALUES (?,?,?)";
                 
                 stmt = conexao.prepareStatement(sql2);
                 stmt.setLong(1, avaliacao.getId());

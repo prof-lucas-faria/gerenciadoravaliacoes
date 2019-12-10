@@ -170,6 +170,26 @@ public class AvaliadorDAO implements InterfaceDAO {
 		}
 	}
 	
+	public List<Avaliador> pesquisarAvaliador(Evento e, Avaliador a) {
+		String sql = "SELECT * FROM avaliador a JOIN eventoAvaliador ea ON ea.idAvaliador =  a.id  WHERE ea.idEvento = ? AND a.nome LIKE ?;";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, e.getId());
+			stmt.setString(2, "%" + a.getNome() + "%");
+			ResultSet rs = stmt.executeQuery();
+			List<Avaliador> avaliadores = new ArrayList<Avaliador>();
+			while (rs.next()) {
+				Avaliador avaliador = new Avaliador();
+				avaliador.setNome(rs.getString("nome"));
+				avaliadores.add(avaliador);
+			}
+			stmt.close();
+			return avaliadores;
+		} catch (Exception ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	
 	public Avaliador pesquisarLogin(Object avaliadorInserted) {
 		Avaliador avaliadorIn = (Avaliador)avaliadorInserted;
 		String sql = "select * from avaliador where login = ?";

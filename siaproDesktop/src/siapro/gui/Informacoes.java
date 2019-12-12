@@ -16,13 +16,18 @@ import javax.swing.JOptionPane;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.awt.event.ActionEvent;
 
 public class Informacoes extends JFrame {
@@ -33,10 +38,11 @@ public class Informacoes extends JFrame {
 	private JTextField textFieldEstado;
 	private JTextArea textAreaInformacoes;
 	private Evento evento;
+	private Path caminho;
 	
 	public Informacoes(Evento evento) {
 		this.evento = evento;
-		setBounds(100, 100, 450, 474);
+		setBounds(100, 100, 745, 493);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -101,7 +107,7 @@ public class Informacoes extends JFrame {
 		contentPane.add(lblEstado);
 		
 		textFieldEstado = new JTextField();
-		textFieldEstado.setBounds(78, 100, 334, 20);
+		textFieldEstado.setBounds(78, 100, 207, 20);
 		contentPane.add(textFieldEstado);
 		textFieldEstado.setColumns(10);		
 		if(evento.getLiberado() == true) {
@@ -113,24 +119,39 @@ public class Informacoes extends JFrame {
 		}
 
 		JLabel lblLogotipo = new JLabel("Logotipo do Evento:");
-		lblLogotipo.setBounds(22, 198, 131, 14);
+		lblLogotipo.setBounds(22, 229, 131, 14);
 		contentPane.add(lblLogotipo);
 		
+		JLabel lblLogo = new JLabel();
+		lblLogo.setBounds(300, 88, 401, 217);
+		contentPane.add(lblLogo);
+
 		JButton btnEscolherArquivo = new JButton("Enviar Arquivo");
 		btnEscolherArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				fc.showOpenDialog(btnEscolherArquivo);
+				File file = fc.getSelectedFile();
+				try {
+					caminho = Paths.get(file.getAbsolutePath());
+					lblLogo.setIcon(new ImageIcon(caminho.toString()));
+					getContentPane().add(lblLogo);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(btnEscolherArquivo, "Arquivo não carregado");
+				}
 			}
 		});
 		
-		btnEscolherArquivo.setBounds(141, 194, 133, 23);
+				
+		btnEscolherArquivo.setBounds(145, 225, 133, 23);
 		contentPane.add(btnEscolherArquivo);
 		JLabel lblInformaesSobreO = new JLabel("Informações sobre o Evento");
 		lblInformaesSobreO.setForeground(Color.BLUE);
-		lblInformaesSobreO.setBounds(22, 263, 224, 15);
+		lblInformaesSobreO.setBounds(22, 297, 224, 15);
 		contentPane.add(lblInformaesSobreO);
 	
 		JTextArea textAreaInformacoes = new JTextArea();
-		textAreaInformacoes.setBounds(22, 290, 390, 69);
+		textAreaInformacoes.setBounds(22, 324, 390, 69);
 		contentPane.add(textAreaInformacoes);
 		textAreaInformacoes.setText(evento.getInformacoes());
 		
@@ -143,14 +164,14 @@ public class Informacoes extends JFrame {
 					JOptionPane.showMessageDialog(null,"Não é possivel salvar com campos vazios");		
 				}
 				else {
-					new EventoController().editarEvento(textFieldNome.getText(),textAreaInformacoes.getText(), evento.getLiberado(), null, idEvento);
+					new EventoController().editarEvento(textFieldNome.getText(),textAreaInformacoes.getText(), evento.getLiberado(), caminho.toString(), idEvento);
 					JOptionPane.showMessageDialog(null,"Alteração salva com sucesso");
 				}					
 			}
 		});
 					
 		btnSalvar.setForeground(Color.BLUE);
-		btnSalvar.setBounds(236, 370, 176, 25);
+		btnSalvar.setBounds(313, 404, 176, 25);
 		contentPane.add(btnSalvar);
 		
 		setVisible(true);

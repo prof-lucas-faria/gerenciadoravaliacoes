@@ -7,7 +7,6 @@ import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
 import siapro.model.Organizador;
-import siapro.model.Projeto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,7 +48,7 @@ public class EventoDAO implements InterfaceDAO {
 	
 	public Entidade editar(Entidade entidade) {
 		Evento evento = (Evento) entidade;
-		String sql = "UPDATE evento SET nome = ?, informacoes = ?, liberado = ?, logotipo = ?  WHERE id = ?";
+		String sql = "UPDATE evento SET nome = ?, informacoes = ?, liberado = ?, logotipo = LOAD_FILE(?)  WHERE id = ?";
 		try {
 			stmt = conexao.prepareStatement(sql);
 			stmt.setString(1, evento.getNome());

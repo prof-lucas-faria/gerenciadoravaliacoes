@@ -2,6 +2,7 @@ package siaproweb.dao;
 
 import java.util.List;
 
+import siaproweb.model.Avaliador;
 import siaproweb.model.Categoria;
 import siaproweb.model.Entidade;
 import siaproweb.conexao.Conexao;
@@ -64,12 +65,21 @@ public class EventoDAO implements InterfaceDAO {
 	}
 
 	public List<Entidade> listarTudo(Entidade entidade) {
-		String sql = "select * from evento e inner join organizadorEvento oe on oe.idEvento = e.id where oe.idOrganizador = ?;";
 		List<Entidade> resultadoConsulta = new ArrayList<Entidade>();
 		try {
-			Organizador organizador = (Organizador) entidade;
-			stmt = conexao.prepareStatement(sql);
-			stmt.setLong(1,organizador.getId());
+			String sql;
+			if(entidade instanceof Organizador) {
+				Organizador ente = (Organizador) entidade;
+				sql = "select * from evento e inner join organizadorEvento oe on oe.idEvento = e.id where oe.idOrganizador = ?;";
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, ente.getId());
+			}
+			if(entidade instanceof Avaliador) {
+				Avaliador ente = (Avaliador) entidade;
+				sql = "select * from evento e inner join eventoAvaliador ae on ae.idEvento = e.id where ae.idAvaliador = ?;";
+				stmt = conexao.prepareStatement(sql);
+				stmt.setLong(1, ente.getId());
+			}
 			ResultSet rs = stmt.executeQuery();
 			
 			

@@ -3,73 +3,68 @@ package siaproweb.controller;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 
+import siaproweb.core.SessionContext;
 import siaproweb.dao.AvaliacaoDAO;
 import siaproweb.dao.AvaliadorDAO;
 import siaproweb.dao.ProjetoDAO;
 import siaproweb.model.Avaliacao;
+import siaproweb.model.Avaliador;
 import siaproweb.model.Categoria;
 import siaproweb.model.Criterio;
 import siaproweb.model.Projeto;
 @ManagedBean
-@SessionScoped
+@RequestScoped
 
 public class AvaliacaoController {
 	private Projeto projeto;
 	private Categoria categoria;
-	private Criterio criterio;
-	//private List<Criterio> criterios;
 	private Avaliacao avaliacao;
-	
+	private Avaliador avaliador;
+	 
 	public AvaliacaoController() {
 		Projeto p = (Projeto) new ProjetoDAO().pesquisarId(1);
 		this.projeto = p;
 		Categoria c = new CategoriaController().pesquisarPorProjeto(this.projeto);
 		c.carregarCriterios();
 		this.categoria = c;
-		//this.criterios = c.getCriterios();
+		//this.avaliador =(Avaliador) SessionContext.getInstance().getAttribute("userObject");
+		this.avaliador = (Avaliador) new AvaliadorDAO().pesquisarId(5);
 		
-	}
+ 	}
 	public void voltar() {
 		System.out.println("Voltar");
 		//return "ListarTrabalhos";
 	}
 	
-	/*public void avaliar() {
-		for(Criterio c : this.criterios) {
-			System.out.println(c.getNota());
-		}
-		
-	}*/
-	
-	public void salvarAvaliacao() {
-		this.avaliacao = new Avaliacao();
-		//System.out.println(this.avaliacao.getCriterios().get(1).getNota());
-		this.avaliacao.setCriterios(this.categoria.getCriterios());
-		this.avaliacao.setProjeto(this.projeto);
-		this.avaliacao.setAvaliacao(true);
+	public double calcularNota(List<Criterio> criterios) {
 		double nota = 0;
 		for(Criterio c : this.categoria.getCriterios()) {
 			 nota += c.getNota();
 		}
-		this.avaliacao.setNota(nota);
-		System.out.println("A nota Final é: " + this.avaliacao.getNota());
-		//new AvaliadorDAO().salvar(this.avaliacao);
+		nota = nota/this.categoria.getCriterios().size();
+		return nota;
+	}
+	public void salvarAvaliacao() {
+		this.avaliacao = new Avaliacao();
+		this.avaliacao.setCriterios(this.categoria.getCriterios());
+		this.avaliacao.setProjeto(this.projeto);
+		this.avaliacao.setAvaliacao(true);
+		this.avaliacao.setNota(this.calcularNota(this.avaliacao.getCriterios()));
+		this.avaliacao.setAvaliador(this.avaliador);
+		System.out.println("A nota Final é: " + this.avaliacao.getNota() + "Avaliado por" + this.avaliador.getNome());
+		new AvaliacaoDAO().salvar(this.avaliacao);
 	}
 	public Projeto getProjeto() {
-		
 		return projeto;
 	}
 
 	public void setPprojeto(Projeto p) {
 		this.projeto = p;
 	}
-	/*public void pesquisarCategoria() {
-		Categoria c = new CategoriaController().pesquisarPorProjeto(this.projeto);
-		this.categoria = c;
-	}*/
-	
+
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -78,25 +73,16 @@ public class AvaliacaoController {
 		this.categoria = categoria;
 	}
 
-	public Criterio getCriterio() {
-		return criterio;
-	}
-
-	public void setCriterio(Criterio criterio) {
-		this.criterio = criterio;
-	}
-
-	/*public List<Criterio> getCriterios() {
-		return criterios;
-	}
-
-	public void setCriterios(List<Criterio> criterios) {
-		this.criterios = criterios;
-	}*/
 	public Avaliacao getAvaliacao() {
 		return avaliacao;
 	}
 	public void setAvaliacao(Avaliacao avaliacao) {
 		this.avaliacao = avaliacao;
+	}
+	public Avaliador getAvaliador() {
+		return avaliador;
+	}
+	public void setAvaliador(Avaliador avaliador) {
+		this.avaliador = avaliador;
 	}
 }

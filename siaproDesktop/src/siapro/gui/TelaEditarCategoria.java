@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import siapro.controller.CategoriaController;
@@ -141,6 +142,9 @@ public class TelaEditarCategoria extends JFrame {
 		textFieldMax.setColumns(10);
 		textFieldMax.setText(Integer.toString(categoria.getQntMaxAvalProjeto()));
 		
+		JScrollPane scrollCriterios = new JScrollPane(listCriterios);
+		scrollCriterios.setBounds(39, 187, 251, 182);
+		contentPaneCategoria.add(scrollCriterios);
 		setVisible(true);
 	}
 }

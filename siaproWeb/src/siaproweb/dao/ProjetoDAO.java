@@ -173,5 +173,17 @@ public class ProjetoDAO implements InterfaceDAO {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public void desativar(Projeto projeto) {
+		String sql = "UPDATE projeto SET ativo = 0 WHERE id = ?";
+		try {
+			stmt = conexao.prepareStatement(sql);
+			stmt.setLong(1, projeto.getId());
+			stmt.execute();
+			stmt.close();
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	} 
 
 }

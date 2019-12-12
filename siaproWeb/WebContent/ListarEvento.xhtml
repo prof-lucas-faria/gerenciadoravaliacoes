@@ -3,20 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Listar Eventos</title>
 </h:head>
-<a style="color: Tomato;" href="Home.xhtml">Voltar</a>
 <h:body>
+	<a style="color: Tomato;" href="Home.xhtml">Voltar</a>
 	<br></br>
-	<h1 style="color: Tomato;">Logo</h1>
-	<br></br>
-	
-	<hr></hr>
-	<h1 style="color: DodgerBlue;">Eventos</h1>
+	<h1 style="color: DodgerBlue;">Logo</h1>
 
-	<a style="color: Tomato;" href="ListarTrabalhos.xhtml">Evento 1</a>
-	<a style="color: Tomato;" href="ListarTrabalhos.xhtml">Evento 2</a>
+	<h2>
+		<h:outputLabel
+			value="Bem Vindo, #{listarEventoController.avaliador.nome}" />
+	</h2>
+
+	<br></br>
+	<br></br>
+
+	<br></br>
+	<hr></hr>
+	<h:form>
+		<p:dataScroller value="#{listarEventoController.listarEventos()}"
+			var="evento" chunkSize="10">
+			<a style="color: Tomato;" href="ListarTrabalhos.xhtml">Acessar projetos</a>
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+		                Evento:
+		            <h:outputText value="#{evento.nome}"
+							style="font-weight: bold" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataScroller>
+	</h:form>
 </h:body>
 </html>

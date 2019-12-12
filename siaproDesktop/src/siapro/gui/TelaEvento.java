@@ -130,7 +130,7 @@ public class TelaEvento extends JFrame {
 		JButton abrirInformacoes = new JButton("Informações");
 		abrirInformacoes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Informacoes oTela = new Informacoes();
+				Informacoes oTela = new Informacoes(e);
 				oTela.setVisible(true);
 			}
 		});

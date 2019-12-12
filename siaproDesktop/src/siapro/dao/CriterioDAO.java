@@ -50,7 +50,7 @@ public class CriterioDAO implements InterfaceDAO {
 	@Override
 	public Entidade editar(Entidade entidade) {
 		// TODO Auto-generated method stub
-		String sql = "UPDATE FROM criterio SET nome = ?, descricao = ?, notaMaxima = ?, notaMinima = ?, idCategoria = ? WHERE id = ?";
+		String sql = "UPDATE criterio SET nome = ?, descricao = ?, notaMaxima = ?, notaMinima = ?, idCategoria = ? WHERE id = ?";
 		try {
 			Criterio criterio = (Criterio) entidade;
 			this.stmt = conexao.prepareStatement(sql);

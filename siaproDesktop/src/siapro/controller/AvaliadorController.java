@@ -21,5 +21,12 @@ public class AvaliadorController {
 			
 		return a;
 	}
+	
+	public List<Avaliador> pesquisarAvaliador(Evento evento, String nomeAvaliador) {
+		Avaliador avaliador = new Avaliador();
+		avaliador.setNome(nomeAvaliador);
+		List<Avaliador> listaNomeAva = new AvaliadorDAO().pesquisarAvaliador(evento, avaliador);
+		return listaNomeAva;
+	}
 
 }

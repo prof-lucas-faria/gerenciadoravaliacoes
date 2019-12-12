@@ -9,22 +9,30 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Trabalhos</title>	
 </h:head>
- <a style="color:Tomato;" href="Home.xhtml">Voltar</a> 
+ <a style="color:Tomato;" href="ListarEvento.xhtml">Voltar</a> 
 <h:body>	
 <br></br>
 <h1 style="color:Tomato;">Nome do Evento</h1><br></br><hr></hr>
 <h1 style="color:DodgerBlue;">Trabalhos</h1>
-
-	<p:dataScroller value="#(trabalhosController.listarTrabalhosAvaliador)" var="trab">
-		<f:facet name="header">
-			Trabalhos
-		</f:facet>
-		
-		<p:outputPanel>
-			<h:outputText value="#(trab.titulo)"/>
-			<h:outputText value="#(trab.area)"/>
-		</p:outputPanel>
-	</p:dataScroller>
+	
+	<h:form>
+		<p:dataScroller value="#{TrabalhosController.listarTrabalhosAvaliador()}" name="trabalho"
+			var="trabalho" chunkSize="10">
+			 <p:commandButton value="Avaliar" action="#{trabalhosController.AvaliarProjeto}" styleClass="ui-priority-primary" />
+			<h:panelGrid columns="2" style="width:100%"
+				columnClasses="logo,detail">
+				<p:outputPanel>
+					<h:panelGrid columns="2" cellpadding="5">
+		                Trabalho:
+		            <h:outputText value="#{trabalho.nome}"
+							style="font-weight: bold" />
+					<h:outputText value="#{trabalho.area}"
+							style="font-weight: bold" />
+					</h:panelGrid>
+				</p:outputPanel>
+			</h:panelGrid>
+		</p:dataScroller>
+	</h:form>
 		
 </h:body>
 </html>

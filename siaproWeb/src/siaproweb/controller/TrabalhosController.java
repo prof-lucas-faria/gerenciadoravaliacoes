@@ -25,6 +25,6 @@ public class TrabalhosController {
 
 	public String AvaliarProjeto() {
 		
-		return String
+		return "Avaliacao?faces-redirect=true";
 	}
 }

@@ -7,6 +7,7 @@ import siapro.model.Entidade;
 import siapro.conexao.Conexao;
 import siapro.model.Evento;
 import siapro.model.Organizador;
+import siapro.model.Projeto;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -47,20 +48,21 @@ public class EventoDAO implements InterfaceDAO {
 
 	
 	public Entidade editar(Entidade entidade) {
+		Evento evento = (Evento) entidade;
 		String sql = "UPDATE evento SET nome = ?, informacoes = ?, liberado = ?, logotipo = ?  WHERE id = ?";
 		try {
-			Evento e = (Evento) entidade;
 			stmt = conexao.prepareStatement(sql);
-			stmt.setString(1, e.getNome());
-			stmt.setString(2, e.getInformacoes());
-			stmt.setBoolean(3, e.getLiberado());
-			stmt.setString(4, e.getLogotipo());
+			stmt.setString(1, evento.getNome());
+			stmt.setString(2, evento.getInformacoes());
+			stmt.setBoolean(3, evento.getLiberado());
+			stmt.setString(4, evento.getLogotipo());
+			stmt.setLong(5, evento.getId());
 			stmt.execute();
 			stmt.close();
-			return entidade;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+		return entidade;
 	}
 
 	public List<Entidade> listarTudo(Entidade entidade) {
@@ -122,5 +124,4 @@ public class EventoDAO implements InterfaceDAO {
 				throw new RuntimeException(e);
 			}
 		}
-	
 	}

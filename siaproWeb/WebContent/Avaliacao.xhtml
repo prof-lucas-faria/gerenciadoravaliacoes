@@ -9,11 +9,14 @@
 	<title  >Avaliação</title>
 </h:head>
 <h:body>
+
 	<h1>Logo</h1>
 	<h1> <h:outputLabel   value="#{avaliacaoController.projeto}"/></h1>
 	
-	<h4>Autores: <h:outputLabel id="autores" value="#{avaliacaoController.projeto.autores}"/></h4>
+	<h2>Área: <h:outputText value="#{avaliacaoController.projeto.area}"></h:outputText></h2>
 	
+	
+	<h2>Autores: <h:outputLabel id="autores" value="#{avaliacaoController.projeto.autores}"/></h2>
 	<br></br>
 	 
 	<h:form> 
@@ -22,30 +25,17 @@
 	            <p:outputPanel>
 	                <h:panelGrid columns="2" cellpadding="5">
 		                Criterio:
-		            <h:outputText value="#{criterio.nome}" style="font-weight: bold"/>
+		            <h:outputText value="#{criterio.nome}" style="font-weight: bold"/>             
 		                Nota:
 		                <h:inputText value="#{criterio.nota}"/>
 		               	<!--   <p:spinner id="step" value="#{criterio.nota}" stepFactor="1" />-->
 	               </h:panelGrid>
 	            </p:outputPanel>
 	        </h:panelGrid>
-	    </p:dataScroller>
-	    
+	    </p:dataScroller>	    
 	    <h:commandButton action="#{avaliacaoController.salvarAvaliacao}" value="Salvar"/>
-	</h:form>
-	 
+	</h:form>	 
 	<br></br>
-	<h:commandButton action="#{avaliacaoController.voltar}" value="Voltar"/>
-	
-	
-	
-	
-	
-   
-
- 
-
-	
-    
+	<h:commandButton action="#{avaliacaoController.voltar}" value="Voltar"/>	
 	</h:body>
 </html>

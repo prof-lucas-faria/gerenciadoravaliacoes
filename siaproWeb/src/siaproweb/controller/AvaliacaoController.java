@@ -25,18 +25,19 @@ public class AvaliacaoController {
 	private Avaliador avaliador;
 	 
 	public AvaliacaoController() {
-		Projeto p = (Projeto) new ProjetoDAO().pesquisarId(1);
+		Projeto p = (Projeto) new ProjetoDAO().pesquisarId(1); //Eu precisava do projetona seção pra pegar ele
 		this.projeto = p;
 		Categoria c = new CategoriaController().pesquisarPorProjeto(this.projeto);
 		c.carregarCriterios();
 		this.categoria = c;
-		//this.avaliador =(Avaliador) SessionContext.getInstance().getAttribute("userObject");
-		this.avaliador = (Avaliador) new AvaliadorDAO().pesquisarId(5);
+		this.avaliador =(Avaliador) SessionContext.getInstance().getAttribute("userObject");
+		//this.avaliador = (Avaliador) new AvaliadorDAO().pesquisarId(5); 
 		
  	}
-	public void voltar() {
-		System.out.println("Voltar");
-		//return "ListarTrabalhos";
+	public String voltar() {
+		System.out.println("teste"); 
+		//não sei por qual motivo esse método n funciona
+		return "ListarTrabalhos";
 	}
 	
 	public double calcularNota(List<Criterio> criterios) {

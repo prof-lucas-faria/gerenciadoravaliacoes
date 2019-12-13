@@ -6,6 +6,7 @@ import siaproweb.dao.CategoriaDAO;
 import siaproweb.model.Categoria;
 import siaproweb.model.Criterio;
 import siaproweb.model.Evento;
+import siaproweb.model.Projeto;
 
 public class CategoriaController {
 
@@ -32,5 +33,9 @@ public class CategoriaController {
 	public void deletarCategoria(Categoria categoria) {
 		new CategoriaDAO().deletar(categoria);
 	}
-
+	
+	public Categoria pesquisarPorProjeto(Projeto p) {		
+		Categoria cat = new CategoriaDAO().pesquisarPorProjeto(p);
+		return cat;
+	}
 }
